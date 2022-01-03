@@ -1,49 +1,17 @@
+import 'package:flutter_architecture/business/services/account_service.dart';
+import 'package:flutter_architecture/business/services/login_service.dart';
+
 import '../../exports/export_core.dart';
 import '../../exports/export_business.dart';
 
-final apiManager = ApiManager(DioService(TextConstants.baseUrl));
+final apiManager = ApiManager();
 
-class ApiManager implements IApiService<String> {
-  final IApiService apiService;
-  ApiManager(this.apiService);
+class ApiManager {
+  final IApiService apiService = DioService(TextConstants.baseUrl);
 
-  @override
-  Future<String?> get({
-    required String path,
-    Map<String, String>? headers,
-  }) async {
-    final response = await apiService.get(
-      path: path,
-      headers: headers,
-    );
-    return response.toString();
-  }
+  LoginService? _loginService;
+  LoginService get login => _loginService ??= LoginService(apiService);
 
-  @override
-  Future<String?> post({
-    required String path,
-    required Map<String, dynamic> json,
-    Map<String, String>? headers,
-  }) async {
-    final response = await apiService.post(
-      path: path,
-      json: json,
-      headers: headers,
-    );
-    return response.toString();
-  }
-
-  @override
-  Future<String?> postFormData({
-    required String path,
-    required Map<String, dynamic> json,
-    Map<String, String>? headers,
-  }) async {
-    final response = await apiService.postFormData(
-      path: path,
-      json: json,
-      headers: headers,
-    );
-    return response.toString();
-  }
+  AccountService? _accountService;
+  AccountService get account => _accountService ??= AccountService(apiService);
 }

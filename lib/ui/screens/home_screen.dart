@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    screenWidgets = _ScreenWidgets(this);
+    screenWidgets = _ScreenWidgets(context: context, widget: this);
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: const Text(route)),
       body: Column(
@@ -24,7 +24,9 @@ class HomeScreen extends StatelessWidget {
 
 class _ScreenWidgets {
   final HomeScreen widget;
-  _ScreenWidgets(this.widget);
+  final BuildContext context;
+  
+  _ScreenWidgets({required this.context, required this.widget});
 
   Widget body(String text) {
     return Center(child: Text(text));
@@ -34,12 +36,11 @@ class _ScreenWidgets {
 class _ScreenData {
   String? name;
   int? age;
-  
+
   _ScreenData({
     this.name,
     this.age,
   });
-
 
   Map<String, dynamic> toMap() {
     return {
