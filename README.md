@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 04.01.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 05.01.2022 ]
 
 #
 
@@ -25,7 +25,6 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
   - intl:
   - mask_text_input_formatter:
   - flutter_svg:
-
 
 <br>
 
@@ -65,7 +64,7 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 Ekran tasarımı 3 ana bileşen üzerine kurulmuştur. Bu bileşenler tek bir 'dart' dosyası içinde 3 ayrı sınıftan oluşur. Örnek olarak [Home](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/screens/home_screen.dart) ekranını inceleyebilirsiniz.
 
 - #### Veri Sınıfı ( \_ScreenData ):
-  Tasarladığınız ekranda bir veri işlemi varsa (input, dropdown vs.) bu sınıf kullanılır. Ekran açıldığında bu sınıftan bir obje oluşturulur ve gerekli ise doldurulur. Yapılan veri değişiklikleri bu sınıf üzerinden yapılır. Bu şekilde kaydedilmediği sürece o ekranda olanlar o ekran da kalır.
+  Tasarladığınız ekranda bir veri işlemi varsa (input, dropdown vs.) bu sınıf kullanılır. Ekran açıldığında bu sınıftan bir obje oluşturulur ve gerekli ise doldurulur. Yapılan veri değişiklikleri bu sınıf üzerinden yapılır. Bu şekilde kaydedilmediği sürece o ekranda olanlar o ekranda kalır.
 - #### Widget Sınıfı ( \_ScreenWidgets ):
 
   Ekran için tasarlanan widgetlar bu sınıf altında bir metot olarak tutulur.

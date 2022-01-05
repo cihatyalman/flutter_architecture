@@ -4,6 +4,5 @@ class AccountService {
   IApiService apiService;
   AccountService(this.apiService);
 
-  Future accountGet() async {
-  }
+  Future accountGet() async {}
 }
