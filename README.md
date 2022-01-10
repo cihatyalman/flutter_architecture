@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 05.01.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 10.01.2022 ]
 
 #
 
@@ -20,8 +20,11 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 - Widgets
   - animator
   - another_flushbar
-- Other
+- Cache
+  - hive 
+  - hive_flutter 
   - shared_preferences:
+- Other
   - intl:
   - mask_text_input_formatter:
   - flutter_svg:
