@@ -84,4 +84,8 @@ Sonuç olarak widget sınıfında widgetlarımızı ayrı ayrı tasarlayıp, ana
 # State Managements
 Kişisel olarak 'Stateful' yerine 'Stateless' kullanıyorum. Ekranda yapılan kalıcı olmayan anlık değişiklikler (butonu duruma göre değiştirmek vs.) için 'ValueNotifier', anlık olarak ekrana yansıyacak veri değişiklikleri (profil ismi, profil resmi vs.) için 'Bloc' kullanmayı tercih ediyorum.
 
-#
+<br>
+
+# Flutter Snippet
+Kod yazarken bize yardımcı olacak hazır [kod parçaları](https://github.com/cihatyalman/flutter_architecture/tree/master/flutter.code-snippets).
+
