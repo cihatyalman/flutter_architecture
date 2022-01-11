@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 10.01.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 11.01.2022 ]
 
 #
 
@@ -83,3 +83,5 @@ Sonuç olarak widget sınıfında widgetlarımızı ayrı ayrı tasarlayıp, ana
 
 # State Managements
 Kişisel olarak 'Stateful' yerine 'Stateless' kullanıyorum. Ekranda yapılan kalıcı olmayan anlık değişiklikler (butonu duruma göre değiştirmek vs.) için 'ValueNotifier', anlık olarak ekrana yansıyacak veri değişiklikleri (profil ismi, profil resmi vs.) için 'Bloc' kullanmayı tercih ediyorum.
+
+#
