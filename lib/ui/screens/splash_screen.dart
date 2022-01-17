@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
-import '../../exports/export_screens.dart';
+import '../../exports/export_screens.dart' show HomeScreen;
 
 class SplashScreen extends StatelessWidget {
   static const route = 'SplashScreen';

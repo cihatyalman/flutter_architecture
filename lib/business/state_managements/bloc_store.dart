@@ -1,9 +1,9 @@
-import '../../exports/export_bloc.dart';
+import '../../exports/export_models.dart';
+import 'bloc.dart';
 
 final blocStore = BlocStore();
 
-class BlocStore{
-  UserBloc? _userBloc;
-  UserBloc get user => _userBloc ??= UserBloc();
-
+class BlocStore {
+  Bloc<User>? _userBloc;
+  Bloc<User> get user => _userBloc ??= Bloc<User>()..data = User();
 }

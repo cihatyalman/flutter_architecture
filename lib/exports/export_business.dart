@@ -13,3 +13,5 @@ export '../business/managers/pref_manager.dart';
 
 export '../business/services/account_service.dart';
 export '../business/services/login_service.dart';
+
+export '../business/state_managements/bloc_store.dart';
