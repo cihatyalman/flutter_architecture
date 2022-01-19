@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'exports/export_screens.dart' show SplashScreen;
-import 'exports/export_business.dart' show RouteGenerator, hd, prefManager;
+import 'exports/export_business.dart' show RouteGenerator, hd;
+import 'exports/export_core.dart' show cacheService;
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await prefManager.init();
+  await cacheService.init();
   // ...
   runApp(const MyApp());
 }

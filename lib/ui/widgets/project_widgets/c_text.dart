@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import '../../../exports/export_business.dart';
+import '../../../exports/export_business.dart' show ColorConstants;
 
 class CText extends Text {
   CText(

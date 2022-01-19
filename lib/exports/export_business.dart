@@ -9,7 +9,6 @@ export '../business/helpers/route_generator.dart';
 export '../ui/widgets/project_widgets/widget_helper.dart';
 
 export '../business/managers/api_manager.dart';
-export '../business/managers/pref_manager.dart';
 
 export '../business/services/account_service.dart';
 export '../business/services/login_service.dart';
