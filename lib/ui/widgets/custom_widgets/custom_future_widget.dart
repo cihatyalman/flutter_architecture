@@ -3,26 +3,17 @@
 import 'package:flutter/material.dart';
 
 class CustomFutureWidget extends StatelessWidget {
-  final Widget Function(void Function(bool isLoading) setIsLoading) builder;
-  final Widget? futureWidget;
+  final Widget Function(ValueNotifier<bool> isLoading) builder;
 
-  CustomFutureWidget({required this.builder, this.futureWidget});
+  CustomFutureWidget({required this.builder});
 
-  final _isLoading = ValueNotifier(false);
+  final isLoading = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-      valueListenable: _isLoading,
-      builder: (_, value, __) {
-        if (value) {
-          return futureWidget ??
-              const Center(child: CircularProgressIndicator());
-        }
-        return builder.call(setIsLoading);
-      },
+      valueListenable: isLoading,
+      builder: (_, value, __) => builder.call(isLoading),
     );
   }
-
-  void setIsLoading(bool value) => _isLoading.value = value;
 }
