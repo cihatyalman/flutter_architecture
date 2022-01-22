@@ -9,7 +9,7 @@ Linux $HOME/.config/Code/User/snippets/(language).json
     "Debug Print":{
         "scope": "dart",
         "prefix": "c_debug_print",
-        "body": "print(\"[C_${1:1}]: ${$2}\");",
+		"body": "Console.print(\"[C_${1:1}]: ${$2}\");",
         "description": "Debug Print"
     },
     "Debug Text":{
@@ -53,43 +53,25 @@ Linux $HOME/.config/Code/User/snippets/(language).json
         ],
         "description": "Build Bloc Builder",
     },
-    "Create Bloc":{
-        "scope": "dart",
-        "prefix": "c_bloc_class",
-        "body": [
-            "import 'dart:async';",
-            "",
-            "class ${1:ClassName}Bloc {",
-            "  final _streamController = StreamController<${2:dynamic}>.broadcast();",
-            "  $2 _${3:value};",
-            "",
-            "  $2 get $3 => _$3;",
-            "  set $3($2 $3) {",
-            "    _$3 = $3;",
-            "    updateWidget();",
-            "  }",
-            "",
-            "  Stream<$2> get stream => _streamController.stream;",
-            "  void updateWidget() => _streamController.sink.add(_$3);",
-            "",
-            "  Future dispose() async {",
-            "    await _streamController.close();",
-            "  }",
-            "",
-            "  clean() {",
-            "    _$3 = null;",
-            "  }",
-            "}",
-        ],
-        "description": "Create Bloc"
-    },
 // #endregion
 
 // #region Create 
+	"Create Singleton":{
+		"scope": "dart",
+		"prefix": "c_create_singleton",
+		"body": [
+			"static final ${1:ClassName} _instance = $1._internal();",
+			"factory $1() => _instance;",
+			"$1._internal();",
+		],
+		"description": "Create Singleton"
+	},
     "Create Screen": {
         "scope": "dart",
         "prefix": "c_create_screen",
         "body": [
+            "// ignore_for_file: must_be_immutable, use_key_in_widget_constructors",
+            "",
             "import 'package:flutter/material.dart';",
             "",
             "class ${1:ClassName}Screen extends StatelessWidget {",
@@ -103,7 +85,7 @@ Linux $HOME/.config/Code/User/snippets/(language).json
             "    screenWidgets = _ScreenWidgets(context: context, widget: this);",
             "    return Scaffold(",
             "      appBar: AppBar(centerTitle: true, title: const Text(route)),",
-            "      body: Center(child: Text(route)),",
+            "      body: const Center(child: Text(route)),",
             "    );",
             "  }",
             "}",

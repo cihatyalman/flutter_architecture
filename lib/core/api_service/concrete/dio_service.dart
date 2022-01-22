@@ -1,8 +1,7 @@
-// ignore_for_file: avoid_print, unnecessary_overrides
-
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import '../abstract/i_api_service.dart';
+import '../../utilities/console.dart';
 
 class DioService implements IApiService {
   final String baseUrl;
@@ -31,7 +30,7 @@ class DioService implements IApiService {
       );
       return jsonDecode(response.toString());
     } catch (e) {
-      print("[C_ERROR]: $e");
+      Console.printError(e.toString());
       return null;
     }
   }
@@ -50,7 +49,7 @@ class DioService implements IApiService {
       );
       return jsonDecode(response.toString());
     } catch (e) {
-      print("[C_ERROR]: $e");
+      Console.printError(e.toString());
       return null;
     }
   }
@@ -69,7 +68,7 @@ class DioService implements IApiService {
       );
       return response.toString();
     } catch (e) {
-      print("[C_ERROR]: $e");
+      Console.printError(e.toString());
       return null;
     }
   }
@@ -77,7 +76,7 @@ class DioService implements IApiService {
 
 class _CustomInterceptors extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async{
     // print('REQUEST[${options.method}] => PATH: ${options.path}');
     return super.onRequest(options, handler);
   }
@@ -93,9 +92,8 @@ class _CustomInterceptors extends Interceptor {
 
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
-    print(
-      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
-    );
+    Console.printError(
+        "StatusCode: ${err.response?.statusCode} => PATH: ${err.requestOptions.path}");
     return super.onError(err, handler);
   }
 }
