@@ -6,7 +6,6 @@ export '../business/constants/format_constants.dart';
 
 export '../business/helpers/design_helper.dart';
 export '../business/helpers/route_generator.dart';
-export '../ui/widgets/project_widgets/widget_helper.dart';
 
 export '../business/managers/api_manager.dart';
 

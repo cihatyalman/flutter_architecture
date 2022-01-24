@@ -1,7 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import '../abstract/i_api_service.dart';
-import '../../utilities/console.dart';
 
 class DioService implements IApiService {
   final String baseUrl;
@@ -30,7 +31,7 @@ class DioService implements IApiService {
       );
       return jsonDecode(response.toString());
     } catch (e) {
-      Console.printError(e.toString());
+      print("[C_ERROR]: $e");
       return null;
     }
   }
@@ -49,7 +50,7 @@ class DioService implements IApiService {
       );
       return jsonDecode(response.toString());
     } catch (e) {
-      Console.printError(e.toString());
+      print("[C_ERROR]: $e");
       return null;
     }
   }
@@ -68,7 +69,7 @@ class DioService implements IApiService {
       );
       return response.toString();
     } catch (e) {
-      Console.printError(e.toString());
+      print("[C_ERROR]: $e");
       return null;
     }
   }
@@ -92,7 +93,7 @@ class _CustomInterceptors extends Interceptor {
 
   @override
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
-    Console.printError(
+    print(
         "StatusCode: ${err.response?.statusCode} => PATH: ${err.requestOptions.path}");
     return super.onError(err, handler);
   }

@@ -9,7 +9,7 @@ Linux $HOME/.config/Code/User/snippets/(language).json
     "Debug Print":{
         "scope": "dart",
         "prefix": "c_debug_print",
-		"body": "Console.print(\"[C_${1:1}]: ${$2}\");",
+		"body": "print(\"[C_${1:1}]: ${$2}\");",
         "description": "Debug Print"
     },
     "Debug Text":{
