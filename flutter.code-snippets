@@ -4,109 +4,141 @@ Mac $HOME/Library/Application Support/Code/User/snippets/(language).json
 Linux $HOME/.config/Code/User/snippets/(language).json
 */
 
+
 {
-// #region Debug 
-    "Debug Print":{
-        "scope": "dart",
-        "prefix": "c_debug_print",
-		"body": "print(\"[C_${1:1}]: ${$2}\");",
-        "description": "Debug Print"
-    },
-    "Debug Text":{
-        "scope": "dart",
-        "prefix": "c_debug_text",
-        "body": "Text(\"[C_${1:1}]: ${$2}\"),",
-        "description": "Debug Text"
-    },
-// #endregion
-
-// #region Notifier 
-    "Build ValueListenableBuilder":{
-        "scope": "dart",
-        "prefix": "c_notifier_builder",
-        "body": [
-            "ValueListenableBuilder<${1:dynamic}>(",
-            "  valueListenable: $2,",
-            "  builder: (_, value, __) {",
-            "    return ${3:Text(value.toString())};",
-            "  },",
-            "),",
-        ],
-        "description": "Build ValueListenableBuilder"
-    },
-// #endregion
-
-// #region Bloc 
-    "Build Bloc Builder":{
-        "scope": "dart",
-        "prefix": "c_bloc_builder",
-        "body": [
-          "StreamBuilder<${1:String}>(",
-          "  stream: ${2:BlocName}.stream,",
-          "  builder: (context, snapshot) {",
-          "    if(!snapshot.hasData || snapshot.data == null){",
-          "      return const SizedBox.shrink();",
-          "    }",
-          "    return Text(snapshot.data.toString());",
-          "  },",
-          "),",
-        ],
-        "description": "Build Bloc Builder",
-    },
-// #endregion
-
-// #region Create 
-	"Create Singleton":{
-		"scope": "dart",
-		"prefix": "c_create_singleton",
-		"body": [
-			"static final ${1:ClassName} _instance = $1._internal();",
-			"factory $1() => _instance;",
-			"$1._internal();",
-		],
-		"description": "Create Singleton"
-	},
-    "Create Screen": {
-        "scope": "dart",
-        "prefix": "c_create_screen",
-        "body": [
-            "// ignore_for_file: must_be_immutable, use_key_in_widget_constructors",
-            "",
-            "import 'package:flutter/material.dart';",
-            "",
-            "class ${1:ClassName}Screen extends StatelessWidget {",
-            "  static const route = '$1Screen';",
-            "",
-            "  late _ScreenWidgets screenWidgets;",
-            "  final screenData = _ScreenData();",
-            "",
-            "  @override",
-            "  Widget build(BuildContext context) {",
-            "    screenWidgets = _ScreenWidgets(context: context, widget: this);",
-            "    return Scaffold(",
-            "      appBar: AppBar(centerTitle: true, title: const Text(route)),",
-            "      body: const Center(child: Text(route)),",
-            "    );",
-            "  }",
-            "}",
-            "",
-            "class _ScreenWidgets {",
-            "  final BuildContext context;",
-            "  final $1Screen widget;",
-            "",
-            "  _ScreenWidgets({required this.context, required this.widget});",
-            "}",
-            "",
-            "class _ScreenData {",
-            "  String? data;",
-            "  ",
-            "  _ScreenData({",
-            "    this.data,",
-            "  });",
-            "}",
-        ],
-        "description": "Create Screen"
-    },
-// #endregion
-
-}
+    // #region Debug 
+        "Debug Print":{
+            "scope": "dart",
+            "prefix": "c_debug_print",
+            "body": "print(\"[C_${1:1}]: ${$2}\");",
+            "description": "Debug Print"
+        },
+        "Debug Text":{
+            "scope": "dart",
+            "prefix": "c_debug_text",
+            "body": "Text(\"[C_${1:1}]: ${$2}\"),",
+            "description": "Debug Text"
+        },
+    // #endregion
+    
+    // #region Notifier 
+        "Build ValueListenableBuilder":{
+            "scope": "dart",
+            "prefix": "c_notifier_builder",
+            "body": [
+                "ValueListenableBuilder<${1:dynamic}>(",
+                "  valueListenable: $2,",
+                "  builder: (_, value, __) {",
+                "    return ${3:Text(value.toString())};",
+                "  },",
+                "),",
+            ],
+            "description": "Build ValueListenableBuilder"
+        },
+    // #endregion
+    
+    // #region Bloc 
+        "Build Bloc Builder":{
+            "scope": "dart",
+            "prefix": "c_bloc_builder",
+            "body": [
+              "StreamBuilder<${1:String}>(",
+              "  stream: ${2:BlocName}.stream,",
+              "  builder: (context, snapshot) {",
+              "    if(!snapshot.hasData || snapshot.data == null){",
+              "      return const SizedBox.shrink();",
+              "    }",
+              "    return Text(snapshot.data.toString());",
+              "  },",
+              "),",
+            ],
+            "description": "Build Bloc Builder",
+        },
+        "Create Bloc":{
+            "scope": "dart",
+            "prefix": "c_bloc_class",
+            "body": [
+                "import 'dart:async';",
+                "",
+                "class ${1:ClassName}Bloc {",
+                "  final _streamController = StreamController<${2:dynamic}>.broadcast();",
+                "  $2 _${3:value};",
+                "",
+                "  $2 get $3 => _$3;",
+                "  set $3($2 $3) {",
+                "    _$3 = $3;",
+                "    updateWidget();",
+                "  }",
+                "",
+                "  Stream<$2> get stream => _streamController.stream;",
+                "  void updateWidget() => _streamController.sink.add(_$3);",
+                "",
+                "  Future dispose() async {",
+                "    await _streamController.close();",
+                "  }",
+                "",
+                "  clean() {",
+                "    _$3 = null;",
+                "  }",
+                "}",
+            ],
+            "description": "Create Bloc"
+        },
+    // #endregion
+    
+    // #region Create 
+        "Create Singleton":{
+            "scope": "dart",
+            "prefix": "c_create_singleton",
+            "body": [
+                "static final ${1:ClassName} _instance = $1._internal();",
+                "factory $1() => _instance;",
+                "$1._internal();",
+            ],
+            "description": "Create Singleton"
+        },
+        "Create Screen": {
+            "scope": "dart",
+            "prefix": "c_create_screen",
+            "body": [
+                "// ignore_for_file: must_be_immutable, use_key_in_widget_constructors",
+                "",
+                "import 'package:flutter/material.dart';",
+                "",
+                "class ${1:ClassName}Screen extends StatelessWidget {",
+                "  static const route = '$1Screen';",
+                "",
+                "  late _ScreenWidgets screenWidgets;",
+                "",
+                "  @override",
+                "  Widget build(BuildContext context) {",
+                "    screenWidgets = _ScreenWidgets(context: context, widget: this);",
+                "    return Scaffold(",
+                "      appBar: AppBar(centerTitle: true, title: const Text(route)),",
+                "      body: SingleChildScrollView(",
+                "        child: Column(",
+                "          children: [",
+                "            screenWidgets.body(route),",
+                "          ],",
+                "        ),",
+                "      ),",
+                "    );",
+                "  }",
+                "}",
+                "",
+                "class _ScreenWidgets {",
+                "  final BuildContext context;",
+                "  final $1Screen widget;",
+                "",
+                "  _ScreenWidgets({required this.context, required this.widget});",
+                "",
+                "  Widget body(String text) {",
+                "    return Center(child: Text(text));",
+                "  }",
+                "}",
+            ],
+            "description": "Create Screen"
+        },
+    // #endregion
+    
+    }

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
-enum PopUpType { success, warning, error }
+import '../../../exports/export_widgets.dart';
+
+enum PopUpType { success, warning, error, special }
 
 class CustomPopUp {
   final PopUpType type;
   final Widget child;
   final String closeText;
   final String? acceptText;
-  final void Function()? closeFunction;
-  final void Function()? acceptFunction;
+  final Future Function()? closeFunction;
+  final Future Function()? acceptFunction;
   final double aspectRatio;
+  final void Function()? callback;
 
   CustomPopUp({
     this.type = PopUpType.success,
@@ -19,6 +22,7 @@ class CustomPopUp {
     this.closeFunction,
     this.acceptFunction,
     this.aspectRatio = 1,
+    this.callback,
   }) : assert(
           (acceptFunction != null && acceptText != null) ||
               acceptFunction == null,
@@ -90,22 +94,24 @@ class CustomPopUp {
     required BuildContext context,
     required bool accept,
     required String buttonText,
-    Function()? buttonFunction,
+    Future Function()? buttonFunction,
   }) {
     return Container(
       height: 48,
       decoration: BoxDecoration(
         color: accept ? _getColor(type) : null,
         borderRadius: BorderRadius.circular(12),
+        // border: Border.all(color: ColorConstants.greyColor2),
       ),
       child: TextButton(
-        child: Text(
+        child: CText(
           buttonText,
-          style: TextStyle(color: accept ? Colors.white : _getColor(type)),
+          color: accept ? Colors.white : _getColor(type),
         ),
-        onPressed: () {
-          buttonFunction?.call();
+        onPressed: () async {
           Navigator.pop(context);
+          await buttonFunction?.call();
+          callback?.call();
         },
       ),
     );
@@ -119,6 +125,8 @@ class CustomPopUp {
         return Colors.orange;
       case PopUpType.error:
         return Colors.red;
+      case PopUpType.special:
+      // return ColorConstants.primaryColor;
       default:
         return Colors.green;
     }

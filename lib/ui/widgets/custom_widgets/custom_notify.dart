@@ -5,8 +5,8 @@ enum NotifyType { success, warning, error }
 
 class CustomNotify {
   final String? title;
-  final String body;
-  final NotifyType type;
+  final String? body;
+  final NotifyType? type;
   final TextStyle? style;
   final Function()? onPressed;
 
@@ -25,7 +25,7 @@ class CustomNotify {
       flushbarPosition: FlushbarPosition.TOP,
       borderRadius: BorderRadius.circular(12),
       margin: const EdgeInsets.all(12),
-      backgroundColor: _getColor(type),
+      backgroundColor: _getColor(type ?? NotifyType.error),
       duration: const Duration(seconds: 3),
       isDismissible: true,
       titleText: title != null
@@ -35,7 +35,7 @@ class CustomNotify {
             )
           : null,
       messageText: Text(
-        body,
+        body ?? "ERROR",
         style: style ?? const TextStyle(color: Colors.white),
       ),
       onTap: (flushbar) {

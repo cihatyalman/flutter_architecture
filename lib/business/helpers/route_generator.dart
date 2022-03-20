@@ -18,8 +18,11 @@ class RouteGenerator {
     }
   }
 
-  static PageRouteBuilder _getPageRouteBuilder(Widget screen) =>
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => screen,
-      );
+  static MaterialPageRoute _getPageRouteBuilder(Widget screen) =>
+      MaterialPageRoute(builder: (context) => screen);
+
+  // static PageRouteBuilder _getPageRouteBuilder(Widget screen) =>
+  //     PageRouteBuilder(
+  //       pageBuilder: (context, animation, secondaryAnimation) => screen,
+  //     );
 }

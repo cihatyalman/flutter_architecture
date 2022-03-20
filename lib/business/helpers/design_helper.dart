@@ -9,7 +9,8 @@ class DesignHelper {
   ThemeData get mainTheme => _baseTheme.copyWith(
 // #region Colors
         hintColor: Colors.black.withOpacity(.5),
-        backgroundColor: Colors.black.withOpacity(.1),
+        scaffoldBackgroundColor: Colors.white.withOpacity(.9),
+        // primaryColor: Colors.white,
 // #endregion
 
 // #region Themes

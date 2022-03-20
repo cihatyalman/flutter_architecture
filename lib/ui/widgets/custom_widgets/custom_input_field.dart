@@ -41,9 +41,9 @@ class CustomInputField extends StatelessWidget {
     this.suffixActive = false,
     this.keyboardType = TextInputType.text,
     this.maxLength,
-    this.size = const Size(double.infinity, 48),
+    this.size = const Size(double.infinity, 56),
     this.align = TextAlign.start,
-    this.radius = 12,
+    this.radius = 8,
     this.style,
     this.shadows,
     this.focus,
@@ -85,53 +85,56 @@ class CustomInputField extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: hideNotifier,
       builder: (_, value, __) {
-        return TextFormField(
-          inputFormatters: inputMaskList,
-          textAlign: align,
-          textAlignVertical: suffixActive
-              ? (errorText == null || errorText!.isEmpty)
-                  ? TextAlignVertical.center
-                  : TextAlignVertical.bottom
-              : null,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-            icon: iconWidget,
-            suffixIcon: suffixActive
-                ? Padding(
-                    padding: EdgeInsets.zero,
-                    child: IconButton(
-                      icon: value
-                          ? const Icon(Icons.visibility_outlined)
-                          : const Icon(Icons.visibility_off_outlined),
-                      onPressed: () => hideNotifier.value = !value,
-                    ),
-                  )
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+          child: TextFormField(
+            inputFormatters: inputMaskList,
+            textAlign: align,
+            textAlignVertical: suffixActive
+                ? (errorText == null || errorText!.isEmpty)
+                    ? TextAlignVertical.center
+                    : TextAlignVertical.bottom
                 : null,
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            counterText: "",
-            hintText: hintText,
-            errorText: errorText,
-            label: labelText != null ? Text(labelText!) : null,
-            hintStyle: _style,
-            labelStyle: _style,
-            floatingLabelStyle: _style,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+              icon: iconWidget,
+              suffixIcon: suffixActive
+                  ? Padding(
+                      padding: EdgeInsets.zero,
+                      child: IconButton(
+                        icon: value
+                            ? const Icon(Icons.visibility_outlined)
+                            : const Icon(Icons.visibility_off_outlined),
+                        onPressed: () => hideNotifier.value = !value,
+                      ),
+                    )
+                  : null,
+              border: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              counterText: "",
+              hintText: hintText,
+              errorText: errorText,
+              label: labelText != null ? Text(labelText!) : null,
+              hintStyle: _style,
+              labelStyle: _style,
+              floatingLabelStyle: _style,
+            ),
+            textInputAction: TextInputAction.next,
+            style: _style,
+            obscureText: value,
+            keyboardType: keyboardType,
+            maxLength: maxLength,
+            focusNode: focus,
+            readOnly: readOnly,
+            controller: controller,
+            initialValue: initialValue,
+            validator: validator,
+            onSaved: onSaved,
+            onChanged: onChanged,
           ),
-          textInputAction: TextInputAction.next,
-          style: _style,
-          obscureText: value,
-          keyboardType: keyboardType,
-          maxLength: maxLength,
-          focusNode: focus,
-          readOnly: readOnly,
-          controller: controller,
-          initialValue: initialValue,
-          validator: validator,
-          onSaved: onSaved,
-          onChanged: onChanged,
         );
       },
     );

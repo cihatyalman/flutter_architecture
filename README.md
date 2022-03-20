@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 24.01.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 20.03.2022 ]
 
 #
 
@@ -26,6 +26,7 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
   - intl
   - mask_text_input_formatter
   - flutter_svg
+  - auto_size_text
 
 <br>
 
@@ -62,10 +63,8 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 
 # Ekran Tasarımı
 
-Ekran tasarımı 3 ana bileşen üzerine kurulmuştur. Bu bileşenler tek bir 'dart' dosyası içinde 3 ayrı sınıftan oluşur. Örnek olarak [Home](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/screens/home_screen.dart) ekranını inceleyebilirsiniz.
+Ekran tasarımı 2 ana bileşen üzerine kurulmuştur. Bu bileşenler tek bir 'dart' dosyası içinde 2 ayrı sınıftan oluşur. Örnek olarak [Home](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/screens/home_screen.dart) ekranını inceleyebilirsiniz.
 
-- #### Veri Sınıfı ( \_ScreenData ):
-  Tasarladığınız ekranda bir veri işlemi varsa (input, dropdown vs.) bu sınıf kullanılır. Ekran açıldığında bu sınıftan bir obje oluşturulur ve gerekli ise doldurulur. Yapılan veri değişiklikleri bu sınıf üzerinden yapılır. Bu şekilde kaydedilmediği sürece o ekranda olanlar o ekranda kalır.
 - #### Widget Sınıfı ( \_ScreenWidgets ):
 
   Ekran için tasarlanan widgetlar bu sınıf altında bir metot olarak tutulur.
@@ -75,7 +74,7 @@ Ekran tasarımı 3 ana bileşen üzerine kurulmuştur. Bu bileşenler tek bir 'd
 
 <br>
 
-Sonuç olarak widget sınıfında widgetlarımızı ayrı ayrı tasarlayıp, ana sınıfımızda bu widgetları sadece konumlandıracağız. Bu şekilde konum bazlı bir revizeyi ana sınıfta, widget bazlı bir revizeyi widget sınıfında bulup yapabiliriz.
+Sonuç olarak widget sınıfında widgetlarımızı ayrı ayrı tasarlayıp, ana sınıfımızda bu widgetları sadece konumlandıracağız. Bu şekilde konum bazlı bir değişikliği ana sınıfta, widget bazlı bir değişikliği widget sınıfında bulup yapabiliriz.
 
 <br>
 

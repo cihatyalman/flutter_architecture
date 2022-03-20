@@ -8,6 +8,7 @@ class CustomDropdown<T> extends StatelessWidget {
   final Widget Function(T item)? itemWidget;
   final Widget? hint;
   final int startIndex;
+  final Widget? icon;
 
   CustomDropdown({
     required this.items,
@@ -15,6 +16,7 @@ class CustomDropdown<T> extends StatelessWidget {
     this.itemWidget,
     this.hint,
     this.startIndex = 0,
+    this.icon,
   }) : assert(items.isNotEmpty || hint != null);
 
   late ValueNotifier<T?> _selectedItem;
@@ -31,6 +33,7 @@ class CustomDropdown<T> extends StatelessWidget {
 
           // Design
           hint: hint,
+          icon: icon,
 
           // Controller
           value: value,

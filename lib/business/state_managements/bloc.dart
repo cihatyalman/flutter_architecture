@@ -11,7 +11,7 @@ class Bloc<T> {
   }
 
   Stream<T> get stream => _streamController.stream;
-  void updateWidget() => _streamController.sink.add(_data);
+  void updateWidget([T? data]) => _streamController.sink.add(data ?? _data);
 
   void init() async {
     _streamController = StreamController<T>.broadcast();
