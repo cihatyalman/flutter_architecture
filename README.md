@@ -6,7 +6,7 @@ Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 20.03.2022 ]
 
 "lib" klasörünü projenizin lib klasörü ile değiştirerek kullanabilirsiniz. Projenizde kullanılmayacak klasörleri silebilirsiniz.
 
-C# katman mimarisinden esinlenilerek yapılmıştır.
+Katmanlı mimari kullanılarak hazırlanmıştır.
 
 NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 
@@ -46,14 +46,15 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 - #### [widgets/custom_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/widgets/custom_widgets): Projeden bağımsız olarak oluşturulan widgetlar burada tutulur.
 - #### [widgets/project_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/widgets/project_widgets): Projeye özgü widgetlar burada tutulur.
 
+### Model Katmanı ( [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models) )
+
+- #### Projede kullanılacak modeller burada tutulur.
+
 ### Çekirdek Katman ( [core](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/core) )
 
 - #### Bu katman projeden bağımsız olarak çalışan kodlar içerir.
 - #### Bu katmanı [dışarıdan](https://github.com/cihatyalman/flutter_core) entegre edebilirsiniz.
 
-### Model Katmanı ( [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models) )
-
-- #### Projede kullanılacak modeller burada tutulur.
 
 <br>
 
