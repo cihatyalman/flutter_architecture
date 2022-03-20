@@ -55,10 +55,6 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 
 - #### Projede kullanılacak modeller burada tutulur.
 
-### Export Katmanı ( [exports](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/exports) )
-
-- #### import ettiğimiz sınıfları toplu bir halde tutmamızı sağlar.
-
 <br>
 
 # Ekran Tasarımı
