@@ -3,16 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import '../../../business/helpers/design_helper.dart';
 import '../../../exports/export_business.dart' show ColorConstants;
 
 class CText extends StatelessWidget {
-  String data;
+  String? data;
   double size;
   Color color;
   bool isBold;
   TextAlign? textAlign;
   TextStyle? style;
   int? maxLines;
+  bool isOverflow;
 
   CText(
     this.data, {
@@ -22,21 +24,20 @@ class CText extends StatelessWidget {
     this.textAlign,
     this.style,
     this.maxLines,
+    this.isOverflow = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return AutoSizeText(
-      data,
+      data ?? "",
       textScaleFactor: 1,
       textAlign: textAlign,
       maxLines: maxLines,
       style: style ??
-          TextStyle(
-            color: color,
-            fontSize: size,
-            fontWeight: isBold ? FontWeight.bold : null,
-          ),
+          hd
+              .textStyle()
+              .copyWith(overflow: isOverflow ? TextOverflow.ellipsis : null),
     );
   }
 }

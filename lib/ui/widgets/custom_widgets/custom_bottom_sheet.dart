@@ -5,7 +5,6 @@ class CustomBottomSheet {
   double height;
   Color color;
   double radius;
-  EdgeInsets padding;
   bool isDismissible;
 
   CustomBottomSheet({
@@ -13,7 +12,6 @@ class CustomBottomSheet {
     this.height = 240,
     this.color = Colors.white,
     this.radius = 24,
-    this.padding = const EdgeInsets.all(16),
     this.isDismissible = true,
   });
 
@@ -32,14 +30,9 @@ class CustomBottomSheet {
         builder: (context) {
           return StatefulBuilder(
             builder: (context, setState) {
-              return Container(
-                padding: padding,
-                width: double.infinity,
-                child: child.call(setState),
-              );
+              return child.call(setState);
             },
           );
         },
       );
 }
-

@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 23.03.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 10.04.2022 ]
 
 #
 
@@ -27,6 +27,7 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
   - mask_text_input_formatter
   - flutter_svg
   - auto_size_text
+  - cached_network_image
 
 <br>
 

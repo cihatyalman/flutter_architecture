@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class IconConstants {
   static SvgPicture getSvg(
     String path, {
-    Color color = Colors.black,
+    Color? color,
     double size = 16,
   }) =>
       SvgPicture.asset(
