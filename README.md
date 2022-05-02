@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 10.04.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 02.05.2022 ]
 
 #
 
@@ -38,7 +38,7 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 - #### [constants](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/constants): Projede kullanılacak sabitler burada tutulur. Bunlar renk, icon, resim, yazı, yazı formatı gibi alanlar olabilir.
 - #### [helpers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/helpers): Kodlama yaparken bize yardımcı olacak kodlar burada tutulur.
 - #### [managers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/managers): Bazı servislerin bir yerden yönetilmesi gerekir yönetici sınıfları burada tutulur.
-- #### [services](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/services): Api istekleri (signIn, signOut, accountGet vs.) burada tutulur.
+- #### [controllers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/controllers): Api istekleri (signIn, signOut, accountGet vs.) burada tutulur.
 - #### [state_managements](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/state_managements): Flutter da kullandığımız durum yöneticileri burada tutulur.
 
 ### UI Katmanı ( [ui](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui) )

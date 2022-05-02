@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 
-class CustomCalendarPopUp {
+class CalendarPopUp {
   DateTime? initialDate;
   DateTime? firstDate;
   DateTime? lastDate;
@@ -11,7 +11,7 @@ class CustomCalendarPopUp {
 
   DateTime? _selectedDateTime;
 
-  CustomCalendarPopUp({
+  CalendarPopUp({
     this.initialDate,
     this.firstDate,
     this.lastDate,

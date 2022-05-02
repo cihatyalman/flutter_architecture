@@ -9,7 +9,7 @@ export '../business/helpers/route_generator.dart';
 
 export '../business/managers/api_manager.dart';
 
-export '../business/services/account_service.dart';
-export '../business/services/login_service.dart';
+export '../business/controllers/account_controller.dart';
+export '../business/controllers/login_controller.dart';
 
 export '../business/state_managements/bloc_store.dart';

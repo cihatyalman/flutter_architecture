@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-class CustomMultiNotifier extends StatelessWidget {
+class MultiNotifier extends StatelessWidget {
   List<ValueNotifier> notifierList;
   Widget Function(List valueList) builder;
 
-  CustomMultiNotifier({
+  MultiNotifier({
     required this.notifierList,
     required this.builder,
   });
@@ -19,7 +19,7 @@ class CustomMultiNotifier extends StatelessWidget {
     return _loop(0);
   }
 
-  _loop(int index) {
+  Widget _loop(int index) {
     return ValueListenableBuilder(
         valueListenable: notifierList[index],
         builder: (_, v, __) {

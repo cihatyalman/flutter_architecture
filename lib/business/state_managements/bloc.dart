@@ -23,6 +23,6 @@ class Bloc<T> {
 
   Future<void> clean(T data) async {
     dispose();
-    _data = data;
+    updateWidget(data);
   }
 }

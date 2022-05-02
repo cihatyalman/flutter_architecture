@@ -17,7 +17,7 @@ class DesignHelper {
 // #region Themes
         iconTheme: IconThemeData(),
         appBarTheme: AppBarTheme(
-          actionsIconTheme: IconThemeData(),
+          centerTitle: true,
         ),
         cardTheme: CardTheme(),
         buttonTheme: ButtonThemeData(),
@@ -44,7 +44,7 @@ class DesignHelper {
       );
   BoxShadow get boxShadow2 => BoxShadow(
         color: Colors.black.withOpacity(.1),
-        offset: const Offset(0, 0),
+        offset: Offset.zero,
         blurRadius: 8,
       );
 

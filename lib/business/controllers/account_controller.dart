@@ -1,8 +1,8 @@
 import '../../core/api_service/abstract/i_api_service.dart';
 
-class AccountService {
+class AccountController {
   IApiService apiService;
-  AccountService(this.apiService);
+  AccountController(this.apiService);
 
   Future accountGet() async {}
 }

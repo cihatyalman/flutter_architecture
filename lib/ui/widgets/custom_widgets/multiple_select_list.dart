@@ -2,19 +2,34 @@
 
 import 'package:flutter/material.dart';
 
-class CustomMultipleSelect<T> extends StatelessWidget {
+class MultipleSelectList<T> extends StatelessWidget {
   final List<MultipleSelectModel<T>> items;
   final Widget Function(MultipleSelectModel<T> item)? itemWidget;
+  int? columnCount;
+  void Function(List<T?> newList)? callback;
 
-  CustomMultipleSelect({required this.items, this.itemWidget});
+  MultipleSelectList({
+    required this.items,
+    this.itemWidget,
+    this.columnCount,
+    this.callback,
+  });
 
   final _trigger = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      children: items.map((e) => _itemWidget(e)).toList(),
-    );
+    return columnCount == null
+        ? Wrap(
+            children: items.map((e) => _itemWidget(e)).toList(),
+          )
+        : GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: columnCount!),
+            itemCount: items.length,
+            itemBuilder: (context, index) => _itemWidget(items[index]),
+          );
   }
 
   Widget _itemWidget(MultipleSelectModel<T> item) {
@@ -25,6 +40,10 @@ class CustomMultipleSelect<T> extends StatelessWidget {
           onTap: () {
             item.isSelected = !item.isSelected;
             _trigger.notifyListeners();
+            callback?.call(items
+                .where((element) => element.isSelected)
+                .map((e) => e.data)
+                .toList());
           },
           child: itemWidget != null
               ? itemWidget!.call(item)
@@ -53,9 +72,13 @@ class CustomMultipleSelect<T> extends StatelessWidget {
 class MultipleSelectModel<T> {
   late int index;
   late bool isSelected;
-  late T data;
+  late T? data;
 
-  MultipleSelectModel(this.index, this.isSelected, this.data);
+  MultipleSelectModel({
+    this.index = 0,
+    this.isSelected = false,
+    this.data,
+  });
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {};

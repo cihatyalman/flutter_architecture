@@ -14,6 +14,7 @@ class SubmitButton extends StatelessWidget {
   double radius;
   double height;
   bool isEnabled;
+  double elevation;
 
   SubmitButton({
     this.title,
@@ -24,6 +25,7 @@ class SubmitButton extends StatelessWidget {
     this.radius = 8,
     this.height = 48,
     this.isEnabled = true,
+    this.elevation = 0,
   });
 
   @override
@@ -41,7 +43,7 @@ class SubmitButton extends StatelessWidget {
                 },
           padding: const EdgeInsets.all(8),
           color: backgroundColor,
-          elevation: 0,
+          elevation: elevation,
           focusElevation: 0,
           hoverElevation: 0,
           disabledElevation: 0,

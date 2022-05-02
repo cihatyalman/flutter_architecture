@@ -51,7 +51,7 @@ class CustomInputField extends StatelessWidget {
   });
 
   TextStyle? _style;
-  final hideNotifier = _HideNotifier(false);
+  final hideNotifier = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
@@ -138,18 +138,5 @@ class CustomInputField extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class _HideNotifier<bool> extends ValueNotifier<bool> {
-  _HideNotifier(bool value) : super(value);
-
-  @override
-  bool get value => super.value;
-
-  @override
-  set value(bool newValue) {
-    super.value = newValue;
-    notifyListeners();
   }
 }

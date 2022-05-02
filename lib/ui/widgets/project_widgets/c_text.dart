@@ -36,7 +36,7 @@ class CText extends StatelessWidget {
       maxLines: maxLines,
       style: style ??
           hd
-              .textStyle()
+              .textStyle(color: color, size: size, isBold: isBold)
               .copyWith(overflow: isOverflow ? TextOverflow.ellipsis : null),
     );
   }

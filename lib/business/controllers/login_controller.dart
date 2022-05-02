@@ -1,8 +1,8 @@
 import '../../core/api_service/abstract/i_api_service.dart';
 
-class LoginService {
+class LoginController {
   IApiService apiService;
-  LoginService(this.apiService);
+  LoginController(this.apiService);
 
   Future signIn() async {}
 
