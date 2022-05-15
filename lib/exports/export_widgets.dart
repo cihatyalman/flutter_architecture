@@ -14,6 +14,7 @@ export '../ui/widgets/custom_widgets/multi_bloc.dart';
 export '../ui/widgets/custom_widgets/multi_notifier.dart';
 export '../ui/widgets/custom_widgets/multiple_select_list.dart';
 export '../ui/widgets/custom_widgets/submit_button.dart';
+export '../ui/widgets/custom_widgets/custom_timer_bar.dart';
 
 export '../ui/widgets/project_widgets/widget_helper.dart';
 export '../ui/widgets/project_widgets/c_text.dart';
