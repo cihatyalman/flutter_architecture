@@ -12,16 +12,21 @@ class DesignHelper {
         hintColor: Colors.black.withOpacity(.5),
         scaffoldBackgroundColor: Colors.white.withOpacity(.9),
         // primaryColor: Colors.white,
+        // colorScheme: _baseTheme.colorScheme
+        //     .copyWith(primary: Colors.red),
 // #endregion
 
 // #region Themes
         iconTheme: IconThemeData(),
         appBarTheme: AppBarTheme(
+          // color: Colors.red,
           centerTitle: true,
         ),
         cardTheme: CardTheme(),
         buttonTheme: ButtonThemeData(),
         textButtonTheme: TextButtonThemeData(),
+        // splashColor: Colors.transparent,
+        // highlightColor: Colors.transparent,
 // #endregion
       );
 
@@ -37,12 +42,12 @@ class DesignHelper {
   BorderRadius radius([double radius = 8]) =>
       BorderRadius.all(Radius.circular(radius));
 
-  BoxShadow get boxShadow => BoxShadow(
+  BoxShadow get boxShadowDown => BoxShadow(
         color: Colors.black.withOpacity(.1),
         offset: const Offset(0, 4),
         blurRadius: 4,
       );
-  BoxShadow get boxShadow2 => BoxShadow(
+  BoxShadow get boxShadowCenter => BoxShadow(
         color: Colors.black.withOpacity(.1),
         offset: Offset.zero,
         blurRadius: 8,

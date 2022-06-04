@@ -1,7 +1,7 @@
 // colorScheme: _baseTheme.colorScheme.copyWith(primary: Colors.green),
 
-
 import 'package:flutter/material.dart';
+import '../../../exports/export_widgets.dart';
 
 class CalendarPopUp {
   DateTime? initialDate;
@@ -96,15 +96,13 @@ class CalendarPopUp {
     final _color = Theme.of(context).colorScheme.primary;
     return Container(
       decoration: BoxDecoration(
-        color: accept ? _color: Colors.white,
+        color: accept ? _color : Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: TextButton(
-        child: Text(
+        child: CText(
           buttonText,
-          style: TextStyle(
-            color: accept ? Colors.white : _color,
-          ),
+          color: accept ? Colors.white : _color,
         ),
         onPressed: () {
           buttonFunction?.call();

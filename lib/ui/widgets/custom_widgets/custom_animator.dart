@@ -3,37 +3,38 @@
 import 'package:animator/animator.dart';
 import 'package:flutter/material.dart';
 
-class CustomAnimator<T> extends StatelessWidget {
-  final Tween<T> tween;
-  final Widget Function(AnimatorState<T> state, T value) builder;
+class CustomAnimator extends StatelessWidget {
+  final Map<String, Tween> tweenMap;
+  final Widget Function(AnimatorState state, dynamic value) builder;
   final Duration duration;
   final Curve curve;
 
   CustomAnimator({
-    required this.tween,
+    required this.tweenMap,
     required this.builder,
     this.duration = const Duration(milliseconds: 300),
     this.curve = Curves.linear,
   });
 
-  final _animatorKey = AnimatorKey<T>();
-  late AnimatorState<T> _animatorState;
+  final _animatorKey = AnimatorKey();
+  late AnimatorState _animatorState;
 
-  AnimatorState<T> get animatorState => _animatorState;
+  AnimatorState get animatorState => _animatorState;
 
   @override
   Widget build(BuildContext context) {
-    return Animator<T>(
+    return Animator(
       animatorKey: _animatorKey,
       duration: duration,
       curve: curve,
       cycles: 1,
-      tween: tween,
+      tween: tweenMap.values.first,
+      tweenMap: tweenMap,
       builder: (_, animatorState, __) {
         _animatorState = animatorState;
         return builder.call(
           _animatorState,
-          AlwaysStoppedAnimation<T>(_animatorState.value).value,
+          AlwaysStoppedAnimation(_animatorState.value).value,
         );
       },
     );
