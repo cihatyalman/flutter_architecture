@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import '../../../business/constants/color_constants.dart';
 import '../../../business/helpers/design_helper.dart';
-import '../../../exports/export_business.dart' show ColorConstants;
 
 class CText extends StatelessWidget {
   String? data;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../exports/export_business.dart';
+import '../project_widgets/widget_helper.dart';
 
 class CustomPopUp {
   List<Widget> children;
@@ -25,15 +25,15 @@ class CustomPopUp {
         builder: (context) => AlertDialog(
           // Design
           contentPadding: EdgeInsets.zero,
-          insetPadding: hd.paddingAll(),
+          insetPadding: hw.paddingAll(),
           backgroundColor: Colors.transparent,
           elevation: 0,
 
           content: Container(
-            padding: hd.paddingAll(padding),
+            padding: hw.paddingAll(padding),
             decoration: BoxDecoration(
               color: backgroundColor,
-              borderRadius: hd.radius(12),
+              borderRadius: hw.radius(12),
             ),
             width: width ?? MediaQuery.of(context).size.width,
             height: height,

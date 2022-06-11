@@ -1,4 +1,4 @@
-import '../../exports/export_models.dart';
+import '../../models/local/user.dart';
 import 'bloc.dart';
 
 final blocStore = BlocStore();

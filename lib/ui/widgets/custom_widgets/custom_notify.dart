@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
-import 'package:flutter_architecture/exports/export_business.dart';
+
+import '../../../business/helpers/design_helper.dart';
 
 enum NotifyType { success, warning, error }
 

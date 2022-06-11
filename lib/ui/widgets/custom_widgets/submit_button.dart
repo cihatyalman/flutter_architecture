@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../exports/export_business.dart';
-import '../../../exports/export_widgets.dart';
+import '../project_widgets/c_text.dart';
+import '../project_widgets/widget_helper.dart';
+import 'custom_future_widget.dart';
 
 class SubmitButton extends StatelessWidget {
   String? title;
@@ -49,7 +50,7 @@ class SubmitButton extends StatelessWidget {
           disabledElevation: 0,
           highlightElevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: hd.radius(radius),
+            borderRadius: hw.radius(radius),
             side: BorderSide(color: borderColor),
           ),
           height: height,

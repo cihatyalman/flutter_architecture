@@ -1,8 +1,10 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/exports/export_business.dart';
-import 'package:flutter_architecture/exports/export_widgets.dart';
+
+import '../../../business/constants/color_constants.dart';
+import '../project_widgets/widget_helper.dart';
+import 'cached_image.dart';
 
 class CirclePhoto extends StatelessWidget {
   String? imageUrl;
@@ -26,7 +28,7 @@ class CirclePhoto extends StatelessWidget {
         color: backgroundColor,
         borderRadius: BorderRadius.circular(200),
       ),
-      padding: hd.paddingAll(isBorder ? 4 : 0),
+      padding: hw.paddingAll(isBorder ? 4 : 0),
       child: CachedImage(imageUrl: imageUrl, radius: 200),
     );
   }

@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 04.06.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 11.06.2022 ]
 
 #
 
@@ -19,15 +19,16 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 - Widgets
   - animator
   - another_flushbar
+  - cached_network_image
 - Cache
   - hive
   - hive_flutter
 - Other
   - intl
+  - path_provider
   - mask_text_input_formatter
   - flutter_svg
   - auto_size_text
-  - cached_network_image
 
 <br>
 
@@ -36,26 +37,25 @@ NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 ### İş Katmanı ( [business](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business) )
 
 - #### [constants](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/constants): Projede kullanılacak sabitler burada tutulur. Bunlar renk, icon, resim, yazı, yazı formatı gibi alanlar olabilir.
+- #### [controllers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/controllers): Api istekleri (signIn, signOut, accountGet vs.) burada tutulur.
 - #### [helpers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/helpers): Kodlama yaparken bize yardımcı olacak kodlar burada tutulur.
 - #### [managers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/managers): Bazı servislerin bir yerden yönetilmesi gerekir yönetici sınıfları burada tutulur.
-- #### [controllers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/controllers): Api istekleri (signIn, signOut, accountGet vs.) burada tutulur.
 - #### [state_managements](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/state_managements): Flutter da kullandığımız durum yöneticileri burada tutulur.
-
-### UI Katmanı ( [ui](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui) )
-
-- #### [screens](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/screens): Tasarlanan uygulama ekranları burada tutulur.
-- #### [widgets/custom_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/widgets/custom_widgets): Projeden bağımsız olarak oluşturulan widgetlar burada tutulur.
-- #### [widgets/project_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/widgets/project_widgets): Projeye özgü widgetlar burada tutulur.
-
-### Model Katmanı ( [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models) )
-
-- #### Projede kullanılacak modeller burada tutulur.
 
 ### Çekirdek Katman ( [core](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/core) )
 
 - #### Bu katman projeden bağımsız olarak çalışan kodlar içerir.
 - #### Bu katmanı [dışarıdan](https://github.com/cihatyalman/flutter_core) entegre edebilirsiniz.
 
+### Model Katmanı ( [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models) )
+
+- #### Projede kullanılacak modeller burada tutulur.
+
+### UI Katmanı ( [ui](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui) )
+
+- #### [screens](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/screens): Tasarlanan uygulama ekranları burada tutulur.
+- #### [widgets/custom_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/widgets/custom_widgets): Projeden bağımsız olarak oluşturulan widgetlar burada tutulur.
+- #### [widgets/project_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/widgets/project_widgets): Projeye özgü widgetlar burada tutulur.
 
 <br>
 
@@ -77,7 +77,7 @@ Sonuç olarak widget sınıfında widgetlarımızı ayrı ayrı tasarlayıp, ana
 <br>
 
 # State Managements
-Kişisel olarak 'Stateful' yerine 'Stateless' kullanıyorum. Ekranda yapılan kalıcı olmayan anlık değişiklikler (butonu duruma göre değiştirmek vs.) için 'ValueNotifier', anlık olarak ekrana yansıyacak veri değişiklikleri (profil ismi, profil resmi vs.) için 'Bloc' kullanmayı tercih ediyorum.
+Kişisel olarak 'Stateful' yerine 'Stateless' kullanıyorum. Ekranda yapılan kalıcı olmayan anlık değişiklikler (butonu duruma göre değiştirmek vs.) için 'ValueNotifier', anlık olarak ekrana yansıyacak veri değişiklikleri (profil ismi, profil resmi vs.) için 'BLoC Pattern' kullanmayı tercih ediyorum.
 
 <br>
 

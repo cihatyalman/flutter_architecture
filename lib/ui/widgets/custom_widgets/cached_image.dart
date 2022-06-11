@@ -25,6 +25,8 @@ class CachedImage extends StatelessWidget {
         fit: BoxFit.cover,
         width: isInfinity ? double.infinity : null,
         height: isInfinity ? double.infinity : null,
+        fadeInCurve: Curves.linear,
+        fadeInDuration: Duration.zero,
       ),
     );
   }
