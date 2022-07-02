@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import '../../../business/helpers/design_helper.dart';
 import '../project_widgets/c_text.dart';
+import '../project_widgets/widget_helper.dart';
 
 class CustomInputField extends StatelessWidget {
   TextEditingController? controller;
@@ -27,6 +28,7 @@ class CustomInputField extends StatelessWidget {
   final bool readOnly;
   final int maxLines;
   final int styleType;
+  final Color borderColor;
 
   CustomInputField({
     this.controller,
@@ -49,6 +51,7 @@ class CustomInputField extends StatelessWidget {
     this.readOnly = false,
     this.maxLines = 1,
     this.styleType = 0,
+    this.borderColor = Colors.black,
   });
 
   TextStyle? _style;
@@ -57,6 +60,7 @@ class CustomInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller ??= TextEditingController(text: initialValue);
+    controller!.text = initialValue ?? "";
     hideNotifier.value = suffixActive;
     focus ??= FocusNode();
     _style = style ?? hd.textStyle();
@@ -80,15 +84,18 @@ class CustomInputField extends StatelessWidget {
                       : TextAlignVertical.bottom
                   : null,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                icon: iconWidget,
+                contentPadding: const EdgeInsets.all(8),
+                prefixIcon: iconWidget == null
+                    ? null
+                    : Padding(padding: hw.paddingAll(12), child: iconWidget),
+                prefixIconColor: color,
                 suffixIcon: suffixActive
                     ? Padding(
                         padding: EdgeInsets.zero,
                         child: IconButton(
                           icon: value
-                              ? const Icon(Icons.visibility_outlined)
-                              : const Icon(Icons.visibility_off_outlined),
+                              ? const Icon(Icons.visibility_off_outlined)
+                              : const Icon(Icons.visibility_outlined),
                           onPressed: () => hideNotifier.value = !value,
                         ),
                       )
@@ -100,7 +107,8 @@ class CustomInputField extends StatelessWidget {
                     ? _border(styleType, 1)
                     : InputBorder.none,
                 enabledBorder: [1, 2].contains(styleType)
-                    ? _border(styleType, controller!.text.isNotEmpty ? 1 : 0)
+                    // ? _border(styleType, controller!.text.isNotEmpty ? 1 : 0)
+                    ? _border(styleType, 0)
                     : InputBorder.none,
                 // errorBorder: InputBorder.none,
                 // disabledBorder: InputBorder.none,
@@ -138,12 +146,12 @@ class CustomInputField extends StatelessWidget {
   InputBorder _border(int styleType, [int colorType = 0]) => styleType == 1
       ? OutlineInputBorder(
           borderSide: BorderSide(
-            color: colorType == 1 ? Colors.black : Colors.black.withOpacity(.5),
+            color: colorType == 1 ? borderColor : Colors.black.withOpacity(.5),
           ),
         )
       : UnderlineInputBorder(
           borderSide: BorderSide(
-            color: colorType == 1 ? Colors.black : Colors.black.withOpacity(.5),
+            color: colorType == 1 ? borderColor : Colors.black.withOpacity(.5),
           ),
         );
 }

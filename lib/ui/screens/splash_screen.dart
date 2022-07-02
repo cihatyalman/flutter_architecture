@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
         future: screenWidgets.startFunction(),
         builder: (_, snapshot) {
           if (snapshot.hasData) {
-            WidgetsBinding.instance?.addPostFrameCallback(
+            WidgetsBinding.instance.addPostFrameCallback(
               (_) => Navigator.pushReplacementNamed(context, HomeScreen.route),
             );
           }

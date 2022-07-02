@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../project_widgets/c_text.dart';
+
 class CustomDropdown<T> extends StatelessWidget {
   final List<T> items;
   final void Function(T item) onChanged;
@@ -9,6 +11,7 @@ class CustomDropdown<T> extends StatelessWidget {
   final Widget? hint;
   final int startIndex;
   final Widget? icon;
+  final double radius;
 
   CustomDropdown({
     required this.items,
@@ -17,6 +20,7 @@ class CustomDropdown<T> extends StatelessWidget {
     this.hint,
     this.startIndex = 0,
     this.icon,
+    this.radius = 0,
   }) : assert(items.isNotEmpty || hint != null);
 
   late ValueNotifier<T?> _selectedItem;
@@ -34,19 +38,21 @@ class CustomDropdown<T> extends StatelessWidget {
           // Design
           hint: hint,
           icon: icon,
+          iconSize: 28,
+          borderRadius: BorderRadius.all(Radius.circular(radius)),
 
           // Controller
           value: value,
           onChanged: (value) {
             _selectedItem.value = value;
-            onChanged.call(value!);
+            onChanged.call(value as T);
           },
           items: items
               .map((e) => DropdownMenuItem<T>(
                     value: e,
                     child: itemWidget != null
                         ? itemWidget!.call(e)
-                        : Text(e.toString()),
+                        : CText(e.toString()),
                   ))
               .toList(),
         );

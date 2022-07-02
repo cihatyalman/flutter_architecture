@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ImageConstants {
+  // static final logo = _getSvg("assets/images/logo.svg");
+
   static SvgPicture getSvg(
     String path, {
     Size size = const Size(double.infinity, 200),
@@ -17,6 +19,4 @@ class ImageConstants {
         fit: fit,
         alignment: alignment,
       );
-
-  // static final logo = _getSvg("assets/images/logo.svg");
 }

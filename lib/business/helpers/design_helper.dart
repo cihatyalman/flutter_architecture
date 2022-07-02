@@ -13,8 +13,7 @@ class DesignHelper {
         hintColor: Colors.black.withOpacity(.5),
         scaffoldBackgroundColor: Colors.white.withOpacity(.9),
         // primaryColor: Colors.white,
-        // colorScheme: _baseTheme.colorScheme
-        //     .copyWith(primary: Colors.red),
+        // colorScheme: _baseTheme.colorScheme.copyWith(primary: Colors.redAccent),
 // #endregion
 
 // #region Themes

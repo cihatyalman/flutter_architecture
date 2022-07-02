@@ -2,17 +2,21 @@
 
 import 'package:flutter/material.dart';
 
-class MultipleSelectList<T> extends StatelessWidget {
-  final List<MultipleSelectModel<T>> items;
-  final Widget Function(MultipleSelectModel<T> item)? itemWidget;
+class SelectableList<T> extends StatelessWidget {
+  final List<SelectableListModel<T>> items;
+  final Widget Function(SelectableListModel<T> item)? itemWidget;
   int? columnCount;
   void Function(List<T?> newList)? callback;
+  bool isMultipleSelect;
+  double childAspectRatio;
 
-  MultipleSelectList({
+  SelectableList({
     required this.items,
     this.itemWidget,
     this.columnCount,
     this.callback,
+    this.isMultipleSelect = false,
+    this.childAspectRatio = 1,
   });
 
   final _trigger = ValueNotifier(null);
@@ -26,24 +30,34 @@ class MultipleSelectList<T> extends StatelessWidget {
         : GridView.builder(
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: columnCount!),
+              crossAxisCount: columnCount!,
+              childAspectRatio: childAspectRatio,
+            ),
             itemCount: items.length,
             itemBuilder: (context, index) => _itemWidget(items[index]),
           );
   }
 
-  Widget _itemWidget(MultipleSelectModel<T> item) {
+  Widget _itemWidget(SelectableListModel<T> item) {
     return ValueListenableBuilder<Null>(
       valueListenable: _trigger,
       builder: (_, value, __) {
         return InkWell(
           onTap: () {
-            item.isSelected = !item.isSelected;
-            _trigger.notifyListeners();
-            callback?.call(items
-                .where((element) => element.isSelected)
-                .map((e) => e.data)
-                .toList());
+            if (isMultipleSelect) {
+              item.isSelected = !item.isSelected;
+              _trigger.notifyListeners();
+              callback?.call(items
+                  .where((element) => element.isSelected)
+                  .map((e) => e.data)
+                  .toList());
+            } else {
+              for (var element in items) {
+                element.isSelected = element.index == item.index;
+              }
+              _trigger.notifyListeners();
+              callback?.call([item.data]);
+            }
           },
           child: itemWidget != null
               ? itemWidget!.call(item)
@@ -69,12 +83,12 @@ class MultipleSelectList<T> extends StatelessWidget {
   }
 }
 
-class MultipleSelectModel<T> {
+class SelectableListModel<T> {
   late int index;
   late bool isSelected;
   late T? data;
 
-  MultipleSelectModel({
+  SelectableListModel({
     this.index = 0,
     this.isSelected = false,
     this.data,

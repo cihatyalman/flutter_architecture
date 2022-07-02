@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class IconConstants {
+  // static const logo = "assets/icons/logo.svg";
+
   static SvgPicture getSvg(
     String path, {
     Color? color,
@@ -16,6 +18,4 @@ class IconConstants {
         color: color,
         fit: BoxFit.contain,
       );
-
-  // static const logo = "assets/icons/logo.svg";
 }
