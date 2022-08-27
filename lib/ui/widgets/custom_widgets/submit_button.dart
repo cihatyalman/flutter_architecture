@@ -8,10 +8,12 @@ import 'custom_future_widget.dart';
 
 class SubmitButton extends StatelessWidget {
   String? title;
+  Widget? titleWidget;
   Future<void> Function() onTap;
   Color backgroundColor;
   Color borderColor;
   Color textColor;
+  Color loadingColor;
   double radius;
   double height;
   bool isEnabled;
@@ -19,10 +21,12 @@ class SubmitButton extends StatelessWidget {
 
   SubmitButton({
     this.title,
+    this.titleWidget,
     required this.onTap,
-    this.backgroundColor= Colors.white,
+    this.backgroundColor = Colors.white,
     this.borderColor = Colors.black,
     this.textColor = Colors.black,
+    this.loadingColor = Colors.white,
     this.radius = 8,
     this.height = 48,
     this.isEnabled = true,
@@ -55,14 +59,16 @@ class SubmitButton extends StatelessWidget {
           ),
           height: height,
           child: isLoading.value
-              ? hw.circleLoading()
-              : Center(
-                  child: CText(
-                  title,
-                  color: textColor,
-                  textAlign: TextAlign.center,
-                  isOverflow: true,
-                )),
+              ? hw.circleLoading(color: loadingColor)
+              : titleWidget ??
+                  Center(
+                    child: CText(
+                      title,
+                      color: textColor,
+                      textAlign: TextAlign.center,
+                      isOverflow: true,
+                    ),
+                  ),
         ),
       ),
     );

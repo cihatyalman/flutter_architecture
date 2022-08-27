@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
 
 import '../../../business/helpers/design_helper.dart';
+import '../project_widgets/c_text.dart';
 
 enum NotifyType { success, warning, error }
 
@@ -36,7 +37,7 @@ class CustomNotify {
               style: style ?? hd.textStyle(color: Colors.white),
             )
           : null,
-      messageText: Text(
+      messageText: CText(
         body ?? "ERROR",
         style: style ?? hd.textStyle(color: Colors.white),
       ),

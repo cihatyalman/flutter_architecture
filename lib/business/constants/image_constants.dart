@@ -6,14 +6,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 class ImageConstants {
   // static final logo = _getSvg("assets/images/logo.svg");
 
-  static SvgPicture getSvg(
-    String path, {
+}
+
+extension SvgImageExtension on String {
+  SvgPicture toSvgImage({
     Size size = const Size(double.infinity, 200),
     AlignmentGeometry alignment = Alignment.center,
     BoxFit fit = BoxFit.cover,
   }) =>
       SvgPicture.asset(
-        path,
+        this,
         width: size.width,
         height: size.width,
         fit: fit,

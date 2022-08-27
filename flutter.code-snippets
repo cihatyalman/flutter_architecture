@@ -16,7 +16,7 @@ Linux $HOME/.config/Code/User/snippets/(language).json
         "Debug Text":{
             "scope": "dart",
             "prefix": "c_debug_text",
-            "body": "Text(\"[C_${1:1}]: ${$2}\"),",
+            "body": "CText(\"[C_${1:1}]: ${$2}\"),",
             "description": "Debug Text"
         },
     // #endregion
@@ -44,6 +44,7 @@ Linux $HOME/.config/Code/User/snippets/(language).json
             "body": [
               "StreamBuilder<${1:String}>(",
               "  stream: ${2:BlocName}.stream,",
+              "  initialData: ${2:BlocName}.data,",
               "  builder: (context, snapshot) {",
               "    if(!snapshot.hasData || snapshot.data == null){",
               "      return const SizedBox.shrink();",
@@ -60,6 +61,7 @@ Linux $HOME/.config/Code/User/snippets/(language).json
             "body": [
               "MultiBloc(",
               "  streamList: [${1:BlocName}.stream],",
+              "  initialDataList: [${1:BlocName}.data],",
               "  builder: (valueList){",
               "    return Text(valueList.toString());",
               "  },",

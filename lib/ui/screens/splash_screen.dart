@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../core/utils/mixins/context_mixin.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     screenWidgets = _ScreenWidgets(context: context, widget: this);
+    screenSizeNotifier.value = MediaQuery.of(context).size;
     return Scaffold(
       body: FutureBuilder<bool>(
         future: screenWidgets.startFunction(),
@@ -27,7 +29,7 @@ class SplashScreen extends StatelessWidget {
             decoration: const BoxDecoration(
               gradient: RadialGradient(
                 radius: 2,
-                colors: [Colors.white,Colors.black],
+                colors: [Colors.white, Colors.black],
               ),
             ),
             child: const Center(child: Text(route)),

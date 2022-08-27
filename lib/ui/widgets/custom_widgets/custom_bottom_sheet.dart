@@ -14,15 +14,14 @@ class CustomBottomSheet {
     this.radius = 24,
     this.isDismissible = true,
     this.padding = EdgeInsets.zero,
-    this.maxHeight = .9,
+    this.maxHeight = 300,
   });
 
   Future show(BuildContext context) => showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         isDismissible: isDismissible,
-        constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * maxHeight),
+        constraints: BoxConstraints(maxHeight: maxHeight),
         backgroundColor: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(radius)),
