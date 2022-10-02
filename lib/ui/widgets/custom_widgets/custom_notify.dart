@@ -8,14 +8,14 @@ enum NotifyType { success, warning, error }
 
 class CustomNotify {
   final String? title;
-  final String? body;
+  final String? message;
   final NotifyType? type;
   final TextStyle? style;
   final Function()? onPressed;
 
   CustomNotify({
     this.title,
-    required this.body,
+    required this.message,
     this.type = NotifyType.error,
     this.style,
     this.onPressed,
@@ -38,7 +38,7 @@ class CustomNotify {
             )
           : null,
       messageText: CText(
-        body ?? "ERROR",
+        message ?? "ERROR",
         style: style ?? hd.textStyle(color: Colors.white),
       ),
       onTap: (flushbar) {

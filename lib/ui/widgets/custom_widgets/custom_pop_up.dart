@@ -36,7 +36,7 @@ class CustomPopUp {
               color: backgroundColor,
               borderRadius: hw.radius(12),
             ),
-            width: width ?? screenSizeNotifier.value.width,
+            width: width ?? screenSize.width,
             height: height,
             child: Column(
               mainAxisSize: MainAxisSize.min,

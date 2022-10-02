@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     screenWidgets = _ScreenWidgets(context: context, widget: this);
-    screenSizeNotifier.value = MediaQuery.of(context).size;
+    screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: FutureBuilder<bool>(
         future: screenWidgets.startFunction(),
