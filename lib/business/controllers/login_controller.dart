@@ -4,7 +4,7 @@ class LoginController {
   IApiService apiService;
   LoginController(this.apiService);
 
-  Future signIn() async {}
+  Future signUp() async {}
 
-  Future signOut() async {}
+  Future login() async {}
 }

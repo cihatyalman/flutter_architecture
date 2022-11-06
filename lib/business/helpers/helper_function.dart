@@ -1,10 +1,17 @@
+import 'dart:io';
+
+import '../../core/cache_service/cache_service.dart';
+
 final hf = HelperFunction();
 
 class HelperFunction {
-  // Map<String, String> get getHeaders => {
-  //       HttpHeaders.authorizationHeader:
-  //           "Bearer ${cacheService.box.get('token')}",
-  //     };
+  Map<String, String> get getHeaders {
+    final token = cacheService.box.get('token');
+    return {
+      HttpHeaders.authorizationHeader: token == null ? "" : "Bearer $token",
+      'language': 'tr',
+    };
+  }
 
   String passingTime(DateTime? datetime) {
     if (datetime == null) {

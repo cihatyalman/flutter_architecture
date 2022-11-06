@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 02.10.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 06.11.2022 ]
 
 #
 
@@ -9,6 +9,8 @@ Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 02.10.2022 ]
 Katmanlı mimari kullanılarak hazırlanmıştır.
 
 NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
+
+NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştirmeyi unutmayın.
 
 #
 
