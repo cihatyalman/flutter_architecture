@@ -1,23 +1,23 @@
 class User {
-  String? name;
+  String? username;
   int? age;
 
   User({
-    this.name,
+    this.username,
     this.age,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'name': name,
-      'age': age,
+      'Username': username,
+      'Age': age,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      name: map['name'],
-      age: map['age'],
+      username: map['Username'],
+      age: map['Age'],
     );
   }
 }
