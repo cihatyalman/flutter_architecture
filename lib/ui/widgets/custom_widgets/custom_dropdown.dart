@@ -27,7 +27,8 @@ class CustomDropdown<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _selectedItem = ValueNotifier(hint != null ? null : items[startIndex]);
+    _selectedItem = ValueNotifier(
+        (hint != null || startIndex == -1) ? null : items[startIndex]);
     return ValueListenableBuilder<T?>(
       valueListenable: _selectedItem,
       builder: (_, value, __) {

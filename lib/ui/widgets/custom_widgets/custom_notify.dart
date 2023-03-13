@@ -12,6 +12,7 @@ class CustomNotify {
   final NotifyType? type;
   final TextStyle? style;
   final Function()? onPressed;
+  final int durationSeconds;
 
   CustomNotify({
     this.title,
@@ -19,6 +20,7 @@ class CustomNotify {
     this.type = NotifyType.error,
     this.style,
     this.onPressed,
+    this.durationSeconds = 3,
   });
 
   show(BuildContext context) => _build().show(context);
@@ -29,7 +31,7 @@ class CustomNotify {
       borderRadius: BorderRadius.circular(12),
       margin: const EdgeInsets.all(12),
       backgroundColor: _getColor(type ?? NotifyType.error),
-      duration: const Duration(seconds: 3),
+      duration: Duration(seconds: durationSeconds),
       isDismissible: true,
       titleText: title != null
           ? Text(

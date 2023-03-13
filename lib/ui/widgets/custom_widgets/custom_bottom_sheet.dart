@@ -7,6 +7,9 @@ class CustomBottomSheet {
   bool isDismissible;
   EdgeInsets padding;
   double maxHeight;
+  double dividerSize;
+  Color dividerColor;
+  bool isExpanded;
 
   CustomBottomSheet({
     required this.children,
@@ -15,27 +18,52 @@ class CustomBottomSheet {
     this.isDismissible = true,
     this.padding = EdgeInsets.zero,
     this.maxHeight = 300,
+    this.dividerSize = 100,
+    this.dividerColor = Colors.black,
+    this.isExpanded = true,
   });
 
   Future show(BuildContext context) => showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         isDismissible: isDismissible,
-        constraints: BoxConstraints(maxHeight: maxHeight),
+        constraints: BoxConstraints(
+          maxHeight: maxHeight,
+          minWidth: double.infinity,
+        ),
         backgroundColor: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(radius)),
         ),
         builder: (context) {
           return StatefulBuilder(builder: (context, setState) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: padding,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: children.call(setState),
-                ),
+            return Padding(
+              padding: padding,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (dividerSize != 0)
+                    SizedBox(
+                      width: dividerSize,
+                      height: 24,
+                      child: Divider(thickness: 2, color: dividerColor),
+                    ),
+                  isExpanded
+                      ? Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: children.call(setState),
+                            ),
+                          ),
+                        )
+                      : SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: children.call(setState),
+                          ),
+                        ),
+                ],
               ),
             );
           });

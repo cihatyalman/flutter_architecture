@@ -61,38 +61,39 @@ class CustomInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(radius),
+    return TextField(
+      controller: controller,
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        filled: backgroundColor != null,
+        fillColor: backgroundColor,
+        contentPadding: contentPadding,
+        labelText: labelText,
+        hintText: hintText,
+        helperText: helperText,
+        errorText: errorText,
+        hintStyle: hintStyle,
+        helperStyle: helperStyle,
+        errorStyle: errorStyle,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        border: _border(borderPassiveColor),
+        focusedBorder: _border(borderActiveColor),
+        enabledBorder: _border(borderPassiveColor),
+        helperMaxLines: 3,
+        errorMaxLines: 3,
       ),
-      child: TextField(
-        controller: controller,
-        onChanged: onChanged,
-        decoration: InputDecoration(
-          contentPadding: contentPadding,
-          labelText: labelText,
-          hintText: hintText,
-          helperText: helperText,
-          errorText: errorText,
-          hintStyle: hintStyle,
-          helperStyle: helperStyle,
-          errorStyle: errorStyle,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          border: _border(borderPassiveColor),
-          focusedBorder: _border(borderActiveColor),
-          enabledBorder: _border(borderPassiveColor),
-        ),
-        style: textStyle,
-        keyboardType: keyboardType,
-        inputFormatters: inputMaskList,
-        obscureText: obscureText,
-        maxLines: maxLines,
-        maxLength: maxLength,
-        readOnly: readOnly,
-        textCapitalization: textCapitalization,
-      ),
+      style: textStyle,
+      keyboardType: keyboardType,
+      inputFormatters: inputMaskList,
+      obscureText: obscureText,
+      maxLines: maxLines,
+      maxLength: maxLength,
+      readOnly: readOnly,
+      textCapitalization: textCapitalization,
+      textAlignVertical: (prefixIcon != null || suffixIcon != null)
+          ? TextAlignVertical.center
+          : null,
     );
   }
 
@@ -106,5 +107,8 @@ class CustomInput extends StatelessWidget {
               borderSide: BorderSide(color: color),
               borderRadius: BorderRadius.circular(radius),
             )
-          : InputBorder.none;
+          : OutlineInputBorder(
+              borderSide: BorderSide(color: backgroundColor ?? Colors.white),
+              borderRadius: BorderRadius.circular(radius),
+            );
 }

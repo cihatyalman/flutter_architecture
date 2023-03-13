@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'business/helpers/design_helper.dart';
 import 'business/helpers/route_generator.dart';
-import 'core/cache_service/cache_service.dart';
+import 'core/other_services/cache_service.dart';
 import 'ui/screens/splash_screen.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();

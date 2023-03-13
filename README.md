@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 22.12.2022 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 13.03.2023 ]
 
 #
 
@@ -16,21 +16,59 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
 
 ### Kullanılan kütüphaneler:
 
-- API Service
-  - dio
-- Widgets
-  - animator
-  - another_flushbar
-  - cached_network_image
-- Cache
-  - hive
-  - hive_flutter
-- Other
-  - intl
-  - path_provider
-  - mask_text_input_formatter
-  - flutter_svg
-  - auto_size_text
+<table>
+  <tr valign="top">
+    <td>
+      <ul>
+        <li>API Service</li>
+        <ul>
+          <li>dio</li>
+        </ul>
+        <li>Cache</li>
+        <ul>
+          <li>hive</li>
+          <li>hive_flutter</li>
+        </ul>
+        <li>Widgets</li>
+        <ul>
+          <li>animator</li>
+          <li>another_flushbar</li>
+          <li>cached_network_image</li>
+        </ul>
+      </ul>
+    </td>
+    <td>
+      <li>Other</li>
+      <ul>
+        <li>intl</li>
+        <li>path_provider</li>
+        <li>mask_text_input_formatter</li>
+        <li>flutter_svg</li>
+        <li>auto_size_text</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- # api -->
+  <!-- dio:  -->
+<!--  -->
+  <!-- # widgets -->
+  <!-- animator:  -->
+  <!-- another_flushbar:  -->
+  <!-- screenshot:  -->
+  <!-- cached_network_image:  -->
+<!--  -->
+  <!-- # cache -->
+  <!-- hive:  -->
+  <!-- hive_flutter:  -->
+<!--  -->
+  <!-- # other -->
+  <!-- intl:  -->
+  <!-- path_provider:  -->
+  <!-- mask_text_input_formatter:  -->
+  <!-- flutter_svg:  -->
+  <!-- auto_size_text:  -->
 
 <br>
 

@@ -1,37 +1,8 @@
-import 'dart:io';
-
-import '../../core/cache_service/cache_service.dart';
+import '../../core/utils/mixins/helper_mixin.dart';
 
 final hf = HelperFunction();
 
-class HelperFunction {
-  Map<String, String> get getHeaders {
-    final token = cacheService.box.get('token');
-    return {
-      HttpHeaders.authorizationHeader: token == null ? "" : "Bearer $token",
-      'language': 'tr',
-    };
-  }
-
-  String passingTime(DateTime? datetime) {
-    if (datetime == null) {
-      return " - ";
-    }
-
-    final differenceTime = DateTime.now().difference(datetime);
-    String result = "";
-    if (differenceTime.inMinutes < 60) {
-      result = "${differenceTime.inMinutes} dk";
-    } else if (differenceTime.inHours < 48) {
-      result = "${differenceTime.inHours} saat";
-    } else if (differenceTime.inDays < 30) {
-      result = "${differenceTime.inDays} gün";
-    } else {
-      result = "${(differenceTime.inDays / 30).toStringAsFixed(0)} ay";
-    }
-    return "$result önce";
-  }
-
+class HelperFunction with HelperMixin {
 // #region url_launcher ( https://pub.dev/packages/url_launcher )
 
   // void openUrl(String url) async {
