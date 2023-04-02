@@ -1,12 +1,10 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 13.03.2023 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 02.04.2023 ]
 
 #
 
 "lib" klasörünü projenizin lib klasörü ile değiştirerek kullanabilirsiniz. Projenizde kullanılmayacak klasörleri silebilirsiniz.
-
-Katmanlı mimari kullanılarak hazırlanmıştır.
 
 NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
 
@@ -74,34 +72,21 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
 
 # Mimari
 
-### İş Katmanı ( [business](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business) )
-
-- #### [constants](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/constants): Projede kullanılacak sabitler burada tutulur. Bunlar renk, icon, resim, yazı, yazı formatı gibi alanlar olabilir.
-- #### [controllers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/controllers): Api istekleri (signIn, signOut, accountGet vs.) burada tutulur.
-- #### [helpers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/helpers): Kodlama yaparken bize yardımcı olacak kodlar burada tutulur.
-- #### [managers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/managers): Bazı servislerin bir yerden yönetilmesi gerekir yönetici sınıfları burada tutulur.
-- #### [state_managements](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/business/state_managements): Flutter da kullandığımız durum yöneticileri burada tutulur.
-
-### Çekirdek Katman ( [core](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/core) )
-
-- #### Bu katman projeden bağımsız olarak çalışan kodlar içerir.
-- #### Bu katmanı [dışarıdan](https://github.com/cihatyalman/flutter_core) entegre edebilirsiniz.
-
-### Model Katmanı ( [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models) )
-
-- #### Projede kullanılacak modeller burada tutulur.
-
-### UI Katmanı ( [ui](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui) )
-
-- #### [screens](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/screens): Tasarlanan uygulama ekranları burada tutulur.
-- #### [widgets/custom_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/widgets/custom_widgets): Projeden bağımsız olarak oluşturulan widgetlar burada tutulur.
-- #### [widgets/project_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/widgets/project_widgets): Projeye özgü widgetlar burada tutulur.
+- #### [core](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/core): Projeden bağımsız olarak çalışan kodlar içerir. Bu katmanı [dışarıdan](https://github.com/cihatyalman/flutter_core) entegre edebilirsiniz.
+- #### [constants](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/constants): Projede kullanılacak sabitler burada tutulur. Bunlar renk, icon, resim, yazı, yazı formatı gibi alanlar olabilir.
+- #### [controllers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/controllers): Api istekleri burada tutulur.
+- #### [helpers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/helpers): Kodlama yaparken bize yardımcı olacak kodlar burada tutulur.
+- #### [widgets/custom_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/widgets/custom_widgets): Projeden bağımsız olarak oluşturulan widgetlar burada tutulur.
+- #### [widgets/project_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/widgets/project_widgets): Projeye özgü widgetlar burada tutulur.
+- #### [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models): Projede kullanılacak modeller burada tutulur.
+- #### [views](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/views): Tasarlanan uygulama ekranları burada tutulur.
+- #### [view_models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/view_models): View ile model arasındaki iletişimi sağlar. İş kodları burada tutulur.
 
 <br>
 
 # Ekran Tasarımı
 
-Ekran tasarımı 2 ana bileşen üzerine kurulmuştur. Bu bileşenler tek bir 'dart' dosyası içinde 2 ayrı sınıftan oluşur. Örnek olarak [Home](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/ui/screens/home_screen.dart) ekranını inceleyebilirsiniz.
+Ekran tasarımı 2 ana bileşen üzerine kurulmuştur. Bu bileşenler tek bir 'dart' dosyası içinde 2 ayrı sınıftan oluşur. Örnek olarak [Home](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/views/home_screen.dart) ekranını inceleyebilirsiniz.
 
 - #### Widget Sınıfı ( \_ScreenWidgets ):
 
@@ -117,7 +102,7 @@ Sonuç olarak widget sınıfında widgetlarımızı ayrı ayrı tasarlayıp, ana
 <br>
 
 # State Managements
-Kişisel olarak 'Stateful' yerine 'Stateless' kullanıyorum. Ekranda yapılan kalıcı olmayan anlık değişiklikler (butonu duruma göre değiştirmek vs.) için 'ValueNotifier', anlık olarak ekrana yansıyacak veri değişiklikleri (profil ismi, profil resmi vs.) için 'BLoC Pattern' kullanmayı tercih ediyorum.
+Kişisel olarak 'StatefulWidget' yerine 'StatelessWidget' kullanıyorum. Bir ekranda yapılan kalıcı olmayan veri değişiklikleri (butonu duruma göre değiştirmek vs.) için 'ValueNotifier', uygulama genelinde kullanılmak üzere kalıcı olan veri değişiklikleri (profil ismi, profil resmi vs.) için 'BLoC Pattern' kullanmayı tercih ediyorum.
 
 <br>
 

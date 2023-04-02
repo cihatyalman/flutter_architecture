@@ -4,8 +4,8 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import '../../../core/utils/extensions.dart';
 
+import '../../core/utils/extensions.dart';
 import '../project_widgets/widget_helper.dart';
 import 'cached_image.dart';
 

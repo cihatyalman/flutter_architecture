@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/mixins/context_mixin.dart';
+import '../../core/utils/mixins/context_mixin.dart';
 import '../project_widgets/widget_helper.dart';
 
 class CustomPopUp {

@@ -94,16 +94,16 @@ class CalendarPopUp {
     required String buttonText,
     Function()? buttonFunction,
   }) {
-    final _color = Theme.of(context).colorScheme.primary;
+    final color = Theme.of(context).colorScheme.primary;
     return Container(
       decoration: BoxDecoration(
-        color: accept ? _color : Colors.white,
+        color: accept ? color : Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: TextButton(
         child: CText(
           buttonText,
-          color: accept ? Colors.white : _color,
+          color: accept ? Colors.white : color,
         ),
         onPressed: () {
           buttonFunction?.call();

@@ -1,13 +1,13 @@
-// ignore_for_file: use_key_in_widget_constructors, avoid_print
+// ignore_for_file: avoid_print, use_key_in_widget_constructors
 
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'business/helpers/design_helper.dart';
-import 'business/helpers/route_generator.dart';
 import 'core/other_services/cache_service.dart';
-import 'ui/screens/splash_screen.dart';
+import 'helpers/design_helper.dart';
+import 'helpers/route_generator.dart';
+import 'views/splash_screen.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Architecture',
-      theme: hd.mainTheme,
+      theme: DesignHelper().mainTheme,
       initialRoute: SplashScreen.route,
       navigatorKey: navigatorKey,
       onGenerateRoute: RouteGenerator.generateRoute,

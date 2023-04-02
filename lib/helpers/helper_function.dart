@@ -1,4 +1,4 @@
-import '../../core/utils/mixins/helper_mixin.dart';
+import '../core/utils/mixins/helper_mixin.dart';
 
 final hf = HelperFunction();
 

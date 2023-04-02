@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
 
-import '../../../business/helpers/design_helper.dart';
+import '../../helpers/design_helper.dart';
 import '../project_widgets/c_text.dart';
 
 enum NotifyType { success, warning, error }
@@ -36,12 +36,12 @@ class CustomNotify {
       titleText: title != null
           ? Text(
               title!,
-              style: style ?? hd.textStyle(color: Colors.white),
+              style: style ?? DesignHelper().textStyle(color: Colors.white),
             )
           : null,
       messageText: CText(
         message ?? "ERROR",
-        style: style ?? hd.textStyle(color: Colors.white),
+        style: style ?? DesignHelper().textStyle(color: Colors.white),
       ),
       onTap: (flushbar) {
         onPressed?.call();

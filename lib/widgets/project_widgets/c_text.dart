@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../../../business/constants/color_constants.dart';
-import '../../../business/helpers/design_helper.dart';
+import '../../constants/color_constants.dart';
+import '../../helpers/design_helper.dart';
 
 class CText extends StatelessWidget {
   String? data;
@@ -35,7 +35,7 @@ class CText extends StatelessWidget {
       textAlign: textAlign,
       maxLines: maxLines,
       style: style ??
-          hd
+          DesignHelper()
               .textStyle(color: color, size: size, isBold: isBold)
               .copyWith(overflow: isOverflow ? TextOverflow.ellipsis : null),
     );

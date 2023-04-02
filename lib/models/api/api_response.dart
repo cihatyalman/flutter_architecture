@@ -43,4 +43,11 @@ class ApiResponse {
 
   factory ApiResponse.fromJson(String source) =>
       ApiResponse.fromMap(json.decode(source));
+
+  String? getValid(String key) {
+    return validationErrors?.firstWhere(
+      (e) => e.values.contains(key),
+      orElse: () => {"Value": null},
+    )["Value"];
+  }
 }

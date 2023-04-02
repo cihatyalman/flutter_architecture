@@ -1,7 +1,7 @@
+import '../../constants/text_constants.dart';
+import '../../controllers/account_controller.dart';
+import '../../controllers/login_controller.dart';
 import '../../core/api_service/concrete/dio_service.dart';
-import '../constants/text_constants.dart';
-import '../controllers/account_controller.dart';
-import '../controllers/login_controller.dart';
 
 final apiManager = ApiManager();
 

@@ -1,8 +1,10 @@
-import '../../core/api_service/abstract/i_api_service.dart';
+import '../core/api_service/abstract/i_api_service.dart';
 
 class LoginController {
   IApiService apiService;
   LoginController(this.apiService);
+
+  final mainPath = "/Login";
 
   Future signUp() async {}
 

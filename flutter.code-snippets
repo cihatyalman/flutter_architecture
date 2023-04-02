@@ -4,126 +4,180 @@ Mac $HOME/Library/Application Support/Code/User/snippets/(language).json
 Linux $HOME/.config/Code/User/snippets/(language).json
 */
 
-
 {
-    // #region Debug 
-        "Debug Print":{
-            "scope": "dart",
-            "prefix": "c_debug_print",
-            "body": "print(\"[C_${1:1}]: ${$2}\");",
-            "description": "Debug Print"
-        },
-        "Debug Text":{
-            "scope": "dart",
-            "prefix": "c_debug_text",
-            "body": "CText(\"[C_${1:1}]: ${$2}\"),",
-            "description": "Debug Text"
-        },
-    // #endregion
-    
-    // #region Notifier 
-        "Build ValueListenableBuilder":{
-            "scope": "dart",
-            "prefix": "c_notifier_builder",
-            "body": [
-                "ValueListenableBuilder<${1:dynamic}>(",
-                "  valueListenable: $2,",
-                "  builder: (_, value, __) {",
-                "    return ${3:Text(value.toString())};",
-                "  },",
-                "),",
-            ],
-            "description": "Build ValueListenableBuilder"
-        },
-    // #endregion
-    
-    // #region Bloc 
-        "Build Bloc Builder":{
-            "scope": "dart",
-            "prefix": "c_bloc_builder",
-            "body": [
-              "StreamBuilder<${1:String}>(",
-              "  stream: ${2:BlocName}.stream,",
-              "  initialData: ${2:BlocName}.data,",
-              "  builder: (context, snapshot) {",
-              "    if(!snapshot.hasData || snapshot.data == null){",
-              "      return const SizedBox.shrink();",
-              "    }",
-              "    return Text(snapshot.data.toString());",
-              "  },",
-              "),",
-            ],
-            "description": "Build Bloc Builder",
-        },
-        "Build Multi Bloc Builder":{
-            "scope": "dart",
-            "prefix": "c_multi_bloc_builder",
-            "body": [
-              "MultiBloc(",
-              "  streamList: [${1:BlocName}.stream],",
-              "  initialDataList: [${1:BlocName}.data],",
-              "  builder: (valueList){",
-              "    return Text(valueList.toString());",
-              "  },",
-              "),",
-            ],
-            "description": "Build Bloc Builder",
-        },
-    // #endregion
-    
-    // #region Create 
-        "Create Singleton":{
-            "scope": "dart",
-            "prefix": "c_create_singleton",
-            "body": [
-                "static final ${1:ClassName} _instance = $1._internal();",
-                "factory $1() => _instance;",
-                "$1._internal();",
-            ],
-            "description": "Create Singleton"
-        },
-        "Create Screen": {
-            "scope": "dart",
-            "prefix": "c_create_screen",
-            "body": [
-                "// ignore_for_file: must_be_immutable, use_key_in_widget_constructors",
-                "",
-                "import 'package:flutter/material.dart';",
-                "",
-                "class ${1:ClassName}Screen extends StatelessWidget {",
-                "  static const route = '$1Screen';",
-                "",
-                "  late _ScreenWidgets screenWidgets;",
-                "",
-                "  @override",
-                "  Widget build(BuildContext context) {",
-                "    screenWidgets = _ScreenWidgets(context: context, widget: this);",
-                "    return Scaffold(",
-                "      appBar: AppBar(centerTitle: true, title: const Text(route)),",
-                "      body: SingleChildScrollView(",
-                "        child: Column(",
-                "          children: [",
-                "            screenWidgets.body(route),",
-                "          ],",
-                "        ),",
-                "      ),",
-                "    );",
-                "  }",
-                "}",
-                "",
-                "class _ScreenWidgets {",
-                "  final BuildContext context;",
-                "  final $1Screen widget;",
-                "",
-                "  _ScreenWidgets({required this.context, required this.widget});",
-                "",
-                "  Widget body(String text) {",
-                "    return Center(child: Text(text));",
-                "  }",
-                "}",
-            ],
-            "description": "Create Screen"
-        },
-    // #endregion
-    
-    }
+  // #region Debug
+  "Debug Print": {
+    "scope": "dart",
+    "prefix": "c_debug_print",
+    "body": "print(\"[C_${1:1}]: ${$2}\");",
+    "description": "Debug Print"
+  },
+  "Debug Text": {
+    "scope": "dart",
+    "prefix": "c_debug_text",
+    "body": "CText(\"[C_${1:1}]: ${$2}\"),",
+    "description": "Debug Text"
+  },
+  // #endregion
+
+  // #region Notifier
+  "Build ValueListenableBuilder": {
+    "scope": "dart",
+    "prefix": "c_notifier_builder",
+    "body": [
+      "ValueListenableBuilder<${1:dynamic}>(",
+      "  valueListenable: $2,",
+      "  builder: (_, value, __) {",
+      "    return ${3:Text(value.toString())};",
+      "  },",
+      "),"
+    ],
+    "description": "Build ValueListenableBuilder"
+  },
+  // #endregion
+
+  // #region Bloc
+  "Build Bloc Builder": {
+    "scope": "dart",
+    "prefix": "c_bloc_builder",
+    "body": [
+      "StreamBuilder<${1:String}>(",
+      "  stream: ${2:BlocName}.stream,",
+      "  initialData: ${2:BlocName}.data,",
+      "  builder: (context, snapshot) {",
+      "    if(!snapshot.hasData || snapshot.data == null){",
+      "      return const SizedBox.shrink();",
+      "    }",
+      "    return Text(snapshot.data.toString());",
+      "  },",
+      "),"
+    ],
+    "description": "Build Bloc Builder"
+  },
+  "Build Multi Bloc Builder": {
+    "scope": "dart",
+    "prefix": "c_multi_bloc_builder",
+    "body": [
+      "MultiBloc(",
+      "  streamList: [${1:BlocName}.stream],",
+      "  initialDataList: [${1:BlocName}.data],",
+      "  builder: (valueList){",
+      "    return Text(valueList.toString());",
+      "  },",
+      "),"
+    ],
+    "description": "Build Bloc Builder"
+  },
+  // #endregion
+
+  // #region Create
+  "Create Singleton": {
+    "scope": "dart",
+    "prefix": "c_create_singleton",
+    "body": [
+      "static final ${1:ClassName} _instance = $1._internal();",
+      "factory $1() => _instance;",
+      "$1._internal();"
+    ],
+    "description": "Create Singleton"
+  },
+  "Create Screen": {
+    "scope": "dart",
+    "prefix": "c_create_screen",
+    "body": [
+      "// ignore_for_file: must_be_immutable, use_key_in_widget_constructors",
+      "",
+      "import 'package:flutter/material.dart';",
+      "",
+      "class ${1:ClassName}Screen extends StatelessWidget {",
+      "  static const route = '$1Screen';",
+      "",
+      "  late _ScreenWidgets screenWidgets;",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    screenWidgets = _ScreenWidgets(context: context, widget: this);",
+      "    return Scaffold(",
+      "      appBar: AppBar(centerTitle: true, title: const Text(route)),",
+      "      body: ListView(",
+      "        children: [",
+      "          screenWidgets.body(route),",
+      "        ],",
+      "      ),",
+      "    );",
+      "  }",
+      "}",
+      "",
+      "class _ScreenWidgets {",
+      "  final BuildContext context;",
+      "  final $1Screen widget;",
+      "",
+      "  _ScreenWidgets({required this.context, required this.widget});",
+      "",
+      "  Widget body(String text) {",
+      "    return Center(child: Text(text));",
+      "  }",
+      "}"
+    ],
+    "description": "Create Screen"
+  },
+  "Create ViewModel": {
+    "scope": "dart",
+    "prefix": "c_create_viewmodel",
+    "body": [
+      "// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member",
+      "",
+      "import 'package:flutter/material.dart';",
+      "",
+      "class ${1:Name}ViewModel {",
+      "  final _dataListener = ValueNotifier(List<$1>.empty(growable: true));",
+      "  Widget listenWidget(Widget Function(List<$1> data) customWidget) =>",
+      "      ValueListenableBuilder<List<$1>>(",
+      "        valueListenable: _dataListener,",
+      "        builder: (_, value, __) => customWidget.call(value),",
+      "      );",
+      "  void get updateWidget => _dataListener.notifyListeners();",
+      "",
+      "  Future getData() async {}",
+      "",
+      "  Future add($1 data) async {}",
+      "",
+      "  Future delete(String id) async {}",
+      "}",
+      ""
+    ],
+    "description": "Create ViewModel"
+  },
+  // #endregion
+
+  // #regison MVVM 
+  "Build ViewModel Value": {
+    "scope": "dart",
+    "prefix": "c_mvvm_build_value",
+    "body": [
+      "final _${1:data}Listener = ValueNotifier(${4:Model}());",
+      "Widget ${2:listen}Widget(Widget Function($4 data) customWidget) =>",
+      "    ValueListenableBuilder<$4>(",
+      "      valueListenable: _$1Listener,",
+      "      builder: (_, value, __) => customWidget.call(value),",
+      "    );",
+      "void get ${3:updateWidget} => _$1Listener.notifyListeners();"
+    ],
+    "description": "Build ViewModel Value"
+  },
+  "Build ViewModel List Value": {
+    "scope": "dart",
+    "prefix": "c_mvvm_build_list_value",
+    "body": [
+      "final _${1:data}Listener = ValueNotifier(List<${4:Model}>.empty(growable: true));",
+      "Widget ${2:listen}Widget(Widget Function(List<$4> data) customWidget) =>",
+      "    ValueListenableBuilder<List<$4>>(",
+      "      valueListenable: _$1Listener,",
+      "      builder: (_, value, __) => customWidget.call(value),",
+      "    );",
+      "void get ${3:updateWidget} => _$1Listener.notifyListeners();"
+    ],
+    "description": "Build ViewModel List Value"
+  }
+  // #endregion
+}
