@@ -10,12 +10,10 @@ import '../widgets/project_widgets/widget_helper.dart';
 class HomeScreen extends StatelessWidget {
   static const route = 'HomeScreen';
 
-  late _ScreenWidgets screenWidgets;
-  final homeViewModel = HomeViewModel();
+  final vm = HomeViewModel();
 
   @override
   Widget build(BuildContext context) {
-    screenWidgets = _ScreenWidgets(context: context, widget: this);
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: CText(route)),
       body: Padding(
@@ -23,14 +21,13 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
           children: [
             hw.sizedBoxVertical(),
-            homeViewModel
-                .listenWidget((data) => screenWidgets.textWidget(data)),
+            vm.dataNotifier.listenWidget((data) => textWidget(data)),
             hw.sizedBoxVertical(),
             Row(
               children: [
-                Expanded(child: screenWidgets.decrementButton()),
+                Expanded(child: decrementButton()),
                 hw.sizedBoxHorizontal(),
-                Expanded(child: screenWidgets.incrementButton()),
+                Expanded(child: incrementButton()),
               ],
             ),
           ],
@@ -38,13 +35,6 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-class _ScreenWidgets {
-  final BuildContext context;
-  final HomeScreen widget;
-
-  _ScreenWidgets({required this.context, required this.widget});
 
   Widget textWidget(int data) {
     return Center(child: CText(data.toString()));
@@ -53,14 +43,14 @@ class _ScreenWidgets {
   Widget incrementButton() {
     return SubmitButton(
       titleWidget: const Icon(Icons.add),
-      onTap: () => widget.homeViewModel.increment(),
+      onTap: () => vm.increment(),
     );
   }
 
   Widget decrementButton() {
     return SubmitButton(
       titleWidget: const Icon(Icons.remove),
-      onTap: () => widget.homeViewModel.decrement(),
+      onTap: () => vm.decrement(),
     );
   }
 }

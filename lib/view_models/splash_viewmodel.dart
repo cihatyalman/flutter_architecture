@@ -3,25 +3,22 @@
 import 'package:flutter/material.dart';
 
 import '../core/utils/mixins/context_mixin.dart';
+import '../helpers/state_managements/data_notifier.dart';
 
-enum StatusType { idle, loading, isTrue, isFalse }
+enum StatusType { idle, loading, isNotLogin, isLogin }
 
 class SplashViewModel {
-  final _statusListener = ValueNotifier(StatusType.idle);
-  Widget listenWidget(Widget Function(StatusType data) customWidget) =>
-      ValueListenableBuilder<StatusType>(
-        valueListenable: _statusListener,
-        builder: (_, value, __) => customWidget.call(value),
-      );
-  void get updateWidget => _statusListener.notifyListeners();
+  DataNotifier<StatusType>? _statusNotifier;
+  DataNotifier<StatusType> get statusNotifier =>
+      _statusNotifier ??= DataNotifier(StatusType.idle);
 
   void setScreenSize(BuildContext context) {
     screenSize = MediaQuery.of(context).size;
   }
 
   void startFunction() async {
-    _statusListener.value = StatusType.loading;
+    statusNotifier.value = StatusType.loading;
     await Future.delayed(const Duration(seconds: 3));
-    _statusListener.value = StatusType.isTrue;
+    statusNotifier.value = StatusType.isLogin;
   }
 }

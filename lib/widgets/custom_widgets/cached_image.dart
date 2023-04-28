@@ -33,7 +33,7 @@ class CachedImage extends StatelessWidget {
               width: isInfinity ? double.infinity : null,
               height: isInfinity ? double.infinity : null,
               fadeInCurve: Curves.linear,
-              fadeInDuration: Duration.zero,
+              fadeInDuration: const Duration(milliseconds: 100),
             ),
     );
   }

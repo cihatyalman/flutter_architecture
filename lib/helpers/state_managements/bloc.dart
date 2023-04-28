@@ -1,8 +1,13 @@
 import 'dart:async';
 
 class Bloc<T> {
-  var _streamController = StreamController<T>.broadcast();
   late T _data;
+
+  Bloc(T initialData) {
+    _data = initialData;
+  }
+
+  var _streamController = StreamController<T>.broadcast();
 
   T get data => _data;
   set data(T data) {
@@ -13,16 +18,11 @@ class Bloc<T> {
   Stream<T> get stream => _streamController.stream;
   void updateWidget([T? data]) => _streamController.sink.add(data ?? _data);
 
-  void init() async {
+  void init() {
     _streamController = StreamController<T>.broadcast();
   }
 
   Future<void> dispose() async {
     await _streamController.close();
-  }
-
-  Future<void> clean(T data) async {
-    dispose();
-    updateWidget(data);
   }
 }

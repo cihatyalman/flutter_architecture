@@ -1,18 +1,13 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
-import 'package:flutter/material.dart';
+import '../helpers/state_managements/data_notifier.dart';
 
 class HomeViewModel {
-  final _dataListener = ValueNotifier(0);
-  Widget listenWidget(Widget Function(int data) customWidget) =>
-      ValueListenableBuilder<int>(
-        valueListenable: _dataListener,
-        builder: (_, value, __) => customWidget.call(value),
-      );
-  void get updateWidget => _dataListener.notifyListeners();
+  DataNotifier<int>? _dataNotifier;
+  DataNotifier<int> get dataNotifier => _dataNotifier ??= DataNotifier<int>(0);
 
   Future getData() async {
-    _dataListener.value = 0;
+    dataNotifier.value = 0;
   }
 
   Future add() async {}
@@ -20,16 +15,16 @@ class HomeViewModel {
   Future update() async {}
 
   Future delete(String id) async {
-    _dataListener.value = 0;
+    dataNotifier.value = 0;
   }
 
   Future increment() async {
-    _dataListener.value += 1;
+    dataNotifier.value += 1;
     // updateWidget;
   }
 
   Future decrement() async {
-    _dataListener.value -= 1;
+    dataNotifier.value -= 1;
     // updateWidget;
   }
 }

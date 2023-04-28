@@ -9,38 +9,29 @@ import 'home_screen.dart';
 class SplashScreen extends StatelessWidget {
   static const route = 'SplashScreen';
 
-  late _ScreenWidgets screenWidgets;
-  final splashViewModel = SplashViewModel();
+  final vm = SplashViewModel();
 
   @override
   Widget build(BuildContext context) {
-    screenWidgets = _ScreenWidgets(context: context, widget: this);
-    splashViewModel.setScreenSize(context);
-    splashViewModel.startFunction();
+    vm.setScreenSize(context);
+    vm.startFunction();
     return Scaffold(
-      body: splashViewModel.listenWidget(
+      body: vm.statusNotifier.listenWidget(
         (data) {
           if (![StatusType.idle, StatusType.loading].contains(data)) {
             WidgetsBinding.instance.addPostFrameCallback(
               (_) => Navigator.pushReplacementNamed(
                   context,
-                  data == StatusType.isTrue
+                  data == StatusType.isLogin
                       ? HomeScreen.route
                       : HomeScreen.route),
             );
           }
-          return screenWidgets.bodyWidget(route);
+          return bodyWidget(route);
         },
       ),
     );
   }
-}
-
-class _ScreenWidgets {
-  final BuildContext context;
-  final SplashScreen widget;
-
-  _ScreenWidgets({required this.context, required this.widget});
 
   Widget bodyWidget(String text) {
     return Container(

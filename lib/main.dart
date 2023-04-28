@@ -23,13 +23,16 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Architecture',
-      theme: DesignHelper().mainTheme,
-      initialRoute: SplashScreen.route,
-      navigatorKey: navigatorKey,
-      onGenerateRoute: RouteGenerator.generateRoute,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Architecture',
+        theme: DesignHelper().mainTheme,
+        initialRoute: SplashScreen.route,
+        navigatorKey: navigatorKey,
+        onGenerateRoute: RouteGenerator.generateRoute,
+      ),
     );
   }
 }

@@ -6,7 +6,7 @@ class LoginController {
 
   final mainPath = "/Login";
 
-  Future signUp() async {}
+  Future register() async {}
 
   Future login() async {}
 }

@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-class ApiResponse {
+class ApiResponse2 {
   bool hasError;
   String? message;
-  Map validationErrors;
+  List? validationErrors;
   dynamic data;
 
-  ApiResponse({
+  ApiResponse2({
     this.hasError = false,
     this.message,
-    this.validationErrors = const {},
+    this.validationErrors,
     this.data,
   });
 
@@ -20,15 +20,16 @@ class ApiResponse {
     if (message != null) {
       result.addAll({'Message': message});
     }
-    result.addAll({'ValidationErrors': validationErrors});
-
+    if (validationErrors != null) {
+      result.addAll({'ValidationErrors': validationErrors});
+    }
     result.addAll({'Data': data});
 
     return result;
   }
 
-  factory ApiResponse.fromMap(Map<String, dynamic> map) {
-    return ApiResponse(
+  factory ApiResponse2.fromMap(Map<String, dynamic> map) {
+    return ApiResponse2(
       hasError: map['HasError'] ?? false,
       message: map['Message'],
       validationErrors: map['ValidationErrors'],
@@ -38,10 +39,13 @@ class ApiResponse {
 
   String toJson() => json.encode(toMap());
 
-  factory ApiResponse.fromJson(String source) =>
-      ApiResponse.fromMap(json.decode(source));
+  factory ApiResponse2.fromJson(String source) =>
+      ApiResponse2.fromMap(json.decode(source));
 
   String? getValid(String key) {
-    return validationErrors[key];
+    return validationErrors?.firstWhere(
+      (e) => e.values.contains(key),
+      orElse: () => {"Value": null},
+    )["Value"];
   }
 }

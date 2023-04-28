@@ -19,6 +19,7 @@ class SubmitButton extends StatelessWidget {
   bool isEnabled;
   double elevation;
   Alignment alignment;
+  double padding;
 
   SubmitButton({
     this.title,
@@ -33,6 +34,7 @@ class SubmitButton extends StatelessWidget {
     this.isEnabled = true,
     this.elevation = 0,
     this.alignment = Alignment.center,
+    this.padding = 8,
   });
 
   @override
@@ -50,7 +52,7 @@ class SubmitButton extends StatelessWidget {
                     await onTap.call();
                     isLoading.value = false;
                   },
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(padding),
             color: backgroundColor,
             elevation: elevation,
             focusElevation: 0,
@@ -65,7 +67,11 @@ class SubmitButton extends StatelessWidget {
             ),
             height: height,
             child: isLoading.value
-                ? hw.circleLoading(color: loadingColor ?? backgroundColor)
+                ? AspectRatio(
+                    aspectRatio: 1,
+                    child: hw.circleLoading(
+                        color: loadingColor ?? backgroundColor),
+                  )
                 : titleWidget ??
                     Align(
                       alignment: alignment,

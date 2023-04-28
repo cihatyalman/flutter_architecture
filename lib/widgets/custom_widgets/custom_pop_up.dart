@@ -10,6 +10,7 @@ class CustomPopUp {
   double? width;
   double? height;
   bool dismiss;
+  double radius;
 
   CustomPopUp({
     required this.children,
@@ -18,6 +19,7 @@ class CustomPopUp {
     this.width,
     this.height,
     this.dismiss = true,
+    this.radius = 12,
   });
 
   Future show(BuildContext context) => showDialog(
@@ -34,7 +36,7 @@ class CustomPopUp {
             padding: hw.paddingAll(padding),
             decoration: BoxDecoration(
               color: backgroundColor,
-              borderRadius: hw.radius(12),
+              borderRadius: hw.radius(radius),
             ),
             width: width ?? screenSize.width,
             height: height,

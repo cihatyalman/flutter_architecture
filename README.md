@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 02.04.2023 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 28.04.2023 ]
 
 #
 
@@ -81,28 +81,6 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
 - #### [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models): Projede kullanılacak modeller burada tutulur.
 - #### [views](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/views): Tasarlanan uygulama ekranları burada tutulur.
 - #### [view_models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/view_models): View ile model arasındaki iletişimi sağlar. İş kodları burada tutulur.
-
-<br>
-
-# Ekran Tasarımı
-
-Ekran tasarımı 2 ana bileşen üzerine kurulmuştur. Bu bileşenler tek bir 'dart' dosyası içinde 2 ayrı sınıftan oluşur. Örnek olarak [Home](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/views/home_screen.dart) ekranını inceleyebilirsiniz.
-
-- #### Widget Sınıfı ( \_ScreenWidgets ):
-
-  Ekran için tasarlanan widgetlar bu sınıf altında bir metot olarak tutulur.
-
-- #### Ana Sınıf ( . . . Screen ):
-  Bu sınıf ana sınıfımız olacak. Bu sınıfta widget sınıfında hazırladığımız widgetları yerleştireceğiz, konumlarını ayarlayacağız, widgetlar arası boşluklar vereceğiz.
-
-<br>
-
-Sonuç olarak widget sınıfında widgetlarımızı ayrı ayrı tasarlayıp, ana sınıfımızda bu widgetları sadece konumlandıracağız. Bu şekilde konum bazlı bir değişikliği ana sınıfta, widget bazlı bir değişikliği widget sınıfında bulup yapabiliriz.
-
-<br>
-
-# State Managements
-Kişisel olarak 'StatefulWidget' yerine 'StatelessWidget' kullanıyorum. Bir ekranda yapılan kalıcı olmayan veri değişiklikleri (butonu duruma göre değiştirmek vs.) için 'ValueNotifier', uygulama genelinde kullanılmak üzere kalıcı olan veri değişiklikleri (profil ismi, profil resmi vs.) için 'BLoC Pattern' kullanmayı tercih ediyorum.
 
 <br>
 

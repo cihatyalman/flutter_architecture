@@ -23,8 +23,40 @@ class RouteGenerator {
   static MaterialPageRoute _getPageRouteBuilder(Widget screen) =>
       MaterialPageRoute(builder: (context) => screen);
 
-  // static PageRouteBuilder _getPageRouteBuilder(Widget screen) =>
+  // static PageRouteBuilder _getPageRouteBuilderZero(Widget screen) =>
   //     PageRouteBuilder(
   //       pageBuilder: (context, animation, secondaryAnimation) => screen,
+  //     );
+
+  // static PageRouteBuilder _getPageRouteBuilderLeft(Widget screen) =>
+  //     PageRouteBuilder(
+  //       pageBuilder: (context, animation, secondaryAnimation) {
+  //         const begin = Offset(-1, 0);
+  //         const end = Offset.zero;
+  //         const curve = Curves.ease;
+
+  //         final tween =
+  //             Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+  //         return SlideTransition(
+  //           position: animation.drive(tween),
+  //           child: screen,
+  //         );
+  //       },
+  //     );
+
+  // static PageRouteBuilder _getPageRouteBuilderRight(Widget screen) =>
+  //     PageRouteBuilder(
+  //       pageBuilder: (context, animation, secondaryAnimation) {
+  //         const begin = Offset(1, 0);
+  //         const end = Offset.zero;
+  //         const curve = Curves.ease;
+
+  //         final tween =
+  //             Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+  //         return SlideTransition(
+  //           position: animation.drive(tween),
+  //           child: screen,
+  //         );
+  //       },
   //     );
 }

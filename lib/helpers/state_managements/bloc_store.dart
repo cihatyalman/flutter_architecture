@@ -5,5 +5,5 @@ final blocStore = BlocStore();
 
 class BlocStore {
   Bloc<User>? _userBloc;
-  Bloc<User> get user => _userBloc ??= Bloc<User>()..data = User();
+  Bloc<User> get user => _userBloc ??= Bloc<User>(User());
 }

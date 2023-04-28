@@ -85,99 +85,42 @@ Linux $HOME/.config/Code/User/snippets/(language).json
     "scope": "dart",
     "prefix": "c_create_screen",
     "body": [
-      "// ignore_for_file: must_be_immutable, use_key_in_widget_constructors",
+      "// ignore_for_file: use_key_in_widget_constructors",
       "",
       "import 'package:flutter/material.dart';",
       "",
       "class ${1:ClassName}Screen extends StatelessWidget {",
       "  static const route = '$1Screen';",
       "",
-      "  late _ScreenWidgets screenWidgets;",
-      "",
       "  @override",
       "  Widget build(BuildContext context) {",
-      "    screenWidgets = _ScreenWidgets(context: context, widget: this);",
       "    return Scaffold(",
       "      appBar: AppBar(centerTitle: true, title: const Text(route)),",
       "      body: ListView(",
       "        children: [",
-      "          screenWidgets.body(route),",
+      "          body(route),",
       "        ],",
       "      ),",
       "    );",
       "  }",
-      "}",
-      "",
-      "class _ScreenWidgets {",
-      "  final BuildContext context;",
-      "  final $1Screen widget;",
-      "",
-      "  _ScreenWidgets({required this.context, required this.widget});",
       "",
       "  Widget body(String text) {",
       "    return Center(child: Text(text));",
       "  }",
-      "}"
-    ],
-    "description": "Create Screen"
-  },
-  "Create ViewModel": {
-    "scope": "dart",
-    "prefix": "c_create_viewmodel",
-    "body": [
-      "// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member",
-      "",
-      "import 'package:flutter/material.dart';",
-      "",
-      "class ${1:Name}ViewModel {",
-      "  final _dataListener = ValueNotifier(List<$1>.empty(growable: true));",
-      "  Widget listenWidget(Widget Function(List<$1> data) customWidget) =>",
-      "      ValueListenableBuilder<List<$1>>(",
-      "        valueListenable: _dataListener,",
-      "        builder: (_, value, __) => customWidget.call(value),",
-      "      );",
-      "  void get updateWidget => _dataListener.notifyListeners();",
-      "",
-      "  Future getData() async {}",
-      "",
-      "  Future add($1 data) async {}",
-      "",
-      "  Future delete(String id) async {}",
       "}",
       ""
     ],
-    "description": "Create ViewModel"
+    "description": "Create Screen"
   },
-  // #endregion
-
-  // #regison MVVM 
-  "Build ViewModel Value": {
+  "Create DataNotifier": {
     "scope": "dart",
-    "prefix": "c_mvvm_build_value",
+    "prefix": "c_create_data_notifier",
     "body": [
-      "final _${1:data}Listener = ValueNotifier(${4:Model}());",
-      "Widget ${2:listen}Widget(Widget Function($4 data) customWidget) =>",
-      "    ValueListenableBuilder<$4>(",
-      "      valueListenable: _$1Listener,",
-      "      builder: (_, value, __) => customWidget.call(value),",
-      "    );",
-      "void get ${3:updateWidget} => _$1Listener.notifyListeners();"
+      "DataNotifier<${1:ModelName}>? _${2:dataName}Notifier;",
+      "DataNotifier<$1> get $2Notifier =>",
+      "    _$2Notifier ??= DataNotifier<$1>(${3:InitialValue});"
     ],
-    "description": "Build ViewModel Value"
-  },
-  "Build ViewModel List Value": {
-    "scope": "dart",
-    "prefix": "c_mvvm_build_list_value",
-    "body": [
-      "final _${1:data}Listener = ValueNotifier(List<${4:Model}>.empty(growable: true));",
-      "Widget ${2:listen}Widget(Widget Function(List<$4> data) customWidget) =>",
-      "    ValueListenableBuilder<List<$4>>(",
-      "      valueListenable: _$1Listener,",
-      "      builder: (_, value, __) => customWidget.call(value),",
-      "    );",
-      "void get ${3:updateWidget} => _$1Listener.notifyListeners();"
-    ],
-    "description": "Build ViewModel List Value"
+    "description": "Create DataNotifier"
   }
   // #endregion
 }
