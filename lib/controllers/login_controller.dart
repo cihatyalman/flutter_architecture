@@ -4,7 +4,7 @@ class LoginController {
   IApiService apiService;
   LoginController(this.apiService);
 
-  final mainPath = "/Login";
+  final _mainPath = "/Login";
 
   Future register() async {}
 

@@ -16,22 +16,20 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: CText(route)),
-      body: Padding(
+      body: ListView(
         padding: hw.paddingAll(),
-        child: ListView(
-          children: [
-            hw.sizedBoxVertical(),
-            vm.dataNotifier.listenWidget((data) => textWidget(data)),
-            hw.sizedBoxVertical(),
-            Row(
-              children: [
-                Expanded(child: decrementButton()),
-                hw.sizedBoxHorizontal(),
-                Expanded(child: incrementButton()),
-              ],
-            ),
-          ],
-        ),
+        children: [
+          hw.sizedBoxVertical(),
+          vm.dataNotifier.listenWidget((data) => textWidget(data)),
+          hw.sizedBoxVertical(),
+          Row(
+            children: [
+              Expanded(child: decrementButton()),
+              hw.sizedBoxHorizontal(),
+              Expanded(child: incrementButton()),
+            ],
+          ),
+        ],
       ),
     );
   }

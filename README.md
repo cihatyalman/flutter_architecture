@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 28.04.2023 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 04.06.2023 ]
 
 #
 

@@ -18,7 +18,7 @@ class CustomDropdown<T> extends StatelessWidget {
     required this.onChanged,
     this.itemWidget,
     this.hint,
-    this.startIndex = 0,
+    this.startIndex = -1,
     this.icon,
     this.radius = 0,
   }) : assert(items.isNotEmpty || hint != null);
@@ -27,8 +27,7 @@ class CustomDropdown<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _selectedItem = ValueNotifier(
-        (hint != null || startIndex == -1) ? null : items[startIndex]);
+    _selectedItem = ValueNotifier(startIndex == -1 ? null : items[startIndex]);
     return ValueListenableBuilder<T?>(
       valueListenable: _selectedItem,
       builder: (_, value, __) {
@@ -37,7 +36,7 @@ class CustomDropdown<T> extends StatelessWidget {
           underline: const SizedBox.shrink(),
 
           // Design
-          hint: hint,
+          hint: hint ?? const Text("Bir seçim yapın"),
           icon: icon,
           iconSize: 28,
           borderRadius: BorderRadius.all(Radius.circular(radius)),

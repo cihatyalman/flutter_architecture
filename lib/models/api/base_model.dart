@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../../core/utils/extensions.dart';
 
-class BaseModel {
+abstract class BaseModel {
   String? id;
   DateTime? createdDatetime;
   DateTime? updatedDatetime;
@@ -28,16 +28,16 @@ class BaseModel {
     return result;
   }
 
-  factory BaseModel.fromMap(Map<String, dynamic> map) {
-    return BaseModel(
-      id: map['Id'],
-      createdDatetime: (map['CreatedDatetime'] as String?)?.toDateLocal,
-      updatedDatetime: (map['UpdatedDatetime'] as String?)?.toDateLocal,
-    );
-  }
+  // factory BaseModel.fromMap(Map<String, dynamic> map) {
+  //   return BaseModel(
+  //     id: map['Id'],
+  //     createdDatetime: (map['CreatedDatetime'] as String?)?.toDateLocal,
+  //     updatedDatetime: (map['UpdatedDatetime'] as String?)?.toDateLocal,
+  //   );
+  // }
 
   String toJson() => json.encode(toMap());
 
-  factory BaseModel.fromJson(String source) =>
-      BaseModel.fromMap(json.decode(source));
+  // factory BaseModel.fromJson(String source) =>
+  //     BaseModel.fromMap(json.decode(source));
 }

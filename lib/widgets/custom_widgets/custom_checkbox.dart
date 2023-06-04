@@ -7,6 +7,7 @@ class CustomCheckBox extends StatelessWidget {
   final bool isCheck;
   final Color color;
   final Color checkColor;
+  final Color borderColor;
   final double size;
   final double radius;
 
@@ -14,6 +15,7 @@ class CustomCheckBox extends StatelessWidget {
     this.isCheck = false,
     this.color = Colors.blue,
     this.checkColor = Colors.black,
+    this.borderColor = Colors.grey,
     this.size = 20,
     this.radius = 4,
   });
@@ -28,7 +30,7 @@ class CustomCheckBox extends StatelessWidget {
         borderRadius: hw.radius(radius),
         border: Border.all(
           width: 2,
-          color: isCheck ? color : Colors.black,
+          color: isCheck ? color : borderColor,
         ),
       ),
       child: !isCheck
