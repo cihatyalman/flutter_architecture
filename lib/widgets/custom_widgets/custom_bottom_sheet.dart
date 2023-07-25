@@ -36,37 +36,41 @@ class CustomBottomSheet {
           borderRadius: BorderRadius.vertical(top: Radius.circular(radius)),
         ),
         builder: (context) {
-          return StatefulBuilder(builder: (context, setState) {
-            return Padding(
-              padding: padding,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (dividerSize != 0)
-                    SizedBox(
-                      width: dividerSize,
-                      height: 24,
-                      child: Divider(thickness: 2, color: dividerColor),
-                    ),
-                  isExpanded
-                      ? Expanded(
-                          child: SingleChildScrollView(
+          return Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: StatefulBuilder(builder: (context, setState) {
+              return Padding(
+                padding: padding,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (dividerSize != 0)
+                      SizedBox(
+                        width: dividerSize,
+                        height: 24,
+                        child: Divider(thickness: 2, color: dividerColor),
+                      ),
+                    isExpanded
+                        ? Expanded(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: children.call(setState),
+                              ),
+                            ),
+                          )
+                        : SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: children.call(setState),
                             ),
                           ),
-                        )
-                      : SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: children.call(setState),
-                          ),
-                        ),
-                ],
-              ),
-            );
-          });
+                  ],
+                ),
+              );
+            }),
+          );
         },
       );
 }

@@ -6,7 +6,12 @@ import '../core/api_service/concrete/dio_service.dart';
 final apiManager = ApiManager();
 
 class ApiManager {
-  final _apiService = DioService(TextConstants.baseUrl);
+  late DioService _apiService;
+
+  ApiManager({String? baseUrl}) {
+    if (baseUrl != null) TextConstants.baseUrl = baseUrl;
+    _apiService = DioService(TextConstants.baseUrl);
+  }
 
   LoginController? _loginController;
   LoginController get login =>

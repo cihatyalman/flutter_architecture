@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class IconConstants {
   // static const logo = "assets/icons/logo.svg";
-
 }
 
 extension SvgIconExtension on String {
@@ -13,7 +12,8 @@ extension SvgIconExtension on String {
         this,
         width: size,
         height: size,
-        color: color,
+        colorFilter:
+            color != null ? ColorFilter.mode(color, BlendMode.srcATop) : null,
         fit: BoxFit.contain,
       );
 }

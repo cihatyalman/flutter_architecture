@@ -4,7 +4,7 @@ class AccountController {
   IApiService apiService;
   AccountController(this.apiService);
 
-  final _mainPath = "/Account";
+  // final _mainPath = "/Account";
 
-  Future getAccount() async {}
+  Future getMyProfile() async {}
 }

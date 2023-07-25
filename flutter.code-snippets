@@ -96,7 +96,7 @@ Linux $HOME/.config/Code/User/snippets/(language).json
       "  Widget build(BuildContext context) {",
       "    return Scaffold(",
       "      appBar: AppBar(centerTitle: true, title: const Text(route)),",
-      "      body: ListView(",
+      "      body: Column(",
       "        children: [",
       "          body(route),",
       "        ],",

@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 
+import '../constants/color_constants.dart';
 import '../view_models/splash_viewmodel.dart';
 import '../widgets/project_widgets/c_text.dart';
+import '../widgets/project_widgets/widget_helper.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -17,7 +19,7 @@ class SplashScreen extends StatelessWidget {
     vm.startFunction();
     return Scaffold(
       body: vm.statusNotifier.listenWidget(
-        (data) {
+        (data, _) {
           if (![StatusType.idle, StatusType.loading].contains(data)) {
             WidgetsBinding.instance.addPostFrameCallback(
               (_) => Navigator.pushReplacementNamed(
@@ -27,7 +29,7 @@ class SplashScreen extends StatelessWidget {
                       : HomeScreen.route),
             );
           }
-          return bodyWidget(route);
+          return bodyWidget("Flutter\nArchitecture");
         },
       ),
     );
@@ -37,13 +39,20 @@ class SplashScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: RadialGradient(
-          radius: 2,
-          colors: [Colors.white, Colors.black],
-        ),
+      color: ColorConstants.backgroundColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          hw.logoWidget(),
+          hw.sizedBoxVertical(),
+          CText(
+            text,
+            size: 24,
+            isBold: true,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
-      child: Center(child: CText(text, size: 18)),
     );
   }
 }

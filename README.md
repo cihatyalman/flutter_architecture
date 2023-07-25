@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 04.06.2023 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 25.07.2023 ]
 
 #
 
@@ -43,6 +43,7 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
         <li>mask_text_input_formatter</li>
         <li>flutter_svg</li>
         <li>auto_size_text</li>
+        <li>lottie</li>
       </ul>
     </td>
   </tr>
@@ -67,6 +68,7 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
   <!-- mask_text_input_formatter:  -->
   <!-- flutter_svg:  -->
   <!-- auto_size_text:  -->
+  <!-- lottie:  -->
 
 <br>
 

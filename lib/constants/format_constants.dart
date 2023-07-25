@@ -20,4 +20,8 @@ class FormatConstants {
 
   static MaskTextInputFormatter get getCardMasked =>
       MaskTextInputFormatter(mask: "#### #### #### ####");
+
+  static String mapUrl({required List<double> latlng}) {
+    return "https://www.google.com/maps/search/?api=1&query=${latlng[0]},${latlng[1]}";
+  }
 }

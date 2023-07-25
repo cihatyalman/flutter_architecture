@@ -11,9 +11,10 @@ class DesignHelper {
   ThemeData get mainTheme => _baseTheme.copyWith(
 // #region Colors
         hintColor: Colors.black.withOpacity(.5),
-        scaffoldBackgroundColor: Colors.white.withOpacity(.9),
-        // primaryColor: Colors.white,
-        // colorScheme: _baseTheme.colorScheme.copyWith(primary: Colors.redAccent),
+        scaffoldBackgroundColor: ColorConstants.backgroundColor,
+        primaryColor: ColorConstants.primaryColor,
+        // colorScheme: _baseTheme.colorScheme
+        //     .copyWith(primary: ColorConstants.primaryColor),
 // #endregion
 
 // #region Themes

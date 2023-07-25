@@ -3,5 +3,5 @@ class TextConstants {
   static const mockImageUrl = "https://source.unsplash.com/random?sig=1";
   // #endregion
 
-  static const baseUrl = "BaseUrl";
+  static String baseUrl = "BaseUrl";
 }
