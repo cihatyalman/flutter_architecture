@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../view_models/home_viewmodel.dart';
-import '../widgets/custom_widgets/submit_button.dart';
+import '../widgets/custom_widgets/custom_button.dart';
 import '../widgets/project_widgets/c_text.dart';
 import '../widgets/project_widgets/widget_helper.dart';
 
@@ -41,14 +41,14 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget incrementButton() {
-    return SubmitButton(
+    return CustomButton(
       titleWidget: const Icon(Icons.add),
       onTap: () => vm.increment(),
     );
   }
 
   Widget decrementButton() {
-    return SubmitButton(
+    return CustomButton(
       titleWidget: const Icon(Icons.remove),
       onTap: () => vm.decrement(),
     );

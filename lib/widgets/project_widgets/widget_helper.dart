@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/widgets/project_widgets/c_text.dart';
 
+import '../../constants/color_constants.dart';
 import '../../core/utils/mixins/context_mixin.dart';
 import '../../helpers/design_mixin.dart';
+import 'c_text.dart';
 
 final hw = WidgetHelper();
 
@@ -20,15 +21,13 @@ class WidgetHelper with DesignMixin, ContextMixin {
     );
   }
 
-  Widget circleLoading({Color color = Colors.black}) => Center(
+  Widget circleLoading({Color color = ColorConstants.primaryColor}) => Center(
         child: CircularProgressIndicator(color: color),
       );
 
   Widget emptyWidget() {
-    return Align(
-      alignment: Alignment.center.add(const Alignment(0, -.2)),
+    return Center(
       child: Transform.scale(scale: 1.5, child: CText("Empty")),
-      // child: Transform.scale(scale: 1.5, child: AnimConstants.emptyAnim),
     );
   }
 }

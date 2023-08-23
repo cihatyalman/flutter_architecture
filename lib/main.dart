@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, use_key_in_widget_constructors
+// ignore_for_file: avoid_print
 
 import 'dart:io';
 
@@ -17,10 +17,12 @@ void main() async {
   await cacheService.init();
   // ...
   lifecycleInit();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

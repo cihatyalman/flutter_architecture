@@ -13,8 +13,8 @@ class DesignHelper {
         hintColor: Colors.black.withOpacity(.5),
         scaffoldBackgroundColor: ColorConstants.backgroundColor,
         primaryColor: ColorConstants.primaryColor,
-        // colorScheme: _baseTheme.colorScheme
-        //     .copyWith(primary: ColorConstants.primaryColor),
+        colorScheme: _baseTheme.colorScheme
+            .copyWith(primary: ColorConstants.primaryColor),
 // #endregion
 
 // #region Themes
@@ -26,6 +26,12 @@ class DesignHelper {
         cardTheme: CardTheme(),
         buttonTheme: ButtonThemeData(),
         textButtonTheme: TextButtonThemeData(),
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: textStyle(color: Colors.white.withOpacity(.5)),
+          errorStyle: textStyle(color: Colors.red, size: 12),
+          helperMaxLines: 3,
+          errorMaxLines: 3,
+        ),
         // splashColor: Colors.transparent,
         // highlightColor: Colors.transparent,
 // #endregion

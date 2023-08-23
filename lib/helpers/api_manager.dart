@@ -3,7 +3,7 @@ import '../controllers/account_controller.dart';
 import '../controllers/login_controller.dart';
 import '../core/api_service/concrete/dio_service.dart';
 
-final apiManager = ApiManager();
+ApiManager apiManager = ApiManager();
 
 class ApiManager {
   late DioService _apiService;

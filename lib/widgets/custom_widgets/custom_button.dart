@@ -2,11 +2,12 @@
 
 import 'package:flutter/material.dart';
 
+import '../../constants/color_constants.dart';
 import '../project_widgets/c_text.dart';
 import '../project_widgets/widget_helper.dart';
 import 'custom_future_widget.dart';
 
-class SubmitButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   String? title;
   Widget? titleWidget;
   Future<void> Function() onTap;
@@ -20,12 +21,13 @@ class SubmitButton extends StatelessWidget {
   double elevation;
   Alignment alignment;
   double padding;
+  bool isExpanded;
 
-  SubmitButton({
+  CustomButton({
     this.title,
     this.titleWidget,
     required this.onTap,
-    this.backgroundColor = Colors.white,
+    this.backgroundColor = ColorConstants.primaryColor,
     this.borderColor,
     this.textColor = Colors.black,
     this.loadingColor,
@@ -34,11 +36,16 @@ class SubmitButton extends StatelessWidget {
     this.isEnabled = true,
     this.elevation = 0,
     this.alignment = Alignment.center,
-    this.padding = 8,
+    this.padding = 12,
+    this.isExpanded = true,
   });
 
   @override
   Widget build(BuildContext context) {
+    return isExpanded ? Row(children: [Expanded(child: _button())]) : _button();
+  }
+
+  Widget _button() {
     return SizedBox(
       height: height,
       child: CustomFutureWidget(
@@ -54,6 +61,7 @@ class SubmitButton extends StatelessWidget {
                   },
             padding: EdgeInsets.all(padding),
             color: backgroundColor,
+            textColor: Colors.black,
             elevation: elevation,
             focusElevation: 0,
             hoverElevation: 0,
@@ -78,6 +86,7 @@ class SubmitButton extends StatelessWidget {
                       child: CText(
                         title,
                         color: textColor,
+                        isBold: true,
                         textAlign: TextAlign.center,
                         isOverflow: true,
                       ),

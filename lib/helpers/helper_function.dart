@@ -28,13 +28,29 @@ class HelperFunction with HelperMixin {
 
   // void openUrl(String url) async {
   //   if (!await launchUrlString(url, mode: LaunchMode.externalApplication)) {
-  //     CNoti(text: "Url açılamadı !").show(navigatorKey.currentContext!);
+  //     CustomNotify(message: "Url açılamadı !")
+  //         .show(navigatorKey.currentContext!);
   //   }
   // }
 
   // void callPhone(String number) async {
   //   if (!await launchUrlString("tel:$number")) {
-  //     CNoti(text: "Arama yapılamadı !").show(navigatorKey.currentContext!);
+  //     CustomNotify(message: "Arama yapılamadı !")
+  //         .show(navigatorKey.currentContext!);
+  //   }
+  // }
+
+  // void sendEmail(String emailAddress, String? subject, String? body) async {
+  //   String url = "mailto:$emailAddress";
+  //   if (subject != null) {
+  //     url += "?subject=${Uri.encodeComponent(subject)}";
+  //     if (body != null) {
+  //       url += "&body=${Uri.encodeComponent(body)}";
+  //     }
+  //   }
+  //   if (!await launchUrlString(url)) {
+  //     CustomNotify(message: "Beklenmedik bir hata oldu.")
+  //         .show(navigatorKey.currentContext!);
   //   }
   // }
 

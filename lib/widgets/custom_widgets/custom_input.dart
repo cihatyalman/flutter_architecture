@@ -6,14 +6,11 @@ import 'package:flutter/services.dart';
 class CustomInput extends StatelessWidget {
   TextEditingController? controller;
   void Function(String? value)? onChanged;
+  String? initialValue;
   String? labelText;
   String? hintText;
-  String? helperText;
   String? errorText;
   TextStyle? textStyle;
-  TextStyle? hintStyle;
-  TextStyle? helperStyle;
-  TextStyle? errorStyle;
   Widget? prefixIcon;
   Widget? suffixIcon;
   TextInputType? keyboardType;
@@ -34,14 +31,11 @@ class CustomInput extends StatelessWidget {
   CustomInput({
     this.controller,
     this.onChanged,
+    this.initialValue,
     this.labelText,
     this.hintText,
-    this.helperText,
     this.errorText,
     this.textStyle,
-    this.hintStyle,
-    this.helperStyle,
-    this.errorStyle,
     this.prefixIcon,
     this.suffixIcon,
     this.keyboardType,
@@ -50,7 +44,7 @@ class CustomInput extends StatelessWidget {
     this.maxLines = 1,
     this.maxLength,
     this.radius = 8,
-    this.contentPadding = EdgeInsets.zero,
+    this.contentPadding = const EdgeInsets.all(8),
     this.readOnly = false,
     this.borderType = 0,
     this.borderPassiveColor = Colors.grey,
@@ -61,8 +55,13 @@ class CustomInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (![controller, initialValue].contains(null)) {
+      controller!.text = initialValue!;
+    }
     return TextField(
-      controller: controller,
+      controller: (controller ?? TextEditingController(text: initialValue))
+        ..selection =
+            TextSelection.collapsed(offset: initialValue?.length ?? 0),
       onChanged: onChanged,
       decoration: InputDecoration(
         filled: backgroundColor != null,
@@ -70,18 +69,12 @@ class CustomInput extends StatelessWidget {
         contentPadding: contentPadding,
         labelText: labelText,
         hintText: hintText,
-        helperText: helperText,
         errorText: errorText,
-        hintStyle: hintStyle,
-        helperStyle: helperStyle,
-        errorStyle: errorStyle,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         border: _border(borderPassiveColor),
         focusedBorder: _border(borderActiveColor),
         enabledBorder: _border(borderPassiveColor),
-        helperMaxLines: 3,
-        errorMaxLines: 3,
       ),
       style: textStyle,
       keyboardType: keyboardType,

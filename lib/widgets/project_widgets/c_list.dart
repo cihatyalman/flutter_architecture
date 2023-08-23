@@ -9,7 +9,7 @@ class CList<T> extends StatelessWidget {
 
   bool isLoading;
   List<T> dataList;
-  Widget Function(T item) itemWidget;
+  Widget Function(T item, int index) itemWidget;
   Future<void> Function() onRefresh;
   Future<void> Function() onContinue;
   void Function(ScrollController scrollController)? callback;
@@ -52,7 +52,7 @@ class CList<T> extends StatelessWidget {
           if (index == dataList.length) {
             return isLoading ? hw.circleLoading() : const SizedBox.shrink();
           }
-          return itemWidget(dataList[index]);
+          return itemWidget(dataList[index], index);
         },
       ),
     );

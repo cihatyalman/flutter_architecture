@@ -19,9 +19,7 @@ class FullScreenLoading {
       context: context,
       useSafeArea: false,
       barrierDismissible: false,
-      builder: (context) {
-        return child ?? Center(child: hw.circleLoading(color: Colors.white));
-      },
+      builder: (context) => child ?? hw.circleLoading(),
     );
   }
 
