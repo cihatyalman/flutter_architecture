@@ -54,22 +54,8 @@ Linux $HOME/.config/Code/User/snippets/(language).json
     ],
     "description": "Build Bloc Builder"
   },
-  "Build Multi Bloc Builder": {
-    "scope": "dart",
-    "prefix": "c_multi_bloc_builder",
-    "body": [
-      "MultiBloc(",
-      "  streamList: [${1:BlocName}.stream],",
-      "  initialDataList: [${1:BlocName}.data],",
-      "  builder: (valueList){",
-      "    return Text(valueList.toString());",
-      "  },",
-      "),"
-    ],
-    "description": "Build Bloc Builder"
-  },
   // #endregion
-
+  
   // #region Create
   "Create Singleton": {
     "scope": "dart",

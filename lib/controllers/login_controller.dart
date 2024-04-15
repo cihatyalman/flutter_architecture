@@ -1,4 +1,4 @@
-import '../core/api_service/abstract/i_api_service.dart';
+import '../core/api_service/i_api_service.dart';
 
 class LoginController {
   IApiService apiService;

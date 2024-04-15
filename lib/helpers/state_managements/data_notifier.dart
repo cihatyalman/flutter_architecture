@@ -33,5 +33,8 @@ class DataNotifier<T> {
         builder: (_, value, __) => customWidget.call(value, _isLoading),
       );
 
-  void get updateWidget => _dataListener.notifyListeners();
+  // void get updateWidget => _dataListener.notifyListeners();
+  void get updateWidget => WidgetsBinding.instance.addPostFrameCallback((_) {
+        _dataListener.notifyListeners();
+      });
 }

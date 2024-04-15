@@ -39,7 +39,8 @@ class CachedImage extends StatelessWidget {
   }
 
   Widget _imageWidget(int type) => Container(
-        color: Colors.grey.shade300,
+        height: 48,
+        color: Colors.grey.shade100,
         child: Icon(
           [
             Icons.cancel_presentation_rounded,

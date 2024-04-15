@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
 
 import '../../helpers/design_helper.dart';
-import '../project_widgets/c_text.dart';
+import '../project/c_text.dart';
 
 enum NotifyType { success, warning, error }
 

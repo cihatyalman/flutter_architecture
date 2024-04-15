@@ -1,11 +1,9 @@
-// ignore_for_file: must_be_immutable, use_key_in_widget_constructors, library_private_types_in_public_api
+// ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 
-import '../constants/color_constants.dart';
 import '../view_models/splash_viewmodel.dart';
-import '../widgets/project_widgets/c_text.dart';
-import '../widgets/project_widgets/widget_helper.dart';
+import '../widgets/project/c_text.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -15,44 +13,31 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    vm.setScreenSize(context);
-    vm.startFunction();
+    vm.startFunction(context);
+
     return Scaffold(
-      body: vm.statusNotifier.listenWidget(
-        (data, _) {
-          if (![StatusType.idle, StatusType.loading].contains(data)) {
-            WidgetsBinding.instance.addPostFrameCallback(
-              (_) => Navigator.pushReplacementNamed(
-                  context,
-                  data == StatusType.isLogin
-                      ? HomeScreen.route
-                      : HomeScreen.route),
-            );
-          }
-          return bodyWidget("Flutter\nArchitecture");
-        },
-      ),
+      body: vm.statusNotifier.listenWidget((data, _) {
+        if (![StatusType.idle, StatusType.loading].contains(data)) {
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => Navigator.pushReplacementNamed(
+              context,
+              <StatusType, String>{
+                StatusType.isNotLogin: HomeScreen.route,
+                StatusType.isLogin: HomeScreen.route,
+              }[data]!,
+              arguments: data,
+            ),
+          );
+        }
+        return body();
+      }),
     );
   }
 
-  Widget bodyWidget(String text) {
+  Widget body() {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: ColorConstants.backgroundColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          hw.logoWidget(),
-          hw.sizedBoxVertical(),
-          CText(
-            text,
-            size: 24,
-            isBold: true,
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
+      decoration: const BoxDecoration(),
+      child: Center(child: CText("AppName")),
     );
   }
 }

@@ -25,6 +25,7 @@ class CustomBottomSheet {
 
   Future show(BuildContext context) => showModalBottomSheet(
         context: context,
+        useRootNavigator: true,
         isScrollControlled: true,
         isDismissible: isDismissible,
         constraints: BoxConstraints(
@@ -54,6 +55,7 @@ class CustomBottomSheet {
                     isExpanded
                         ? Expanded(
                             child: SingleChildScrollView(
+                              physics: const ClampingScrollPhysics(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: children.call(setState),
@@ -61,6 +63,7 @@ class CustomBottomSheet {
                             ),
                           )
                         : SingleChildScrollView(
+                            physics: const ClampingScrollPhysics(),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: children.call(setState),

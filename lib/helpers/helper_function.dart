@@ -14,7 +14,11 @@ class HelperFunction with HelperMixin {
   double changeOrder(List dataList, int index) {
     double newOrderNo = 0;
     if (index == 0) {
-      newOrderNo = dataList.first.orderNo! + 100;
+      if (dataList.isEmpty) {
+        newOrderNo = 100;
+      } else {
+        newOrderNo = dataList.first.orderNo! + 100;
+      }
     } else if (index == dataList.length) {
       newOrderNo = dataList.last.orderNo! / 2;
     } else {

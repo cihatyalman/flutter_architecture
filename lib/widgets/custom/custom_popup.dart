@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/utils/mixins/context_mixin.dart';
-import '../project_widgets/widget_helper.dart';
+import '../project/widget_helper.dart';
 
 class CustomPopUp {
   List<Widget> children;
@@ -16,7 +15,7 @@ class CustomPopUp {
     required this.children,
     this.backgroundColor = Colors.white,
     this.padding = 8,
-    this.width,
+    this.width = 1000,
     this.height,
     this.dismiss = true,
     this.radius = 12,
@@ -38,7 +37,7 @@ class CustomPopUp {
               color: backgroundColor,
               borderRadius: hw.radius(radius),
             ),
-            width: width ?? screenSize.width,
+            width: width,
             height: height,
             child: Column(
               mainAxisSize: MainAxisSize.min,

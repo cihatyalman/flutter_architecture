@@ -18,19 +18,19 @@ class DesignHelper {
 // #endregion
 
 // #region Themes
+        textTheme: TextTheme(titleMedium: textStyle()),
         iconTheme: IconThemeData(),
-        appBarTheme: AppBarTheme(
-          // color: Colors.red,
-          centerTitle: true,
-        ),
+        appBarTheme: AppBarTheme(),
         cardTheme: CardTheme(),
         buttonTheme: ButtonThemeData(),
         textButtonTheme: TextButtonThemeData(),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: textStyle(color: Colors.white.withOpacity(.5)),
           errorStyle: textStyle(color: Colors.red, size: 12),
-          helperMaxLines: 3,
-          errorMaxLines: 3,
+        ),
+        datePickerTheme: DatePickerThemeData(
+          yearForegroundColor:
+              MaterialStatePropertyAll(ColorConstants.textColor),
         ),
         // splashColor: Colors.transparent,
         // highlightColor: Colors.transparent,

@@ -2,11 +2,11 @@ import 'dart:convert';
 
 class ParamsModel {
   int? pageSize;
-  String? lastRecordId;
+  dynamic lastRecordValue;
 
   ParamsModel({
     this.pageSize,
-    this.lastRecordId,
+    this.lastRecordValue,
   });
 
   Map<String, dynamic> toMap() {
@@ -15,8 +15,8 @@ class ParamsModel {
     if (pageSize != null) {
       result.addAll({'PageSize': pageSize});
     }
-    if (lastRecordId != null) {
-      result.addAll({'LastRecordId': lastRecordId});
+    if (lastRecordValue != null) {
+      result.addAll({'LastRecordValue': lastRecordValue});
     }
 
     return result;

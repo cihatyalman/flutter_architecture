@@ -3,18 +3,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'core/other_services/cache_service.dart';
 import 'helpers/design_helper.dart';
 import 'helpers/route_generator.dart';
 import 'views/splash_screen.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  await cacheService.init();
   // ...
   lifecycleInit();
   runApp(const MyApp());
@@ -29,10 +28,17 @@ class MyApp extends StatelessWidget {
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Architecture',
+        title: 'App Name',
         theme: DesignHelper().mainTheme,
-        initialRoute: SplashScreen.route,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [Locale('tr')],
+        locale: const Locale('tr'),
         navigatorKey: navigatorKey,
+        initialRoute: SplashScreen.route,
         onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );
@@ -75,6 +81,8 @@ class LifecycleEventHandler extends WidgetsBindingObserver {
         await killedCallBack?.call();
         break;
       case AppLifecycleState.inactive:
+        break;
+      case AppLifecycleState.hidden:
         break;
     }
   }

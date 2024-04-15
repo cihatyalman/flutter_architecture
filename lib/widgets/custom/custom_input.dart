@@ -75,6 +75,8 @@ class CustomInput extends StatelessWidget {
         border: _border(borderPassiveColor),
         focusedBorder: _border(borderActiveColor),
         enabledBorder: _border(borderPassiveColor),
+        helperMaxLines: 3,
+        errorMaxLines: 3,
       ),
       style: textStyle,
       keyboardType: keyboardType,

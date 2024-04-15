@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/color_constants.dart';
-import '../../core/utils/mixins/context_mixin.dart';
 import '../../helpers/design_mixin.dart';
 import 'c_text.dart';
 
 final hw = WidgetHelper();
 
-class WidgetHelper with DesignMixin, ContextMixin {
+class WidgetHelper with DesignMixin {
   final edgePadding = 12.0;
   final bottomPadding = 56.0;
 
@@ -15,7 +14,6 @@ class WidgetHelper with DesignMixin, ContextMixin {
     return Center(
       child: ClipRRect(
         borderRadius: hw.radius(24),
-        // child: Image.asset(IconConstants.logoPng, width: size, height: size),
         child: FlutterLogo(size: size),
       ),
     );

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-import '../project_widgets/widget_helper.dart';
+import '../project/widget_helper.dart';
 
 class FullScreenLoading {
   Widget? child;

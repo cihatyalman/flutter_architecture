@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/color_constants.dart';
-import '../project_widgets/c_text.dart';
-import '../project_widgets/widget_helper.dart';
+import '../project/c_text.dart';
+import '../project/widget_helper.dart';
 import 'custom_future_widget.dart';
 
 class CustomButton extends StatelessWidget {

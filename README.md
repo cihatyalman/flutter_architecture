@@ -1,6 +1,6 @@
 # Flutter Architecture
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 23.08.2023 ]
+Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 15.04.2024 ]
 
 #
 
@@ -41,9 +41,8 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
         <li>intl</li>
         <li>path_provider</li>
         <li>mask_text_input_formatter</li>
-        <li>flutter_svg</li>
         <li>auto_size_text</li>
-        <li>lottie</li>
+        <li>animated_bottom_navigation_bar</li>
       </ul>
     </td>
   </tr>
@@ -55,7 +54,6 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
   <!-- # widgets -->
   <!-- animator:  -->
   <!-- another_flushbar:  -->
-  <!-- screenshot:  -->
   <!-- cached_network_image:  -->
 <!--  -->
   <!-- # cache -->
@@ -66,9 +64,10 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
   <!-- intl:  -->
   <!-- path_provider:  -->
   <!-- mask_text_input_formatter:  -->
-  <!-- flutter_svg:  -->
   <!-- auto_size_text:  -->
-  <!-- lottie:  -->
+<!--  -->
+  <!-- # projects -->
+  <!-- animated_bottom_navigation_bar:  -->
 
 <br>
 
@@ -78,8 +77,8 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
 - #### [constants](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/constants): Projede kullanılacak sabitler burada tutulur. Bunlar renk, icon, resim, yazı, yazı formatı gibi alanlar olabilir.
 - #### [controllers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/controllers): Api istekleri burada tutulur.
 - #### [helpers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/helpers): Kodlama yaparken bize yardımcı olacak kodlar burada tutulur.
-- #### [widgets/custom_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/widgets/custom_widgets): Projeden bağımsız olarak oluşturulan widgetlar burada tutulur.
-- #### [widgets/project_widgets](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/widgets/project_widgets): Projeye özgü widgetlar burada tutulur.
+- #### [widgets/custom](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/widgets/custom): Projeden bağımsız olarak oluşturulan widgetlar burada tutulur.
+- #### [widgets/project](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/widgets/project): Projeye özgü widgetlar burada tutulur.
 - #### [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models): Projede kullanılacak modeller burada tutulur.
 - #### [views](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/views): Tasarlanan uygulama ekranları burada tutulur.
 - #### [view_models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/view_models): View ile model arasındaki iletişimi sağlar. İş kodları burada tutulur.

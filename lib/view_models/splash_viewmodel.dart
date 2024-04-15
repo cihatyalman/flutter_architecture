@@ -1,8 +1,6 @@
-// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-
 import 'package:flutter/material.dart';
 
-import '../core/utils/mixins/context_mixin.dart';
+import '../helpers/state_managements/bloc_store.dart';
 import '../helpers/state_managements/data_notifier.dart';
 
 enum StatusType { idle, loading, isNotLogin, isLogin }
@@ -12,13 +10,11 @@ class SplashViewModel {
   DataNotifier<StatusType> get statusNotifier =>
       _statusNotifier ??= DataNotifier(StatusType.idle);
 
-  void setScreenSize(BuildContext context) {
-    screenSize = MediaQuery.of(context).size;
-  }
-
-  void startFunction() async {
+  void startFunction(BuildContext context) async {
     statusNotifier.value = StatusType.loading;
-    await Future.delayed(const Duration(seconds: 3));
+    blocStore.screenSize = MediaQuery.of(context).size;
+
+    await Future.delayed(const Duration(seconds: 1));
     statusNotifier.value = StatusType.isLogin;
   }
 }

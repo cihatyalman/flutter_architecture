@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../project_widgets/c_text.dart';
+import '../project/c_text.dart';
 
 class CalendarPopUp {
   DateTime? initialDate;
@@ -20,9 +20,11 @@ class CalendarPopUp {
   });
 
   show(BuildContext context) async {
-    initialDate ??= DateTime.now();
+    final now = DateTime.now();
+    initialDate ??= DateTime(now.year, now.month, now.day);
     firstDate ??= DateTime(1970);
     lastDate ??= DateTime(2070);
+    _selectedDateTime = initialDate;
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
