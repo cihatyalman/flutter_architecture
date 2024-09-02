@@ -1,4 +1,5 @@
 import '../core/api_service/i_api_service.dart';
+import '../models/api/api_response.dart';
 
 class LoginController {
   IApiService apiService;
@@ -6,7 +7,13 @@ class LoginController {
 
   // final _mainPath = "/Login";
 
-  Future register() async {}
+  Future<ApiResponse> register(Map<String, dynamic> json) async {
+    // ...
+    return ApiResponse.fromMap({}).checkData();
+  }
 
-  Future login() async {}
+  Future<ApiResponse> login(Map<String, dynamic> json) async {
+    // ...
+    return ApiResponse.fromMap({}).checkData();
+  }
 }

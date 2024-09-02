@@ -2,11 +2,11 @@ import 'dart:convert';
 import '../../core/utils/extensions.dart';
 import '../api/base_model.dart';
 
-class User extends BaseModel {
+class UserModel extends BaseModel {
   String? username;
   int? age;
 
-  User({
+  UserModel({
     super.id,
     super.createdDatetime,
     super.updatedDatetime,
@@ -28,8 +28,8 @@ class User extends BaseModel {
     return result;
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
       id: map['Id'],
       createdDatetime: (map['CreatedDatetime'] as String?)?.toDateLocal,
       updatedDatetime: (map['UpdatedDatetime'] as String?)?.toDateLocal,
@@ -41,5 +41,6 @@ class User extends BaseModel {
   @override
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source));
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source));
 }

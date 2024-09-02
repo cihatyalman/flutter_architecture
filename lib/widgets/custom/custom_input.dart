@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 class CustomInput extends StatelessWidget {
   TextEditingController? controller;
   void Function(String? value)? onChanged;
+  void Function(String? value)? onSubmitted;
   String? initialValue;
   String? labelText;
   String? hintText;
@@ -31,6 +32,7 @@ class CustomInput extends StatelessWidget {
   CustomInput({
     this.controller,
     this.onChanged,
+    this.onSubmitted,
     this.initialValue,
     this.labelText,
     this.hintText,
@@ -59,10 +61,9 @@ class CustomInput extends StatelessWidget {
       controller!.text = initialValue!;
     }
     return TextField(
-      controller: (controller ?? TextEditingController(text: initialValue))
-        ..selection =
-            TextSelection.collapsed(offset: initialValue?.length ?? 0),
+      controller: (controller ?? TextEditingController(text: initialValue)),
       onChanged: onChanged,
+      onSubmitted: onSubmitted,
       decoration: InputDecoration(
         filled: backgroundColor != null,
         fillColor: backgroundColor,

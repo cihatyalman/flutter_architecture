@@ -32,13 +32,18 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
 
   @override
   void initState() {
+    init();
+    super.initState();
+  }
+
+  void init() {
     selectedItem =
         widget.startIndex == -1 ? null : widget.items[widget.startIndex];
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    init();
     return DropdownButton<T>(
       isExpanded: true,
       underline: const SizedBox.shrink(),

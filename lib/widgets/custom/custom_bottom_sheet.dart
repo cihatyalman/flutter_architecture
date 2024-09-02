@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class CustomBottomSheet {
   List<Widget> Function(StateSetter setState) children;
+  Widget? titleWidget;
   Color color;
   double radius;
   bool isDismissible;
   EdgeInsets padding;
+  EdgeInsets scrollPadding;
   double maxHeight;
   double dividerSize;
   Color dividerColor;
@@ -13,12 +15,14 @@ class CustomBottomSheet {
 
   CustomBottomSheet({
     required this.children,
+    this.titleWidget,
     this.color = Colors.white,
-    this.radius = 24,
+    this.radius = 16,
     this.isDismissible = true,
     this.padding = EdgeInsets.zero,
+    this.scrollPadding = EdgeInsets.zero,
     this.maxHeight = 300,
-    this.dividerSize = 100,
+    this.dividerSize = 48,
     this.dividerColor = Colors.black,
     this.isExpanded = true,
   });
@@ -47,14 +51,24 @@ class CustomBottomSheet {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     if (dividerSize != 0)
-                      SizedBox(
+                      Container(
                         width: dividerSize,
-                        height: 24,
-                        child: Divider(thickness: 2, color: dividerColor),
+                        height: 4,
+                        // margin: const EdgeInsets.symmetric(vertical: 8),
+                        margin: const EdgeInsets.only(bottom: 8, top: 12),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: dividerColor,
+                        ),
                       ),
+                    if (titleWidget != null) ...[
+                      titleWidget!,
+                      const Divider(thickness: 1)
+                    ],
                     isExpanded
                         ? Expanded(
                             child: SingleChildScrollView(
+                              padding: scrollPadding,
                               physics: const ClampingScrollPhysics(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -63,6 +77,7 @@ class CustomBottomSheet {
                             ),
                           )
                         : SingleChildScrollView(
+                            padding: scrollPadding,
                             physics: const ClampingScrollPhysics(),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,

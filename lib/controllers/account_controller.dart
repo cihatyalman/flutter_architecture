@@ -1,4 +1,5 @@
 import '../core/api_service/i_api_service.dart';
+import '../models/api/api_response.dart';
 
 class AccountController {
   IApiService apiService;
@@ -6,5 +7,8 @@ class AccountController {
 
   // final _mainPath = "/Account";
 
-  Future getMyProfile() async {}
+  Future<ApiResponse> getMyProfile() async {
+    // ...
+    return ApiResponse.fromMap({}).checkData();
+  }
 }

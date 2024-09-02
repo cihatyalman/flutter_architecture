@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../views/home_screen.dart';
@@ -25,6 +27,12 @@ class RouteGenerator {
     }
   }
 
+  static _customPageRouteBuilder(Widget screen) {
+    return Platform.isIOS
+        ? _getPageRouteBuilder(screen)
+        : _getPageRouteBuilderRight(screen);
+  }
+
   static MaterialPageRoute _getPageRouteBuilder(Widget screen) =>
       MaterialPageRoute(builder: (context) => screen);
 
@@ -33,10 +41,10 @@ class RouteGenerator {
         pageBuilder: (context, animation, secondaryAnimation) => screen,
       );
 
-  static PageRouteBuilder _getPageRouteBuilderLeft(Widget screen) =>
+  static PageRouteBuilder _getPageRouteBuilderRight(Widget screen) =>
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) {
-          const begin = Offset(-1, 0);
+          const begin = Offset(1, 0);
           const end = Offset.zero;
           const curve = Curves.ease;
 
@@ -48,4 +56,20 @@ class RouteGenerator {
           );
         },
       );
+
+  // static PageRouteBuilder _getPageRouteBuilderBottom(Widget screen) =>
+  //     PageRouteBuilder(
+  //       pageBuilder: (context, animation, secondaryAnimation) {
+  //         const begin = Offset(0, 1);
+  //         const end = Offset.zero;
+  //         const curve = Curves.ease;
+
+  //         final tween =
+  //             Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+  //         return SlideTransition(
+  //           position: animation.drive(tween),
+  //           child: screen,
+  //         );
+  //       },
+  //     );
 }

@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import '../../main.dart';
+import '../../widgets/custom/custom_notify.dart';
+
 class ApiResponse {
   bool hasError;
   String? message;
@@ -43,5 +46,30 @@ class ApiResponse {
 
   String? getValid(String key) {
     return validationErrors[key];
+  }
+}
+
+extension ApiResponseExtension on ApiResponse? {
+  /// 'Response' verisinin 'null' olup olmadığını kontrol eder, hata mesajlarını otomatik, onay mesajlarını isteğe bağlı olarak görüntüleyebilir.
+  ApiResponse checkData({bool isOkeyNoti = false}) {
+    if (this == null) {
+      _showNoti(message: "Beklenmedik bir sorun oluştu.");
+      return ApiResponse(hasError: true);
+    } else if (this?.hasError == true && this?.message != "-") {
+      _showNoti(message: this?.message);
+      return this!;
+    }
+    if (isOkeyNoti) {
+      _showNoti(message: this?.message, type: NotifyType.success);
+    }
+    return this!;
+  }
+
+  _showNoti({String? message, NotifyType type = NotifyType.error}) {
+    Future.delayed(
+      const Duration(milliseconds: 300),
+      () => CustomNotify(message: message, type: type)
+          .show(navigatorKey.currentContext!),
+    );
   }
 }

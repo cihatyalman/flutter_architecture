@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             hw.sizedBoxVertical(),
-            vm.dataNotifier.listenWidget((data, _) => textWidget(data)),
+            vm.dataNotifier.listen((data, _) => textWidget(data)),
             hw.sizedBoxVertical(),
             Row(
               children: [
