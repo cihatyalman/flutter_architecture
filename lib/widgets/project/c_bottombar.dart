@@ -12,21 +12,26 @@ class CBottomBar {
   final resize = false;
 
   Widget bottomBar([int? bottomBarIndex]) {
-    const color = ColorConstants.primaryColor;
-
-    return AnimatedBottomNavigationBar(
-      activeColor: color,
-      inactiveColor: color.withValues(alpha: .25),
-      backgroundColor: ColorConstants.backgroundColor,
-      elevation: 0,
-      borderColor: Colors.black,
-      icons: const [
-        Icons.one_k,
-        Icons.two_k,
-        Icons.three_k,
-        Icons.four_k,
-        Icons.account_circle
-      ],
+    const iconList = [
+      Icons.one_k,
+      Icons.two_k,
+      Icons.three_k,
+      Icons.four_k,
+      Icons.account_circle
+    ];
+    return AnimatedBottomNavigationBar.builder(
+      backgroundColor: Colors.white,
+      shadow: const BoxShadow(
+          color: Colors.black12, offset: Offset(0, -2), blurRadius: 1),
+      leftCornerRadius: 16,
+      rightCornerRadius: 16,
+      itemCount: iconList.length,
+      tabBuilder: (index, isActive) {
+        final color = isActive
+            ? ColorConstants.primaryColor
+            : ColorConstants.primaryColor.withValues(alpha: .25);
+        return Center(child: Icon(iconList[index], color: color));
+      },
       gapLocation: GapLocation.none,
       activeIndex: bottomBarIndex ?? 10,
       onTap: (index) {

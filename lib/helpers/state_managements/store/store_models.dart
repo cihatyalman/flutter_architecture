@@ -187,13 +187,13 @@ class StoreDataRef<T> {
   }
 
   void delete(String id) {
-    _data[id]?.dispose;
+    _data[id]?.dispose();
     _data.remove(id);
   }
 
   void dispose() {
     for (var store in _data.values) {
-      store.dispose;
+      store.dispose();
     }
     _data.clear();
   }
@@ -215,13 +215,13 @@ class StoreListRef<T> {
   }
 
   void delete(String id) {
-    _data[id]?.dispose;
+    _data[id]?.dispose();
     _data.remove(id);
   }
 
   void dispose() {
     for (var store in _data.values) {
-      store.dispose;
+      store.dispose();
     }
     _data.clear();
   }
@@ -243,13 +243,13 @@ class StoreDataListRef<T> {
   }
 
   void delete(String id) {
-    _data[id]?.dispose;
+    _data[id]?.dispose();
     _data.remove(id);
   }
 
   void dispose() {
     for (var store in _data.values) {
-      store.dispose;
+      store.dispose();
     }
     _data.clear();
   }

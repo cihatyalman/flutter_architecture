@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-abstract class StoreBase<T> {
+abstract class StoreBase<T> extends ChangeNotifier {
   late ValueNotifier<T> _dataListener;
   StoreBase(T initialValue) {
     _dataListener = ValueNotifier<T>(initialValue);
@@ -33,5 +33,9 @@ abstract class StoreBase<T> {
 
   get updateWidget => _dataListener.notifyListeners();
 
-  get dispose => _dataListener.dispose();
+  @override
+  void dispose() {
+    _dataListener.dispose();
+    super.dispose();
+  }
 }
