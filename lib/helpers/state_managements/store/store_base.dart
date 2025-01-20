@@ -2,28 +2,28 @@
 
 import 'package:flutter/material.dart';
 
-class DataNotifier<T> {
+abstract class StoreBase<T> {
   late ValueNotifier<T> _dataListener;
-  DataNotifier(T initialValue) {
+  StoreBase(T initialValue) {
     _dataListener = ValueNotifier<T>(initialValue);
   }
 
   bool _isLoading = false;
 
-  void get activateLoading {
+  get activateLoading {
     _isLoading = true;
     updateWidget;
   }
 
-  void get deactivateLoading {
+  get deactivateLoading {
     if (_isLoading) {
       _isLoading = false;
       updateWidget;
     }
   }
 
-  T get value => _dataListener.value;
-  set value(T value) => _dataListener.value = value;
+  T get data => _dataListener.value;
+  set data(T value) => _dataListener.value = value;
 
   Widget listen(Widget Function(T data, bool isLoading) customWidget) =>
       ValueListenableBuilder<T>(
@@ -31,7 +31,7 @@ class DataNotifier<T> {
         builder: (_, value, __) => customWidget.call(value, _isLoading),
       );
 
-  void get updateWidget => _dataListener.notifyListeners();
+  get updateWidget => _dataListener.notifyListeners();
 
-  void get dispose => _dataListener.dispose();
+  get dispose => _dataListener.dispose();
 }

@@ -10,7 +10,7 @@ class DesignHelper {
   final _baseTheme = ThemeData.light();
   ThemeData get mainTheme => _baseTheme.copyWith(
 // #region Colors
-        hintColor: Colors.black.withOpacity(.5),
+        hintColor: Colors.black.withValues(alpha: .5),
         scaffoldBackgroundColor: ColorConstants.backgroundColor,
         primaryColor: ColorConstants.primaryColor,
         colorScheme: _baseTheme.colorScheme
@@ -19,9 +19,7 @@ class DesignHelper {
 
 // #region Themes
         textTheme: TextTheme(titleMedium: textStyle()),
-        // splashColor: Colors.transparent,
-        // highlightColor: Colors.transparent,
-        iconTheme: IconThemeData(),
+        iconTheme: IconThemeData(color: Colors.black.withValues(alpha: .7)),
         appBarTheme: AppBarTheme(
             // elevation: 0,
             // scrolledUnderElevation: 1,
@@ -30,25 +28,26 @@ class DesignHelper {
         buttonTheme: ButtonThemeData(),
         textButtonTheme: TextButtonThemeData(),
         inputDecorationTheme: InputDecorationTheme(
-          hintStyle: textStyle(color: Colors.white.withOpacity(.5)),
+          hintStyle: textStyle(color: Colors.white.withValues(alpha: .5)),
           errorStyle: textStyle(color: Colors.red, size: 12),
         ),
-        // datePickerTheme: DatePickerThemeData(
-        //   yearForegroundColor:
-        //       MaterialStatePropertyAll(ColorConstants.textColor),
-        //   dayStyle: textStyle(size: 12),
-        // ),
-        // timePickerTheme: TimePickerThemeData(
-        //   helpTextStyle:
-        //       textStyle(color: ColorConstants.textColor, isBold: true),
-        //   backgroundColor: Colors.white,
-        //   dialTextStyle: textStyle(),
-        //   hourMinuteTextStyle: textStyle(size: 40, isBold: true),
-        // ),
-        // tabBarTheme: TabBarTheme(
-        //   indicatorSize: TabBarIndicatorSize.tab,
-        //   unselectedLabelColor: Colors.grey.shade400,
-        // ),
+        datePickerTheme: DatePickerThemeData(
+          yearForegroundColor: WidgetStatePropertyAll(ColorConstants.textColor),
+          dayStyle: textStyle(size: 12),
+        ),
+        timePickerTheme: TimePickerThemeData(
+          helpTextStyle:
+              textStyle(color: ColorConstants.textColor, isBold: true),
+          backgroundColor: Colors.white,
+          dialTextStyle: textStyle(),
+          hourMinuteTextStyle: textStyle(size: 40, isBold: true),
+        ),
+        tabBarTheme: TabBarTheme(
+          indicatorSize: TabBarIndicatorSize.tab,
+          unselectedLabelColor: Colors.grey.shade400,
+        ),
+        // splashColor: Colors.transparent,
+        // highlightColor: Colors.transparent,
 // #endregion
       );
 

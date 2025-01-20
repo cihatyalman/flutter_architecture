@@ -34,6 +34,7 @@ class CText extends StatelessWidget {
       textScaleFactor: 1,
       textAlign: textAlign,
       maxLines: maxLines,
+      minFontSize: 11,
       style: style ??
           DesignHelper()
               .textStyle(color: color, size: size, isBold: isBold)

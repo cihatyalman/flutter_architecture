@@ -9,6 +9,7 @@ class DropdownBS extends StatelessWidget {
     required this.dataList,
     this.initialData,
     this.title,
+    this.icon,
     this.bsSelectedColor = Colors.black,
     this.bsAlignment = Alignment.center,
     this.callback,
@@ -17,6 +18,7 @@ class DropdownBS extends StatelessWidget {
   final Map<String, dynamic> dataList;
   final String? initialData;
   final String? title;
+  final Widget? icon;
   final Color bsSelectedColor;
   final Alignment bsAlignment;
   final void Function(String? value)? callback;
@@ -33,7 +35,7 @@ class DropdownBS extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 48,
-        padding: hw.paddingAll(8),
+        padding: hw.paddingHorizontal(12),
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
           borderRadius: hw.radius(8),
@@ -45,6 +47,7 @@ class DropdownBS extends StatelessWidget {
           builder: (_, value, __) {
             return Row(
               children: [
+                if (icon != null) ...[icon!, hw.sizedBoxHorizontal(12)],
                 Expanded(
                   child: CText(value == null ? title : dataList[value]),
                 ),

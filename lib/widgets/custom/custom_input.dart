@@ -79,6 +79,7 @@ class CustomInput extends StatelessWidget {
         helperMaxLines: 3,
         errorMaxLines: 3,
       ),
+      cursorColor: Colors.black,
       style: textStyle,
       keyboardType: keyboardType,
       inputFormatters: inputMaskList,
@@ -104,7 +105,7 @@ class CustomInput extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius),
             )
           : OutlineInputBorder(
-              borderSide: BorderSide(color: backgroundColor ?? Colors.white),
+              borderSide: BorderSide(color: backgroundColor ?? Colors.black),
               borderRadius: BorderRadius.circular(radius),
             );
 }

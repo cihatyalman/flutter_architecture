@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// children or
 class CustomBottomSheet {
-  List<Widget> Function(StateSetter setState) children;
+  List<Widget> Function(StateSetter setState)? children;
+  Widget? oneWidget;
   Widget? titleWidget;
   Color color;
   double radius;
@@ -14,7 +16,8 @@ class CustomBottomSheet {
   bool isExpanded;
 
   CustomBottomSheet({
-    required this.children,
+    this.children,
+    this.oneWidget,
     this.titleWidget,
     this.color = Colors.white,
     this.radius = 16,
@@ -25,7 +28,7 @@ class CustomBottomSheet {
     this.dividerSize = 48,
     this.dividerColor = Colors.black,
     this.isExpanded = true,
-  });
+  }) : assert(!(children == null && oneWidget == null));
 
   Future show(BuildContext context) => showModalBottomSheet(
         context: context,
@@ -65,25 +68,28 @@ class CustomBottomSheet {
                       titleWidget!,
                       const Divider(thickness: 1)
                     ],
-                    isExpanded
-                        ? Expanded(
-                            child: SingleChildScrollView(
+                    if (oneWidget != null)
+                      isExpanded ? Expanded(child: oneWidget!) : oneWidget!,
+                    if (oneWidget == null)
+                      isExpanded
+                          ? Expanded(
+                              child: SingleChildScrollView(
+                                padding: scrollPadding,
+                                physics: const ClampingScrollPhysics(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: children?.call(setState) ?? [],
+                                ),
+                              ),
+                            )
+                          : SingleChildScrollView(
                               padding: scrollPadding,
                               physics: const ClampingScrollPhysics(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
-                                children: children.call(setState),
+                                children: children?.call(setState) ?? [],
                               ),
                             ),
-                          )
-                        : SingleChildScrollView(
-                            padding: scrollPadding,
-                            physics: const ClampingScrollPhysics(),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: children.call(setState),
-                            ),
-                          ),
                   ],
                 ),
               );

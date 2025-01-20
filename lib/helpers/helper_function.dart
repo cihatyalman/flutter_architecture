@@ -1,3 +1,5 @@
+// import 'package:url_launcher/url_launcher.dart';
+
 import '../core/utils/mixins/helper_mixin.dart';
 
 final hf = HelperFunction();
@@ -29,22 +31,31 @@ class HelperFunction with HelperMixin {
   }
 
 // #region url_launcher ( https://pub.dev/packages/url_launcher )
-
-  // void openUrl(String url) async {
-  //   if (!await launchUrlString(url, mode: LaunchMode.externalApplication)) {
-  //     CustomNotify(message: "Url açılamadı !")
-  //         .show(navigatorKey.currentContext!);
+  // Future<void> _launchUrl(String url, {String? msg}) async {
+  //   bool result = true;
+  //   final uri = Uri.parse(url);
+  //   if (await canLaunchUrl(uri)) {
+  //     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+  //       result = false;
+  //     }
+  //   } else {
+  //     result = false;
+  //   }
+  //   if (!result) {
+  //     msg ??= "Beklenmedik bir hata oldu";
+  //     CustomNotify(message: msg).show(navigatorKey.currentContext!);
   //   }
   // }
 
-  // void callPhone(String number) async {
-  //   if (!await launchUrlString("tel:$number")) {
-  //     CustomNotify(message: "Arama yapılamadı !")
-  //         .show(navigatorKey.currentContext!);
-  //   }
+  // void openUrl(String url) {
+  //   _launchUrl(url, msg: "Url açılamadı !");
   // }
 
-  // void sendEmail(String emailAddress, String? subject, String? body) async {
+  // void callPhone(String number) {
+  //   _launchUrl("tel:$number", msg: "Arama yapılamadı !");
+  // }
+
+  // void sendEmail(String emailAddress, String? subject, String? body) {
   //   String url = "mailto:$emailAddress";
   //   if (subject != null) {
   //     url += "?subject=${Uri.encodeComponent(subject)}";
@@ -52,11 +63,7 @@ class HelperFunction with HelperMixin {
   //       url += "&body=${Uri.encodeComponent(body)}";
   //     }
   //   }
-  //   if (!await launchUrlString(url)) {
-  //     CustomNotify(message: "Beklenmedik bir hata oldu.")
-  //         .show(navigatorKey.currentContext!);
-  //   }
+  //   _launchUrl(url);
   // }
-
 // #endregion
 }

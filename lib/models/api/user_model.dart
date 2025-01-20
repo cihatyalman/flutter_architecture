@@ -1,6 +1,6 @@
 import 'dart:convert';
 import '../../core/utils/extensions.dart';
-import '../api/base_model.dart';
+import 'base_model.dart';
 
 class UserModel extends BaseModel {
   String? username;

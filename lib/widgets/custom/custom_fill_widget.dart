@@ -14,7 +14,7 @@ class CustomFillWidget extends StatelessWidget {
   Alignment? alignment;
 
   CustomFillWidget({
-    Key? key,
+    super.key,
     required this.child,
     this.value = 0,
     this.width = 112,
@@ -24,7 +24,7 @@ class CustomFillWidget extends StatelessWidget {
     this.isHorizontal = true,
     this.radius = 12,
     this.alignment,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

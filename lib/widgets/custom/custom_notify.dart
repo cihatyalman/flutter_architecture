@@ -30,7 +30,7 @@ class CustomNotify {
       flushbarPosition: FlushbarPosition.TOP,
       borderRadius: BorderRadius.circular(12),
       margin: const EdgeInsets.all(12),
-      backgroundColor: _getColor(type ?? NotifyType.error),
+      backgroundColor: _getColor(type),
       duration: Duration(seconds: durationSeconds),
       isDismissible: true,
       titleText: title != null
@@ -49,7 +49,7 @@ class CustomNotify {
     );
   }
 
-  Color _getColor(NotifyType type) {
+  Color _getColor(NotifyType? type) {
     switch (type) {
       case NotifyType.success:
         return Colors.green;

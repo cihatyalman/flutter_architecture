@@ -10,13 +10,13 @@ class CList<T> extends StatelessWidget {
   Widget Function(T item, int index) itemWidget;
   void Function()? onContinue;
   Future<void> Function()? onRefresh;
-  double topPadding;
-  double edgePadding;
-  double bottomPadding;
+  EdgeInsets? padding;
+  double itemSpace;
   bool shrinkWrap;
   bool reverse;
-  bool isPhysics;
+  ScrollPhysics? physics;
   Widget? emptyWidget;
+  Widget Function(BuildContext context, int index)? separatorWidget;
 
   CList({
     super.key,
@@ -25,13 +25,13 @@ class CList<T> extends StatelessWidget {
     required this.itemWidget,
     this.onContinue,
     this.onRefresh,
-    this.topPadding = 8,
-    this.edgePadding = 12,
-    this.bottomPadding = 56,
+    this.padding,
+    this.itemSpace = 6,
     this.shrinkWrap = false,
     this.reverse = false,
-    this.isPhysics = false,
+    this.physics,
     this.emptyWidget,
+    this.separatorWidget,
   });
 
   @override
@@ -47,15 +47,18 @@ class CList<T> extends StatelessWidget {
     return ListView.separated(
       reverse: reverse,
       shrinkWrap: shrinkWrap,
-      physics: isPhysics
-          ? const AlwaysScrollableScrollPhysics()
-          : const ClampingScrollPhysics(),
-      padding: hw
-          .paddingHorizontal(edgePadding)
-          .copyWith(bottom: bottomPadding, top: topPadding),
-      separatorBuilder: (context, index) => hw.sizedBoxVertical(edgePadding),
+      physics: physics,
+      padding: padding ?? hw.paddingHorizontal(12).copyWith(bottom: 56, top: 8),
+      separatorBuilder: (context, index) {
+        if (dataList.length >= index + 1) {
+          return separatorWidget?.call(context, index) ??
+              hw.sizedBoxVertical(itemSpace);
+        }
+        return const SizedBox.shrink();
+      },
       itemCount: dataList.length + 1,
       itemBuilder: (context, index) {
+        // Veri cekilirken listenin sonunda loading calisir
         if (index == dataList.length) {
           WidgetsBinding.instance
               .addPostFrameCallback((_) => onContinue?.call());

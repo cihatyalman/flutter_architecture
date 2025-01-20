@@ -68,7 +68,7 @@ class _SelectableListState<T> extends State<SelectableList<T>> {
                 borderRadius: BorderRadius.circular(24),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(.1),
+                    color: Colors.black.withValues(alpha: .1),
                     offset: Offset(0, 8),
                     blurRadius: 8,
                   )

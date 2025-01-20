@@ -16,7 +16,7 @@ class CBottomBar {
 
     return AnimatedBottomNavigationBar(
       activeColor: color,
-      inactiveColor: color.withOpacity(.25),
+      inactiveColor: color.withValues(alpha: .25),
       backgroundColor: ColorConstants.backgroundColor,
       elevation: 0,
       borderColor: Colors.black,
