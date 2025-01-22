@@ -28,6 +28,7 @@ class CustomInput extends StatelessWidget {
   Color borderPassiveColor;
   Color borderActiveColor;
   Color? backgroundColor;
+  TextAlign textAlign;
   TextCapitalization textCapitalization;
 
   CustomInput({
@@ -54,6 +55,7 @@ class CustomInput extends StatelessWidget {
     this.borderPassiveColor = Colors.grey,
     this.borderActiveColor = Colors.black,
     this.backgroundColor,
+    this.textAlign = TextAlign.start,
     this.textCapitalization = TextCapitalization.none,
   }) : assert(!obscureText || maxLines == 1);
 
@@ -92,6 +94,7 @@ class CustomInput extends StatelessWidget {
       maxLines: maxLines,
       maxLength: maxLength,
       readOnly: readOnly,
+      textAlign: textAlign,
       textCapitalization: textCapitalization,
       textAlignVertical: (prefixIcon != null || suffixIcon != null)
           ? TextAlignVertical.center

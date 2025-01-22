@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// children or
 class CustomBottomSheet {
   List<Widget> Function(StateSetter setState)? children;
-  Widget? oneWidget;
+  Widget Function(StateSetter setState)? oneWidget;
   Widget? titleWidget;
   Color color;
   double radius;
@@ -69,7 +69,9 @@ class CustomBottomSheet {
                       const Divider(thickness: 1)
                     ],
                     if (oneWidget != null)
-                      isExpanded ? Expanded(child: oneWidget!) : oneWidget!,
+                      isExpanded
+                          ? Expanded(child: oneWidget!.call(setState))
+                          : oneWidget!.call(setState),
                     if (oneWidget == null)
                       isExpanded
                           ? Expanded(
