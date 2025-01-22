@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '../helpers/state_managements/main_store.dart';
-import '../helpers/state_managements/data_notifier.dart';
+import '../helpers/state_managements/store/store_models.dart';
 
 enum StatusType { idle, loading, isNotLogin, isLogin }
 
 class SplashViewModel {
-  DataNotifier<StatusType>? _statusNotifier;
-  DataNotifier<StatusType> get statusNotifier =>
-      _statusNotifier ??= DataNotifier(StatusType.idle);
+  final statusStore = StoreData<StatusType>.create(StatusType.idle);
 
   void startFunction(BuildContext context) async {
-    statusNotifier.value = StatusType.loading;
+    statusStore.data = StatusType.loading;
     mainStore.screenSize = MediaQuery.of(context).size;
 
     await Future.delayed(const Duration(seconds: 1));
-    statusNotifier.value = StatusType.isLogin;
+    statusStore.data = StatusType.isLogin;
   }
 }

@@ -1,13 +1,12 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
-import '../helpers/state_managements/data_notifier.dart';
+import '../helpers/state_managements/store/store_models.dart';
 
 class HomeViewModel {
-  DataNotifier<int>? _dataNotifier;
-  DataNotifier<int> get dataNotifier => _dataNotifier ??= DataNotifier<int>(0);
+  final dataStore = StoreData<int>.create(0);
 
   Future getData() async {
-    dataNotifier.value = 0;
+    dataStore.data = 0;
   }
 
   Future add() async {}
@@ -15,16 +14,16 @@ class HomeViewModel {
   Future update() async {}
 
   Future delete(String id) async {
-    dataNotifier.value = 0;
+    dataStore.data = 0;
   }
 
   Future increment() async {
-    dataNotifier.value += 1;
+    dataStore.data += 1;
     // updateWidget;
   }
 
   Future decrement() async {
-    dataNotifier.value -= 1;
+    dataStore.data -= 1;
     // updateWidget;
   }
 }

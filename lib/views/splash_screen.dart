@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
     vm.startFunction(context);
 
     return Scaffold(
-      body: vm.statusNotifier.listen((data, _) {
+      body: vm.statusStore.listen((data, _) {
         if (![StatusType.idle, StatusType.loading].contains(data)) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) => Navigator.pushReplacementNamed(
