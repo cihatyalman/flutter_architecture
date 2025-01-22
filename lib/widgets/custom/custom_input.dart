@@ -7,6 +7,7 @@ class CustomInput extends StatelessWidget {
   TextEditingController? controller;
   void Function(String? value)? onChanged;
   void Function(String? value)? onSubmitted;
+  void Function()? onTap;
   String? initialValue;
   String? labelText;
   String? hintText;
@@ -33,6 +34,7 @@ class CustomInput extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.onSubmitted,
+    this.onTap,
     this.initialValue,
     this.labelText,
     this.hintText,
@@ -62,8 +64,11 @@ class CustomInput extends StatelessWidget {
     }
     return TextField(
       controller: (controller ?? TextEditingController(text: initialValue)),
-      onChanged: onChanged,
-      onSubmitted: onSubmitted,
+      onChanged: (value) =>
+          onChanged?.call(value.trim().isEmpty ? null : value),
+      onSubmitted: (value) =>
+          onSubmitted?.call(value.trim().isEmpty ? null : value),
+      onTap: onTap,
       decoration: InputDecoration(
         filled: backgroundColor != null,
         fillColor: backgroundColor,

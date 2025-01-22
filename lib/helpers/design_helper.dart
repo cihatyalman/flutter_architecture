@@ -22,7 +22,7 @@ class DesignHelper {
         iconTheme: IconThemeData(color: Colors.black.withValues(alpha: .7)),
         appBarTheme: AppBarTheme(
             // elevation: 0,
-            // scrolledUnderElevation: 1,
+            // scrolledUnderElevation: 0,
             ),
         cardTheme: CardTheme(),
         buttonTheme: ButtonThemeData(),
