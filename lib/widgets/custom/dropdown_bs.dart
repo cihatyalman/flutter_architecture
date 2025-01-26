@@ -12,6 +12,7 @@ class DropdownBS extends StatelessWidget {
   final String? title;
   final Widget? icon;
   final Color bsSelectedColor;
+  double maxHeight;
   final Alignment bsAlignment;
   final bool searchInputEnabled;
   final String? searchInputHintText;
@@ -24,6 +25,7 @@ class DropdownBS extends StatelessWidget {
     this.title,
     this.icon,
     this.bsSelectedColor = Colors.black,
+    this.maxHeight = 300,
     this.bsAlignment = Alignment.center,
     this.searchInputEnabled = false,
     this.searchInputHintText,
@@ -80,7 +82,6 @@ class DropdownBS extends StatelessWidget {
   }
 
   Future _showBS(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     viewListNotifier.value = dataList;
     return showModalBottomSheet(
       context: context,
@@ -88,7 +89,7 @@ class DropdownBS extends StatelessWidget {
       isScrollControlled: true,
       isDismissible: true,
       constraints: BoxConstraints(
-        maxHeight: mediaQuery.size.height * .5,
+        maxHeight: searchInputEnabled ? double.infinity : maxHeight,
         minWidth: double.infinity,
       ),
       backgroundColor: Colors.white,
@@ -97,9 +98,8 @@ class DropdownBS extends StatelessWidget {
       ),
       builder: (context) {
         return Padding(
-          padding: EdgeInsets.only(
-            bottom: mediaQuery.viewInsets.bottom,
-          ),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: StatefulBuilder(builder: (context, setState) {
             return Column(
               mainAxisSize: MainAxisSize.min,
@@ -133,22 +133,9 @@ class DropdownBS extends StatelessWidget {
                   ),
                   hw.sizedBoxVertical(12),
                 ],
-                Expanded(
-                  child: ValueListenableBuilder<Map<String, dynamic>>(
-                    valueListenable: viewListNotifier,
-                    builder: (_, value, __) {
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(horizontal: 12)
-                            .copyWith(bottom: 48),
-                        itemCount: value.length,
-                        itemBuilder: (context, index) =>
-                            _itemWidget(context, value.entries.toList()[index]),
-                      );
-                    },
-                  ),
-                ),
+                searchInputEnabled
+                    ? _listWidget(context)
+                    : Expanded(child: _listWidget(context)),
               ],
             );
           }),
@@ -173,6 +160,26 @@ class DropdownBS extends StatelessWidget {
         CText(title, isBold: true, size: 16),
         const Divider(thickness: 1),
       ],
+    );
+  }
+
+  Widget _listWidget(BuildContext context) {
+    return ValueListenableBuilder<Map<String, dynamic>>(
+      valueListenable: viewListNotifier,
+      builder: (_, value, __) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * .3,
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12).copyWith(bottom: 48),
+            itemCount: value.length,
+            itemBuilder: (context, index) =>
+                _itemWidget(context, value.entries.toList()[index]),
+          ),
+        );
+      },
     );
   }
 
