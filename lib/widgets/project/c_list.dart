@@ -26,7 +26,7 @@ class CList<T> extends StatelessWidget {
     this.onContinue,
     this.onRefresh,
     this.padding,
-    this.itemSpace = 6,
+    this.itemSpace = 8,
     this.shrinkWrap = false,
     this.reverse = false,
     this.physics,

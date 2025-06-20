@@ -22,9 +22,12 @@ class CBottomBar {
     return AnimatedBottomNavigationBar.builder(
       backgroundColor: Colors.white,
       shadow: const BoxShadow(
-          color: Colors.black12, offset: Offset(0, -2), blurRadius: 1),
-      leftCornerRadius: 16,
-      rightCornerRadius: 16,
+        color: Colors.black12,
+        offset: Offset(0, -2),
+        blurRadius: 1,
+      ),
+      // leftCornerRadius: 16,
+      // rightCornerRadius: 16,
       itemCount: iconList.length,
       tabBuilder: (index, isActive) {
         final color = isActive

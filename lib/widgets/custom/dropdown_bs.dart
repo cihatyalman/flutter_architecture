@@ -1,7 +1,6 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
 import '../project/c_text.dart';
 import '../project/widget_helper.dart';
 import 'custom_input.dart';
@@ -12,10 +11,10 @@ class DropdownBS extends StatelessWidget {
   final String? title;
   final Widget? icon;
   final Color bsSelectedColor;
-  double maxHeight;
   final Alignment bsAlignment;
   final bool searchInputEnabled;
   final String? searchInputHintText;
+  final bool deleteButtonEnabled;
   final void Function(String? value)? callback;
 
   DropdownBS({
@@ -25,10 +24,10 @@ class DropdownBS extends StatelessWidget {
     this.title,
     this.icon,
     this.bsSelectedColor = Colors.black,
-    this.maxHeight = 300,
     this.bsAlignment = Alignment.center,
     this.searchInputEnabled = false,
     this.searchInputHintText,
+    this.deleteButtonEnabled = false,
     this.callback,
   });
 
@@ -60,10 +59,8 @@ class DropdownBS extends StatelessWidget {
             Expanded(
               child: ValueListenableBuilder<String?>(
                 valueListenable: selectedKeyNotifier,
-                builder: (_, value, __) {
-                  return CText(
-                      value == null ? title : viewListNotifier.value[value]);
-                },
+                builder: (_, value, __) => CText(
+                    value == null ? title : viewListNotifier.value[value]),
               ),
             ),
             hw.sizedBoxHorizontal(),
@@ -72,16 +69,14 @@ class DropdownBS extends StatelessWidget {
         ),
       ),
       onTap: () async {
-        final res = await _showBS(context);
-        if (res != null) {
-          selectedKeyNotifier.value = res;
-          callback?.call(res);
-        }
+        final res = await _showBS(navigatorKey.currentContext!);
+        selectedKeyNotifier.value = res;
+        callback?.call(res);
       },
     );
   }
 
-  Future _showBS(BuildContext context) {
+  Future<String?> _showBS(BuildContext context) {
     viewListNotifier.value = dataList;
     return showModalBottomSheet(
       context: context,
@@ -89,8 +84,7 @@ class DropdownBS extends StatelessWidget {
       isScrollControlled: true,
       isDismissible: true,
       constraints: BoxConstraints(
-        maxHeight: searchInputEnabled ? double.infinity : maxHeight,
-        minWidth: double.infinity,
+        maxHeight: MediaQuery.of(context).size.height * .9,
       ),
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
@@ -104,7 +98,7 @@ class DropdownBS extends StatelessWidget {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _titleWidget(),
+                _titleWidget(context),
                 if (searchInputEnabled) ...[
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -135,7 +129,7 @@ class DropdownBS extends StatelessWidget {
                 ],
                 searchInputEnabled
                     ? _listWidget(context)
-                    : Expanded(child: _listWidget(context)),
+                    : Flexible(child: _listWidget(context)),
               ],
             );
           }),
@@ -144,7 +138,7 @@ class DropdownBS extends StatelessWidget {
     );
   }
 
-  Widget _titleWidget() {
+  Widget _titleWidget(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -157,7 +151,24 @@ class DropdownBS extends StatelessWidget {
             color: Colors.black26,
           ),
         ),
-        CText(title, isBold: true, size: 16),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            CText(title, isBold: true, size: 16),
+            if (deleteButtonEnabled)
+              Align(
+                alignment: Alignment.centerRight,
+                child: InkWell(
+                  child: Padding(
+                    padding: hw.paddingHorizontal(8),
+                    child: const Icon(Icons.delete_forever_rounded,
+                        color: Colors.red),
+                  ),
+                  onTap: () => Navigator.pop(context, null),
+                ),
+              ),
+          ],
+        ),
         const Divider(thickness: 1),
       ],
     );

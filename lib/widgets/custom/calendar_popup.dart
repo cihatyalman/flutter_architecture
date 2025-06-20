@@ -22,8 +22,8 @@ class CalendarPopUp {
   show(BuildContext context) async {
     final now = DateTime.now();
     initialDate ??= DateTime(now.year, now.month, now.day);
-    firstDate ??= DateTime(1970);
-    lastDate ??= DateTime(2070);
+    firstDate ??= DateTime(1900);
+    lastDate ??= DateTime(2100);
     _selectedDateTime = initialDate;
     return showDialog(
       context: context,

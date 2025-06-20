@@ -30,7 +30,10 @@ class ApiResponse {
     return result;
   }
 
-  factory ApiResponse.fromMap(Map<String, dynamic> map) {
+  factory ApiResponse.fromMap(Map<String, dynamic>? map) {
+    if (map == null) {
+      return ApiResponse(hasError: true, message: "-");
+    }
     return ApiResponse(
       hasError: map['HasError'] ?? false,
       message: map['Message'],
@@ -50,8 +53,8 @@ class ApiResponse {
 }
 
 extension ApiResponseExtension on ApiResponse? {
-  /// 'Response' verisinin 'null' olup olmadığını kontrol eder, hata mesajlarını otomatik, onay mesajlarını isteğe bağlı olarak görüntüleyebilir.
-  ApiResponse checkData({bool isOkeyNoti = false}) {
+  ApiResponse checkData({bool isOkeyNoti = false, int milliseconds = 300}) {
+    /// 'Response' verisinin 'null' olup olmadığını kontrol eder, hata mesajlarını otomatik, onay mesajlarını isteğe bağlı olarak görüntüleyebilir.
     if (this == null) {
       _showNoti(message: "Beklenmedik bir sorun oluştu.");
       return ApiResponse(hasError: true);
@@ -59,15 +62,21 @@ extension ApiResponseExtension on ApiResponse? {
       _showNoti(message: this?.message);
       return this!;
     }
-    if (isOkeyNoti) {
-      _showNoti(message: this?.message, type: NotifyType.success);
+    if (isOkeyNoti && this?.message != "-") {
+      _showNoti(
+          message: this?.message,
+          type: NotifyType.success,
+          milliseconds: milliseconds);
     }
     return this!;
   }
 
-  _showNoti({String? message, NotifyType type = NotifyType.error}) {
+  _showNoti(
+      {String? message,
+      NotifyType type = NotifyType.error,
+      int milliseconds = 300}) {
     Future.delayed(
-      const Duration(milliseconds: 300),
+      Duration(milliseconds: milliseconds),
       () => CustomNotify(message: message, type: type)
           .show(navigatorKey.currentContext!),
     );

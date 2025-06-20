@@ -19,13 +19,31 @@ class WidgetHelper with DesignMixin {
     );
   }
 
-  Widget circleLoading({Color color = ColorConstants.primaryColor}) => Center(
-        child: CircularProgressIndicator(color: color),
-      );
+  Widget circleLoading({
+    Color color = ColorConstants.primaryColor,
+    double padding = 8,
+  }) {
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      child: Center(
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: Center(
+            child: CircularProgressIndicator(color: color),
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget emptyWidget() {
     return Center(
       child: Transform.scale(scale: 1.5, child: CText("Empty")),
     );
   }
+
+  Widget divider() => const Divider(height: 8, thickness: .5);
+
+  Widget dividerVertical([double height = 36]) =>
+      SizedBox(height: height, child: const VerticalDivider());
 }

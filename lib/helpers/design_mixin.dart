@@ -15,12 +15,12 @@ mixin DesignMixin {
 
   BoxShadow get boxShadowDown => BoxShadow(
         color: Colors.black.withValues(alpha: .1),
-        offset: const Offset(0, 4),
+        offset: const Offset(0, 2),
         blurRadius: 4,
       );
   BoxShadow get boxShadowCenter => BoxShadow(
         color: Colors.black.withValues(alpha: .1),
         offset: Offset.zero,
-        blurRadius: 8,
+        blurRadius: 4,
       );
 }

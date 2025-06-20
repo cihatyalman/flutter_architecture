@@ -9,14 +9,14 @@ class MainStore {
   Size screenSize = Size.infinite;
   Map<String, dynamic>? notiData;
 
-  final user = StoreData<UserModel>.create(UserModel());
+  final user = StoreData<UserModel?>.create(null);
 
-  /// pop olmayan bir ekran(until) acildiginda kullan
+  /// pop olmayan bir ekran(until) açıldığında kullan
   void lazyClear() {}
 
-  /// Hesaptan cikis yapinca kullan
+  /// Hesaptan çıkış yapınca kullan
   void clear() {
-    user.data = UserModel();
+    user.data = null;
 
     lazyClear();
   }

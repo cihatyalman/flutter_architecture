@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable, use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -32,6 +30,7 @@ class CustomInput extends StatelessWidget {
   TextCapitalization textCapitalization;
 
   CustomInput({
+    super.key,
     this.controller,
     this.onChanged,
     this.onSubmitted,
@@ -85,6 +84,7 @@ class CustomInput extends StatelessWidget {
         enabledBorder: _border(borderPassiveColor),
         helperMaxLines: 3,
         errorMaxLines: 3,
+        alignLabelWithHint: true,
       ),
       cursorColor: Colors.black,
       style: textStyle,

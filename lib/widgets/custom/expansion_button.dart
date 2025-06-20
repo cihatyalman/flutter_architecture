@@ -1,16 +1,17 @@
-// ignore_for_file: must_be_immutable, use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
 
 import '../project/c_text.dart';
 import '../project/widget_helper.dart';
 
 class ExpansionButton extends StatefulWidget {
-  String title;
+  String? title;
+  Widget? titleWidget;
   Widget? child;
 
   ExpansionButton({
-    required this.title,
+    super.key,
+    this.title,
+    this.titleWidget,
     this.child,
   });
 
@@ -24,9 +25,11 @@ class _ExpansionButtonState extends State<ExpansionButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: hw.paddingVertical(4),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: hw.radius(12),
+        border: Border.all(color: Colors.black12),
       ),
       child: ExpansionPanelList(
         expandedHeaderPadding: EdgeInsets.zero,
@@ -42,7 +45,8 @@ class _ExpansionButtonState extends State<ExpansionButton> {
             headerBuilder: (context, isExpanded) => Container(
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.only(left: 8),
-              child: CText(widget.title, textAlign: TextAlign.start),
+              child: widget.titleWidget ??
+                  CText(widget.title, textAlign: TextAlign.start),
             ),
             body: widget.child ?? const SizedBox.shrink(),
           ),

@@ -12,6 +12,8 @@ class StoreList<T extends dynamic> extends StoreBase<List<T>> {
   factory StoreList.create([List<T>? initialData]) =>
       StoreList<T>(initialData ?? List<T>.empty(growable: true));
 
+  int getIndex(T value) => _getIndex(value);
+
   T? getAt(int index) {
     try {
       return super.data[index];
@@ -46,6 +48,7 @@ class StoreList<T extends dynamic> extends StoreBase<List<T>> {
   bool deleteAt(int index) {
     try {
       super.data.removeAt(index);
+      updateWidget;
     } catch (e) {
       return false;
     }
@@ -55,6 +58,7 @@ class StoreList<T extends dynamic> extends StoreBase<List<T>> {
   bool updateAt(int index, T value) {
     try {
       super.data[index] = value;
+      updateWidget;
     } catch (e) {
       return false;
     }
@@ -125,6 +129,7 @@ class StoreDataList<T extends dynamic> extends StoreBase<List<T>> {
   bool deleteAt(int index) {
     try {
       super.data.removeAt(index);
+      updateWidget;
     } catch (e) {
       return false;
     }
@@ -146,6 +151,7 @@ class StoreDataList<T extends dynamic> extends StoreBase<List<T>> {
   bool updateAt(int index, T value) {
     try {
       super.data[index] = value;
+      updateWidget;
     } catch (e) {
       return false;
     }

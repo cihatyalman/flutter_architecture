@@ -15,6 +15,7 @@ class CText extends StatelessWidget {
   TextStyle? style;
   int? maxLines;
   bool isOverflow;
+  bool isUnderLine;
 
   CText(
     this.data, {
@@ -25,6 +26,7 @@ class CText extends StatelessWidget {
     this.style,
     this.maxLines,
     this.isOverflow = false,
+    this.isUnderLine = false,
   });
 
   @override
@@ -37,7 +39,12 @@ class CText extends StatelessWidget {
       minFontSize: 11,
       style: style ??
           DesignHelper()
-              .textStyle(color: color, size: size, isBold: isBold)
+              .textStyle(
+                color: color,
+                size: size,
+                isBold: isBold,
+                isUnderLine: isUnderLine,
+              )
               .copyWith(overflow: isOverflow ? TextOverflow.ellipsis : null),
     );
   }
