@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../views/home_screen.dart';
+import '../views/main_screen.dart';
 import '../views/profile_screen.dart';
 import '../views/splash_screen.dart';
 
@@ -12,6 +13,8 @@ class RouteGenerator {
       case SplashScreen.route:
         return _getPageRouteBuilderZero(SplashScreen());
 // #region BottomBar Screens
+      case MainScreen.route:
+        return _getPageRouteBuilderZero(MainScreen(settings: settings));
       case HomeScreen.route:
         return _getPageRouteBuilderZero(HomeScreen());
       case ProfileScreen.route:

@@ -39,7 +39,7 @@ class DesignHelper {
           backgroundColor: ColorConstants.primaryColor,
           shape: CircleBorder(),
         ),
-        cardTheme: CardTheme(),
+        cardTheme: CardThemeData(),
         buttonTheme: ButtonThemeData(),
         textButtonTheme: TextButtonThemeData(),
         inputDecorationTheme: InputDecorationTheme(
@@ -68,7 +68,7 @@ class DesignHelper {
           dialTextStyle: textStyle(),
           hourMinuteTextStyle: textStyle(size: 40, isBold: true),
         ),
-        tabBarTheme: TabBarTheme(
+        tabBarTheme: TabBarThemeData(
           indicatorSize: TabBarIndicatorSize.tab,
           unselectedLabelColor: Colors.grey.shade400,
         ),

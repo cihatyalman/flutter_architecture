@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../view_models/home_viewmodel.dart';
-import '../widgets/project/c_bottombar.dart';
 import '../widgets/project/c_text.dart';
 import '../widgets/project/widget_helper.dart';
 
@@ -15,7 +14,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: CText(route)),
-      bottomNavigationBar: cBottomBar.bottomBar(0),
       body: Padding(
         padding: hw.paddingHorizontal(hw.edgePadding),
         child: Column(
@@ -37,7 +35,9 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget textWidget(int data) {
-    return Center(child: CText(data.toString()));
+    return Center(
+      child: CText(data.toString(), size: 20, isBold: true),
+    );
   }
 
   Widget incrementButton() {

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import '../../main.dart';
@@ -31,9 +32,7 @@ class ApiResponse {
   }
 
   factory ApiResponse.fromMap(Map<String, dynamic>? map) {
-    if (map == null) {
-      return ApiResponse(hasError: true, message: "-");
-    }
+    if (map == null) return ApiResponse(hasError: true, message: "-");
     return ApiResponse(
       hasError: map['HasError'] ?? false,
       message: map['Message'],
@@ -62,7 +61,7 @@ extension ApiResponseExtension on ApiResponse? {
       _showNoti(message: this?.message);
       return this!;
     }
-    if (isOkeyNoti && this?.message != "-") {
+    if (isOkeyNoti && this?.hasError == false && this?.message != "-") {
       _showNoti(
           message: this?.message,
           type: NotifyType.success,
@@ -75,6 +74,7 @@ extension ApiResponseExtension on ApiResponse? {
       {String? message,
       NotifyType type = NotifyType.error,
       int milliseconds = 300}) {
+    if (message == null || message.isEmpty) return;
     Future.delayed(
       Duration(milliseconds: milliseconds),
       () => CustomNotify(message: message, type: type)

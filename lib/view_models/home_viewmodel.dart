@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-
 import '../helpers/state_managements/store/store_models.dart';
 
 class HomeViewModel {
@@ -19,11 +17,9 @@ class HomeViewModel {
 
   Future increment() async {
     dataStore.data += 1;
-    // updateWidget;
   }
 
   Future decrement() async {
     dataStore.data -= 1;
-    // updateWidget;
   }
 }

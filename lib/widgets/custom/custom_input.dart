@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomInput extends StatelessWidget {
+  bool autofocus;
   TextEditingController? controller;
   void Function(String? value)? onChanged;
   void Function(String? value)? onSubmitted;
@@ -30,7 +31,7 @@ class CustomInput extends StatelessWidget {
   TextCapitalization textCapitalization;
 
   CustomInput({
-    super.key,
+    this.autofocus = false,
     this.controller,
     this.onChanged,
     this.onSubmitted,
@@ -64,6 +65,7 @@ class CustomInput extends StatelessWidget {
       controller!.text = initialValue!;
     }
     return TextField(
+      autofocus: autofocus,
       controller: (controller ?? TextEditingController(text: initialValue)),
       onChanged: (value) =>
           onChanged?.call(value.trim().isEmpty ? null : value),
@@ -84,7 +86,6 @@ class CustomInput extends StatelessWidget {
         enabledBorder: _border(borderPassiveColor),
         helperMaxLines: 3,
         errorMaxLines: 3,
-        alignLabelWithHint: true,
       ),
       cursorColor: Colors.black,
       style: textStyle,

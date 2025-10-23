@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
 import '../project/c_text.dart';
 import '../project/widget_helper.dart';
 import 'custom_input.dart';
@@ -11,6 +10,8 @@ class DropdownBS extends StatelessWidget {
   final String? title;
   final Widget? icon;
   final Color bsSelectedColor;
+  double maxHeight;
+  bool isExpanded;
   final Alignment bsAlignment;
   final bool searchInputEnabled;
   final String? searchInputHintText;
@@ -24,6 +25,8 @@ class DropdownBS extends StatelessWidget {
     this.title,
     this.icon,
     this.bsSelectedColor = Colors.black,
+    this.maxHeight = 300,
+    this.isExpanded = false,
     this.bsAlignment = Alignment.center,
     this.searchInputEnabled = false,
     this.searchInputHintText,
@@ -59,8 +62,11 @@ class DropdownBS extends StatelessWidget {
             Expanded(
               child: ValueListenableBuilder<String?>(
                 valueListenable: selectedKeyNotifier,
-                builder: (_, value, __) => CText(
-                    value == null ? title : viewListNotifier.value[value]),
+                builder: (_, value, __) {
+                  return CText(
+                    value == null ? title : viewListNotifier.value[value],
+                  );
+                },
               ),
             ),
             hw.sizedBoxHorizontal(),
@@ -69,14 +75,16 @@ class DropdownBS extends StatelessWidget {
         ),
       ),
       onTap: () async {
-        final res = await _showBS(navigatorKey.currentContext!);
-        selectedKeyNotifier.value = res;
-        callback?.call(res);
+        final res = await _showBS(context);
+        if (res != null) {
+          selectedKeyNotifier.value = res;
+          callback?.call(res);
+        }
       },
     );
   }
 
-  Future<String?> _showBS(BuildContext context) {
+  Future _showBS(BuildContext context) {
     viewListNotifier.value = dataList;
     return showModalBottomSheet(
       context: context,
@@ -84,7 +92,9 @@ class DropdownBS extends StatelessWidget {
       isScrollControlled: true,
       isDismissible: true,
       constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * .9,
+        maxHeight: isExpanded ? maxHeight : double.infinity,
+        // maxHeight: maxHeight,
+        minWidth: double.infinity,
       ),
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
@@ -127,9 +137,9 @@ class DropdownBS extends StatelessWidget {
                   ),
                   hw.sizedBoxVertical(12),
                 ],
-                searchInputEnabled
-                    ? _listWidget(context)
-                    : Flexible(child: _listWidget(context)),
+                isExpanded
+                    ? Expanded(child: _listWidget(context))
+                    : _listWidget(context),
               ],
             );
           }),
@@ -208,6 +218,7 @@ class DropdownBS extends StatelessWidget {
         child: CText(
           data.value,
           color: isSelected ? Colors.white : Colors.black,
+          textAlign: TextAlign.center,
         ),
       ),
       onTap: () => Navigator.pop(context, data.key),

@@ -22,6 +22,7 @@ class WidgetHelper with DesignMixin {
   Widget circleLoading({
     Color color = ColorConstants.primaryColor,
     double padding = 8,
+    double stroke = 4,
   }) {
     return Padding(
       padding: EdgeInsets.all(padding),
@@ -29,7 +30,7 @@ class WidgetHelper with DesignMixin {
         child: AspectRatio(
           aspectRatio: 1,
           child: Center(
-            child: CircularProgressIndicator(color: color),
+            child: CircularProgressIndicator(color: color, strokeWidth: stroke),
           ),
         ),
       ),

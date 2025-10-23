@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// children or oneWidget
 class CustomBottomSheet {
   List<Widget> Function(StateSetter setState)? children;
   Widget Function(StateSetter setState)? oneWidget;
@@ -9,8 +10,10 @@ class CustomBottomSheet {
   bool isDismissible;
   EdgeInsets padding;
   EdgeInsets scrollPadding;
+  double maxHeight;
   double dividerSize;
   Color dividerColor;
+  bool isExpanded;
 
   CustomBottomSheet({
     this.children,
@@ -21,18 +24,21 @@ class CustomBottomSheet {
     this.isDismissible = true,
     this.padding = EdgeInsets.zero,
     this.scrollPadding = EdgeInsets.zero,
+    this.maxHeight = 300,
     this.dividerSize = 48,
     this.dividerColor = Colors.black,
+    this.isExpanded = true,
   }) : assert(!(children == null && oneWidget == null));
 
   Future show(BuildContext context) => showModalBottomSheet(
         context: context,
         useRootNavigator: true,
         isScrollControlled: true,
-        constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * .9,
-        ),
         isDismissible: isDismissible,
+        constraints: BoxConstraints(
+          maxHeight: maxHeight,
+          minWidth: double.infinity,
+        ),
         backgroundColor: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(radius)),
@@ -51,7 +57,7 @@ class CustomBottomSheet {
                       Container(
                         width: dividerSize,
                         height: 4,
-                        margin: const EdgeInsets.only(top: 12, bottom: 8),
+                        margin: const EdgeInsets.only(bottom: 8, top: 12),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: dividerColor,
@@ -61,17 +67,30 @@ class CustomBottomSheet {
                       titleWidget!,
                       const Divider(thickness: 1)
                     ],
-                    Flexible(
-                      child: oneWidget?.call(setState) ??
-                          SingleChildScrollView(
-                            padding: scrollPadding,
-                            physics: const ClampingScrollPhysics(),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: children?.call(setState) ?? [],
+                    if (oneWidget != null)
+                      isExpanded
+                          ? Expanded(child: oneWidget!.call(setState))
+                          : oneWidget!.call(setState),
+                    if (oneWidget == null)
+                      isExpanded
+                          ? Expanded(
+                              child: SingleChildScrollView(
+                                padding: scrollPadding,
+                                physics: const ClampingScrollPhysics(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: children?.call(setState) ?? [],
+                                ),
+                              ),
+                            )
+                          : SingleChildScrollView(
+                              padding: scrollPadding,
+                              physics: const ClampingScrollPhysics(),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: children?.call(setState) ?? [],
+                              ),
                             ),
-                          ),
-                    ),
                   ],
                 ),
               );

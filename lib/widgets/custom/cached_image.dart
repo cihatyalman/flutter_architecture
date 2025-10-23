@@ -30,18 +30,22 @@ class CachedImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(radius)),
-      child: imageData == null
-          ? _imageWidget(2)
-          : imageData is String
-              ? (heroKey != null
-                  ? Hero(
-                      tag: "${heroKey ?? ""}-$imageData",
-                      child: _networkImageWidget(),
-                    )
-                  : _networkImageWidget())
-              : imageData is File
-                  ? _fileImageWidget(imageData)
-                  : _imageWidget(2),
+      child: SizedBox(
+        width: isInfinity ? double.infinity : null,
+        height: isInfinity ? double.infinity : null,
+        child: imageData == null
+            ? _imageWidget(2)
+            : imageData is String
+                ? (heroKey != null
+                    ? Hero(
+                        tag: "${heroKey ?? ""}-$imageData",
+                        child: _networkImageWidget(),
+                      )
+                    : _networkImageWidget())
+                : imageData is File
+                    ? _fileImageWidget(imageData)
+                    : _imageWidget(2),
+      ),
     );
   }
 
@@ -54,8 +58,6 @@ class CachedImage extends StatelessWidget {
         placeholder: (context, url) => _imageWidget(1),
         errorWidget: (context, url, error) => _imageWidget(0),
         fit: fit,
-        width: isInfinity ? double.infinity : null,
-        height: isInfinity ? double.infinity : null,
         fadeInCurve: Curves.linear,
         fadeInDuration: const Duration(milliseconds: 100),
       ),

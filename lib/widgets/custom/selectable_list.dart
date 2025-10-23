@@ -1,22 +1,33 @@
-// ignore_for_file: must_be_immutable, invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member, prefer_void_to_null, use_key_in_widget_constructors, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
+import '../project/c_text.dart';
+
+enum SelectableListType { list, wrap, grid }
+
 class SelectableList<T> extends StatefulWidget {
-  final List<SelectableListModel<T>> items;
-  final Widget Function(SelectableListModel<T> item)? itemWidget;
-  int? columnCount;
-  void Function(List<T?> newList)? callback;
+  final SelectableListType viewType;
+  final List<T> items;
+  final List<int>? initialIndexList;
+  final Widget Function(T item, bool isSelected)? itemWidget;
+  void Function(List<int> newList)? callback;
   bool isMultipleSelect;
-  double childAspectRatio;
+  double radius;
+  double space; // list, wrap
+  int? columnCount; // grid
+  double childAspectRatio; // grid
 
   SelectableList({
+    super.key,
+    this.viewType = SelectableListType.list,
     required this.items,
+    this.initialIndexList,
     this.itemWidget,
-    this.columnCount,
     this.callback,
     this.isMultipleSelect = false,
-    this.childAspectRatio = 1,
+    this.radius = 8,
+    this.space = 8,
+    this.columnCount = 2,
+    this.childAspectRatio = 2,
   });
 
   @override
@@ -24,78 +35,85 @@ class SelectableList<T> extends StatefulWidget {
 }
 
 class _SelectableListState<T> extends State<SelectableList<T>> {
+  final selectedIndexList = <int>[];
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialIndexList != null) {
+      selectedIndexList.addAll(widget.initialIndexList!);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return widget.columnCount == null
-        ? Wrap(
-            children: widget.items.map((e) => _itemWidget(e)).toList(),
-          )
-        : GridView.builder(
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: widget.columnCount!,
-              childAspectRatio: widget.childAspectRatio,
-            ),
-            itemCount: widget.items.length,
-            itemBuilder: (context, index) => _itemWidget(widget.items[index]),
-          );
+    switch (widget.viewType) {
+      case SelectableListType.list:
+        return listView();
+      case SelectableListType.wrap:
+        return wrapView();
+      case SelectableListType.grid:
+        return gridView();
+    }
   }
 
-  Widget _itemWidget(SelectableListModel<T> item) {
-    return InkWell(
-      onTap: () {
-        if (widget.isMultipleSelect) {
-          item.isSelected = !item.isSelected;
-          widget.callback?.call(widget.items
-              .where((element) => element.isSelected)
-              .map((e) => e.data)
-              .toList());
-        } else {
-          for (var element in widget.items) {
-            element.isSelected = element.index == item.index;
-          }
-          widget.callback?.call([item.data]);
-        }
-        setState(() {});
-      },
-      child: widget.itemWidget != null
-          ? widget.itemWidget!.call(item)
-          : Container(
-              margin: const EdgeInsets.all(4),
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: item.isSelected ? Colors.blue[200] : Colors.white,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: .1),
-                    offset: Offset(0, 8),
-                    blurRadius: 8,
-                  )
-                ],
-              ),
-              child: FittedBox(child: Text(item.data.toString())),
-            ),
+  Widget listView() {
+    return ListView.separated(
+      padding: EdgeInsets.zero,
+      physics: ClampingScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: widget.items.length,
+      separatorBuilder: (context, index) => SizedBox(height: widget.space),
+      itemBuilder: (context, index) => _itemWidget(index, widget.items[index]),
     );
   }
-}
 
-class SelectableListModel<T> {
-  late int index;
-  late bool isSelected;
-  late T? data;
+  Widget wrapView() {
+    return Wrap(
+      runSpacing: widget.space,
+      spacing: widget.space,
+      children: List.generate(
+        widget.items.length,
+        (index) => _itemWidget(index, widget.items[index]),
+      ),
+    );
+  }
 
-  SelectableListModel({
-    this.index = 0,
-    this.isSelected = false,
-    this.data,
-  });
+  Widget gridView() {
+    return GridView.builder(
+      padding: EdgeInsets.zero,
+      physics: ClampingScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: widget.columnCount!,
+        childAspectRatio: widget.childAspectRatio,
+      ),
+      itemCount: widget.items.length,
+      itemBuilder: (context, index) => _itemWidget(index, widget.items[index]),
+    );
+  }
 
-  Map<String, dynamic> toMap() {
-    Map<String, dynamic> map = {};
-    map["Index"] = index;
-    map["IsSelected"] = isSelected;
-    map["Data"] = data;
-    return map;
+  Widget _itemWidget(int index, T data) {
+    final isSelected = selectedIndexList.contains(index);
+    return InkWell(
+      borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
+      child: widget.itemWidget?.call(data, isSelected) ??
+          CText(data.toString(), isBold: isSelected),
+      onTap: () {
+        setState(() {
+          if (widget.isMultipleSelect) {
+            if (selectedIndexList.contains(index)) {
+              selectedIndexList.remove(index);
+            } else {
+              selectedIndexList.add(index);
+            }
+          } else {
+            selectedIndexList.clear();
+            selectedIndexList.add(index);
+          }
+        });
+        widget.callback?.call(selectedIndexList);
+      },
+    );
   }
 }
