@@ -1,14 +1,16 @@
-# Flutter Architecture
+# **StarterKit Flutter**
 
-Projelerinizde kullanabileceğiniz flutter mimarisi. [ Update: 23.10.2025 ]
+Projelerinizde hızlı başlangıç yapmanızı sağlayan, yeniden kullanılabilir bir Flutter başlangıç kitidir. [ Son Güncelleme: 30.03.2026 ]
 
-#
+Bu proje, **Feature-Based (Özellik Odaklı)** yapı ile birlikte **MVVM (Model-View-ViewModel)** mimarisi kullanılarak geliştirilmiştir. Bu sayede ölçeklenebilir, sürdürülebilir ve modüler bir yapı sunar.
 
-"lib" klasörünü projenizin lib klasörü ile değiştirerek kullanabilirsiniz. Projenizde kullanılmayacak klasörleri silebilirsiniz.
+📦 **Kurulum ve Kullanım**
+<br> - Bu repodaki **lib** klasörünü kendi projenizin **lib** klasörü ile değiştirin.
+<br> - İhtiyacınıza göre, kullanmayacağınız klasörleri, örnek feature’ları, demo ekranları kaldırabilirsiniz.
 
-NOT: Gerekli kütüphaneler yüklü değilse hata alabilirsiniz.
-
-NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştirmeyi unutmayın.
+⚠️ **Dikkat Edilmesi Gerekenler**
+<br> - Gerekli bağımlılıklar (packages) yüklü değilse proje hata verebilir.
+<br> - [hive.dart](starterkit/lib/services/storage/hive.dart) dosyasında bulunan **'_boxName'** değişkenini projenize uygun şekilde güncellemeniz gerekmektedir.
 
 #
 
@@ -36,55 +38,95 @@ NOT: cache_service.dart dosyasında bulunan 'cacheName' değişkenini değiştir
       </ul>
     </td>
     <td>
-      <li>Other</li>
       <ul>
-        <li>intl</li>
-        <li>path_provider</li>
-        <li>mask_text_input_formatter</li>
-        <li>auto_size_text</li>
-        <li>animated_bottom_navigation_bar</li>
+        <li>Other</li>
+        <ul>
+          <li>intl</li>
+          <li>mask_text_input_formatter</li>
+          <li>auto_size_text</li>
+          <li>flutter_svg</li>
+          <li>animated_bottom_navigation_bar</li>
+        </ul>
       </ul>
     </td>
   </tr>
 </table>
 
-<!-- # api -->
-  <!-- dio:  -->
-<!--  -->
-  <!-- # widgets -->
-  <!-- animator:  -->
-  <!-- another_flushbar:  -->
-  <!-- cached_network_image:  -->
-<!--  -->
-  <!-- # cache -->
-  <!-- hive:  -->
-  <!-- hive_flutter:  -->
-<!--  -->
-  <!-- # other -->
-  <!-- intl:  -->
-  <!-- path_provider:  -->
-  <!-- mask_text_input_formatter:  -->
-  <!-- auto_size_text:  -->
-<!--  -->
-  <!-- # projects -->
-  <!-- animated_bottom_navigation_bar:  -->
-
 <br>
 
 # Mimari
 
-- #### [core](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/core): Projeden bağımsız olarak çalışan kodlar içerir. Bu katmanı [dışarıdan](https://github.com/cihatyalman/flutter_core) entegre edebilirsiniz.
-- #### [constants](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/constants): Projede kullanılacak sabitler burada tutulur. Bunlar renk, icon, resim, yazı, yazı formatı gibi alanlar olabilir.
-- #### [controllers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/controllers): Api istekleri burada tutulur.
-- #### [helpers](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/helpers): Kodlama yaparken bize yardımcı olacak kodlar burada tutulur.
-- #### [widgets/custom](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/widgets/custom): Projeden bağımsız olarak oluşturulan widgetlar burada tutulur.
-- #### [widgets/project](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/widgets/project): Projeye özgü widgetlar burada tutulur.
-- #### [models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/models): Projede kullanılacak modeller burada tutulur.
-- #### [views](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/views): Tasarlanan uygulama ekranları burada tutulur.
-- #### [view_models](https://github.com/cihatyalman/flutter_architecture/tree/master/lib/view_models): View ile model arasındaki iletişimi sağlar. İş kodları burada tutulur.
+### Klasör Yapısı
+
+Proje, kodun okunabilirliğini ve tekrar kullanılabilirliğini artırmak adına belirli sorumluluk alanlarına bölünmüştür:
+
+- [services](starterkit/lib/services): Projeden tamamen bağımsız, genel amaçlı servisleri içerir. Bu katman, farklı projelere doğrudan taşınabilecek (plug-and-play) şekilde tasarlanmıştır (örn: API istemcileri, Firebase servisleri vb.).
+<br> Bu yapıyı projeye eklemek için ihtiyacınız olan servisleri, [flutter-services](https://github.com/cihatyalman/flutter-services) reposundan seçip doğrudan projenize dahil edebilirsiniz.
+
+- [features](starterkit/lib/features): Uygulamanın kalbi burasıdır. Her bir özellik (Login, Home vb.) kendi MVVM katmanlarıyla burada inşa edilir ve yönetilir. Bu sayede özellik bazlı geliştirme ve hata ayıklama kolaylaşır.
+
+- [screens](starterkit/lib/screens): Features içinde hazırlanan mantık ve arayüz parçalarının birleştirildiği katmandır. Uygulamanın navigasyon yapısındaki tüm ana sayfalar burada konumlanır.
+
+- [widgets/custom](starterkit/lib/widgets/custom): Projeden bağımsız, her projede kullanılabilecek genel widget'lar (Örn: CustomButton, CustomInput).
+
+- [widgets/project](starterkit/lib/widgets/project): Sadece bu projeye özgü tasarım dilini ve mantığını yansıtan widget'lar.
+
+- [utils](starterkit/lib/utils): Proje genelinde kullanılan yardımcı (helper) fonksiyonları, extension'ları ve validator'ları içerir.
+
+- [shared](starterkit/lib/shared): Tüm uygulama genelinde paylaşılan kaynakların merkezidir. Proje sabitleri (constants), ortak veri modelleri burada yer alır.
+
+### Feature-Based Architecture
+
+Projeyi teknik katmanlar yerine sunduğu özelliklere (Giriş, Profil, Sepet vb.) göre parçalara ayırırız.
+
+- **Modülerlik:** Yeni bir özellik eklerken veya var olanı silerken tüm proje içinde gezmeniz gerekmez; her şey kendi klasörü altındadır.
+
+- **Düzen ve Çakışma Önleme:** Farklı ekiplerin aynı dosya üzerinde çalışma ihtimalini minimize ederek kod çakışmalarını (conflict) engeller.
+
+### MVVM Mimari Katmanları
+
+Özellikleri kendi içinde sorumluluklarına göre katmanlara ayırarak UI ve iş mantığını (logic) birbirinden tamamen ayırıyoruz:
+
+- **View:** Sadece arayüzün (UI) oluşturulduğu katmandır. Hiçbir iş mantığı içermez.
+
+- **ViewModel:** UI'ın "beyni"dir. Veriyi View için hazırlar ve arayüzdeki kullanıcı hareketlerini yönetir.
+
+- **Repository:** Verinin nereden (API, Yerel Veri Tabanı vb.) geleceğine karar veren yönetim merkezidir.
+
+- **Store:** Ham verinin depolandığı katmandır.
+
+- **Model:** Veri şablonlarını ve tip dönüşümlerini (JSON serialization) tanımlar.
+
+**Neden bu yapı?** <br>
+Bu soyutlama sayesinde, örneğin veri kaynağınızı değiştirmek istediğinizde sadece Repository katmanını güncellersiniz; arayüzünüz (View) bundan etkilenmez. Aynı şekilde, aynı iş mantığını kullanarak sadece View katmanını değiştirip projenizi mobil platformdan web platformuna kolayca taşıyabilirsiniz.
 
 <br>
 
 # Flutter Snippet
-Kod yazarken bize yardımcı olacak hazır [kod parçaları](https://github.com/cihatyalman/flutter_architecture/tree/master/flutter.code-snippets).
 
+Geliştirme sürecini hızlandırmak ve mimariye uygun kod bloklarını anında oluşturmak için hazırladığım [kod parçalarına](flutter.code-snippets) buradan ulaşabilirsiniz.
+
+<br>
+
+# Demo İçerikleri
+
+- [counter](starterkit/lib/features/counter): Klasik counter uygulamasının MVVM prensiplerine göre yeniden yorumlanmış halidir. Verinin katmanlar arasındaki akışını ve durum yönetiminin (state management) mimariye nasıl entegre edildiğini bu örnekte inceleyebilirsiniz.
+  <br>
+  <p><img src="assets/counter.webp" width="100" alt="Counter"></p>
+- [profile](starterkit/lib/features/profile): Instagram profil sayfasının sadeleştirilmiş bir klonudur.
+  <br>
+  <p>
+    <img src="assets/profile-1.webp" width="100" alt="Profile Grid">
+    <img src="assets/profile-2.webp" width="100" alt="Profile Masonry">
+  </p>
+- [widget](starterkit/lib/features/widget): Proje içerisinde yer alan custom ve project seviyesindeki widget'ların kullanım örneklerini içerir. Kendi bileşenlerinizi oluştururken referans alabileceğiniz bir rehber niteliğindedir.
+  <br>
+  <p>
+    <img src="assets/button.webp" width="100" alt="Button">
+    <img src="assets/input-1.webp" width="100" alt="Input 1">
+    <img src="assets/input-2.webp" width="100" alt="Input 2">
+    <img src="assets/image.webp" width="100" alt="Image">
+    <img src="assets/list.webp" width="100" alt="List">
+    <img src="assets/other-1.webp" width="100" alt="Other 1">
+    <img src="assets/other-2.webp" width="100" alt="Other 2">
+  </p>

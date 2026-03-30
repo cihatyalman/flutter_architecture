@@ -3,41 +3,35 @@ Windows %APPDATA%\Code\User\snippets\(language).json
 Mac $HOME/Library/Application Support/Code/User/snippets/(language).json
 Linux $HOME/.config/Code/User/snippets/(language).json
 */
-
 {
   // #region Debug
-  "Debug Print": {
+  "Debug Print (Flutter)": {
     "scope": "dart",
     "prefix": "c_debug_print",
-    "body": "print(\"[C_${1:1}]: ${$2}\");",
-    "description": "Debug Print"
+    "body": "debugPrint(\"[C_${1:1}]: ${$2}\");",
   },
-  "Debug Text": {
+  "Debug Text (Flutter)": {
     "scope": "dart",
     "prefix": "c_debug_text",
     "body": "CText(\"[C_${1:1}]: ${$2}\"),",
-    "description": "Debug Text"
   },
   // #endregion
-
   // #region Notifier
-  "Build ValueListenableBuilder": {
+  "Build ValueListenableBuilder (Flutter)": {
     "scope": "dart",
     "prefix": "c_notifier_builder",
     "body": [
       "ValueListenableBuilder<${1:dynamic}>(",
       "  valueListenable: $2,",
-      "  builder: (_, value, __) {",
+      "  builder: (_, value, _) {",
       "    return ${3:Text(value.toString())};",
       "  },",
       "),"
     ],
-    "description": "Build ValueListenableBuilder"
   },
   // #endregion
-
   // #region Bloc
-  "Build Bloc Builder": {
+  "Build Bloc Builder (Flutter)": {
     "scope": "dart",
     "prefix": "c_bloc_builder",
     "body": [
@@ -52,41 +46,36 @@ Linux $HOME/.config/Code/User/snippets/(language).json
       "  },",
       "),"
     ],
-    "description": "Build Bloc Builder"
   },
   // #endregion
-  
-  // #region Create
-  "Create Singleton": {
+  // #region Tools
+  "Singleton (Flutter)": {
     "scope": "dart",
-    "prefix": "c_create_singleton",
+    "prefix": "c_singleton",
     "body": [
       "static final ${1:ClassName} _instance = $1._internal();",
       "factory $1() => _instance;",
       "$1._internal();"
     ],
-    "description": "Create Singleton"
   },
-  "Create Screen": {
+  // #endregion
+  // #region Create
+  "Create Screen (Flutter)": {
     "scope": "dart",
-    "prefix": "c_create_screen",
+    "prefix": "c_screen",
     "body": [
-      "// ignore_for_file: use_key_in_widget_constructors",
-      "",
       "import 'package:flutter/material.dart';",
       "",
       "class ${1:ClassName}Screen extends StatelessWidget {",
       "  static const route = '$1Screen';",
       "",
+      "  const $1Screen({super.key});",
+      "",
       "  @override",
       "  Widget build(BuildContext context) {",
       "    return Scaffold(",
-      "      appBar: AppBar(centerTitle: true, title: const Text(route)),",
-      "      body: Column(",
-      "        children: [",
-      "          body(route),",
-      "        ],",
-      "      ),",
+      "      appBar: AppBar(title: const Text(route)),",
+      "      body: Column(children: [body(route)]),",
       "    );",
       "  }",
       "",
@@ -96,17 +85,6 @@ Linux $HOME/.config/Code/User/snippets/(language).json
       "}",
       ""
     ],
-    "description": "Create Screen"
   },
-  "Create DataNotifier": {
-    "scope": "dart",
-    "prefix": "c_create_data_notifier",
-    "body": [
-      "DataNotifier<${1:ModelName}>? _${2:dataName}Notifier;",
-      "DataNotifier<$1> get $2Notifier =>",
-      "    _$2Notifier ??= DataNotifier<$1>(${3:InitialValue});"
-    ],
-    "description": "Create DataNotifier"
-  }
   // #endregion
 }
