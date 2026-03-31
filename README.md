@@ -1,6 +1,6 @@
 # **StarterKit Flutter**
 
-Flutter projelerine hızlı ve düzenli bir başlangıç yapmayı sağlayan, yeniden kullanılabilir yapı ve bileşenler içeren bir Flutter başlangıç kiti. 
+Flutter projeleri için hızlı başlangıç sağlayan, düzenli yapı ve yeniden kullanılabilir bileşenler içeren bir başlangıç kiti.
 
 Bu proje, **Feature-Based (Özellik Odaklı)** yapı ile birlikte **MVVM (Model-View-ViewModel)** mimarisi kullanılarak geliştirilmiştir. Bu sayede ölçeklenebilir, sürdürülebilir ve modüler bir yapı sunar.
 
