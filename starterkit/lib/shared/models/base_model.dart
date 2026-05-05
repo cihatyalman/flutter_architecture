@@ -4,10 +4,10 @@ import '../../services/toolkit/extensions.dart';
 
 abstract class BaseModel {
   String? id;
-  DateTime? createdDatetime;
-  DateTime? updatedDatetime;
+  DateTime? createdAt;
+  DateTime? updatedAt;
 
-  BaseModel({this.id, this.createdDatetime, this.updatedDatetime});
+  BaseModel({this.id, this.createdAt, this.updatedAt});
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -15,11 +15,11 @@ abstract class BaseModel {
     if (id != null) {
       result.addAll({'id': id});
     }
-    if (createdDatetime != null) {
-      result.addAll({'created_datetime': createdDatetime!.toISOStringUtc});
+    if (createdAt != null) {
+      result.addAll({'createdAt': createdAt!.toISOStringUtc});
     }
-    if (updatedDatetime != null) {
-      result.addAll({'updated_datetime': updatedDatetime!.toISOStringUtc});
+    if (updatedAt != null) {
+      result.addAll({'updatedAt': updatedAt!.toISOStringUtc});
     }
 
     return result;
@@ -28,8 +28,8 @@ abstract class BaseModel {
   // factory BaseModel.fromMap(Map<String, dynamic> map) {
   //   return BaseModel(
   //     id: map['id'],
-  //     createdDatetime: (map['created_datetime'] as String?)?.toDateLocal,
-  //     updatedDatetime: (map['updated_datetime'] as String?)?.toDateLocal,
+  //     createdAt: (map['createdAt'] as String?)?.toDateLocal,
+  //     updatedAt: (map['updatedAt'] as String?)?.toDateLocal,
   //   );
   // }
 

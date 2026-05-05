@@ -17,7 +17,7 @@ class ColorScreen extends StatelessWidget {
     theme = Theme.of(context);
 
     return Scaffold(
-      appBar: CAppbar(title: "Renkler").build(context),
+      appBar: CAppBar(title: "Renkler").build(context),
       body: ListView(
         physics: ClampingScrollPhysics(),
         children: [

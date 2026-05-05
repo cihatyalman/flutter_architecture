@@ -12,7 +12,7 @@ class InputWidgetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CAppbar(title: "Inputlar").build(context),
+      appBar: CAppBar(title: "Inputlar").build(context),
       body: ListView(
         physics: ClampingScrollPhysics(),
         padding: EdgeInsets.all(12).copyWith(bottom: 56),

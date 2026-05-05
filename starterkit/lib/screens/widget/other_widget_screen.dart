@@ -12,7 +12,7 @@ class OtherWidgetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CAppbar(title: "Diğer Widgetlar").build(context),
+      appBar: CAppBar(title: "Diğer Widgetlar").build(context),
       body: CustomScrollView(
         physics: ClampingScrollPhysics(),
         scrollBehavior: const ScrollBehavior().copyWith(overscroll: false),

@@ -12,8 +12,8 @@ class UserModel extends BaseModel {
 
   UserModel({
     super.id,
-    super.createdDatetime,
-    super.updatedDatetime,
+    super.createdAt,
+    super.updatedAt,
     this.role = 1,
     this.username,
     this.fullname,
@@ -33,10 +33,10 @@ class UserModel extends BaseModel {
       result.addAll({'fullname': fullname});
     }
     if (profileImageUrl != null) {
-      result.addAll({'profile_image_url': profileImageUrl});
+      result.addAll({'profileImageUrl': profileImageUrl});
     }
     if (lastLoginDate != null) {
-      result.addAll({'last_login_date': lastLoginDate?.toISOStringUtc});
+      result.addAll({'lastLoginDate': lastLoginDate?.toISOStringUtc});
     }
 
     return result;
@@ -45,13 +45,13 @@ class UserModel extends BaseModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'],
-      createdDatetime: (map['CreatedDatetime'] as String?)?.toDateLocal,
-      updatedDatetime: (map['UpdatedDatetime'] as String?)?.toDateLocal,
+      createdAt: (map['createdAt'] as String?)?.toDateLocal,
+      updatedAt: (map['updatedAt'] as String?)?.toDateLocal,
       role: map['role']?.toInt() ?? 1,
       username: map['username'],
       fullname: map['fullname'],
-      profileImageUrl: map['profile_image_url'],
-      lastLoginDate: (map['last_login_date'] as String?)?.toDateLocal,
+      profileImageUrl: map['profileImageUrl'],
+      lastLoginDate: (map['lastLoginDate'] as String?)?.toDateLocal,
     );
   }
 

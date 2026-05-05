@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CAppbar(title: "Profil").build(context),
+      appBar: CAppBar(title: "Profil").build(context),
       body: NestedScrollView(
         headerSliverBuilder: (context, _) => [
           SliverList(

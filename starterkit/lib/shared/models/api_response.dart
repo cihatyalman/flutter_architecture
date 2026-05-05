@@ -20,11 +20,11 @@ class ApiResponse {
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'has_error': hasError});
+    result.addAll({'hasError': hasError});
     if (message != null) {
       result.addAll({'message': message});
     }
-    result.addAll({'validation_errors': validationErrors});
+    result.addAll({'validationErrors': validationErrors});
 
     result.addAll({'data': data});
 
@@ -34,9 +34,9 @@ class ApiResponse {
   factory ApiResponse.fromMap(Map<String, dynamic>? map) {
     if (map == null) return ApiResponse(hasError: true, message: "-");
     return ApiResponse(
-      hasError: map['has_error'] ?? false,
+      hasError: map['hasError'] ?? false,
       message: map['message'],
-      validationErrors: map['validation_errors'],
+      validationErrors: map['validationErrors'],
       data: map['data'],
     );
   }

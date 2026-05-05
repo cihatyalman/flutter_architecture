@@ -15,7 +15,7 @@ class ButtonWidgetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CAppbar(title: "Butonlar").build(context),
+      appBar: CAppBar(title: "Butonlar").build(context),
       body: ListView(
         physics: ClampingScrollPhysics(),
         padding: EdgeInsets.all(12).copyWith(bottom: 56),

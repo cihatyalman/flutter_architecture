@@ -10,10 +10,10 @@ class ParamsModel {
     final result = <String, dynamic>{};
 
     if (pageSize != null) {
-      result.addAll({'page_size': pageSize});
+      result.addAll({'page-size': pageSize});
     }
     if (lastRecordValue != null) {
-      result.addAll({'last_record_value': lastRecordValue});
+      result.addAll({'last-record-value': lastRecordValue});
     }
 
     return result;

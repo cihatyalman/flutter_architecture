@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'c_text.dart';
 
-class CAppbar {
+class CAppBar {
   String? title;
   Widget? titleWidget;
   bool? centerTitle;
   List<Widget>? actions;
 
-  CAppbar({this.title, this.titleWidget, this.centerTitle, this.actions});
+  CAppBar({this.title, this.titleWidget, this.centerTitle, this.actions});
 
   PreferredSizeWidget build(BuildContext context) {
     return AppBar(

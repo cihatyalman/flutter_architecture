@@ -19,7 +19,7 @@ class WidgetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CAppbar(title: "Widgetlar").build(context),
+      appBar: CAppBar(title: "Widgetlar").build(context),
       body: GridView(
         padding: EdgeInsets.all(hw.edgePadding),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

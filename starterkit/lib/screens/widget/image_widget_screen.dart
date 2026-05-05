@@ -23,7 +23,7 @@ class ImageWidgetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CAppbar(title: "Image").build(context),
+      appBar: CAppBar(title: "Image").build(context),
       body: GridView(
         physics: ClampingScrollPhysics(),
         padding: EdgeInsets.all(12).copyWith(bottom: 56),

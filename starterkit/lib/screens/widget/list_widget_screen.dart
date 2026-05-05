@@ -13,7 +13,7 @@ class ListWidgetScreen extends StatelessWidget {
     final spaceWidget = SizedBox(height: 12);
 
     return Scaffold(
-      appBar: CAppbar(title: "Listeler").build(context),
+      appBar: CAppBar(title: "Listeler").build(context),
       body: ListView(
         padding: EdgeInsets.all(12).copyWith(bottom: 56),
         physics: ClampingScrollPhysics(),

@@ -9,6 +9,9 @@ class FormatConstants {
   // m mm            ->  "5 05"            minute
   // s ss            ->  "7 07"            second
 
+  static String dateFormat(DateTime dateTime, String format) =>
+      DateFormat(format, "tr").format(dateTime);
+
   static String dateFormatBase(DateTime dateTime) =>
       DateFormat("dd.MM.yyyy HH:mm:ss", "tr").format(dateTime);
 

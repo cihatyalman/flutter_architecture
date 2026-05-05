@@ -18,9 +18,8 @@ final apiService = DioService(
 );
 
 void main() {
-  if (kReleaseMode) {
-    debugPrint = (String? message, {int? wrapWidth}) {};
-  }
+  if (kReleaseMode) debugPrint = (String? message, {int? wrapWidth}) {};
+
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
 

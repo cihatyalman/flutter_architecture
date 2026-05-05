@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CAppbar(title: "Anasayfa").build(context),
+      appBar: CAppBar(title: "Anasayfa").build(context),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [CounterDemo()],
